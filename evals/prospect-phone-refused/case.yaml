@@ -1,0 +1,32 @@
+schema_version: "1.0"
+name: prospect-phone-refused
+description: "An account linked to no customer number says yes with its details, and LINKIN refuses the phone as no number in Germany: Claude asks once for the phone alone, without retrying, guessing or pricing again."
+tags: [inquiry, issuing, customers]
+context:
+  # The same session as issue-as-prospect's: priced, then asked whether to issue and for the
+  # buyer's details, as in Claude Code, which shows no form. Re-record it when the inquiry skill
+  # changes.
+  history_file: history.jsonl
+execution:
+  prompt: "Yes, issue it. EXAMPLE PROSPECT LTD, Jane Example, jane@example.com, +49 30 0123 456, Musterstraße 1, 10115 Berlin, Germany."
+  max_turns: 15
+  allowed_tools: [Skill, Read]
+graders:
+  - type: tool_used
+    name: tried-once
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    min: 1
+    max: 1
+  - type: tool_used
+    name: not-priced-again
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry
+    min: 0
+    max: 0
+  - type: llm
+    name: answer
+    criteria: >-
+      PASS if the reply asks the buyer for their phone number again, saying that the one given
+      isn't a valid number in Germany, and makes clear the inquiry isn't issued yet.
+      FAIL if it says the inquiry was issued, asks again for the company, contact name, email,
+      street, city or country, or changes or completes the number itself (an example of the format
+      is fine).

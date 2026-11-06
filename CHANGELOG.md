@@ -3,6 +3,31 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## 4.2.0
+
+### Changed
+
+- To issue an inquiry from an account not yet linked to a customer number, you also give a phone
+  number, street and city, and a house number, postal code and phone extension where you have
+  them. LINKIN checks that the phone number is a valid one in your country.
+- Where Claude shows apps, Claude asks only whether to issue, and you give your details in
+  LINKIN's form under its answer. In Claude Code, Claude asks for them with the price. Where
+  LINKIN refuses a detail, Claude asks once for what it names.
+
+## 4.1.1
+
+### Changed
+
+- After issuing an inquiry from an account not yet linked to a customer number, Claude no longer
+  tells the buyer that it is marked as from an unverified account. The buyer's own view of the
+  inquiry no longer shows that mark either; LINKIN still sees it.
+
+### Fixed
+
+- Getting started names the tool permissions as Claude shows them. **Read an issued document** is
+  listed under **Interactive tools** and is set to **Always allow** there. The three tools that
+  issue or submit keep **Needs approval**.
+
 ## 4.1.0
 
 ### Added

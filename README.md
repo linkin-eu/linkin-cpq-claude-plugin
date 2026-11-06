@@ -1,7 +1,7 @@
 ![LINKIN CPQ plugin for Claude: quote aluminium profiles in a conversation.](https://raw.githubusercontent.com/linkin-eu/linkin-cpq-claude-plugin/main/.github/assets/banner-light.png)
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-4.1.0-0C1A2A?style=flat-square" alt="Version 4.1.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-4.2.0-0C1A2A?style=flat-square" alt="Version 4.2.0"></a>
   <a href="#get-started"><img src="https://img.shields.io/badge/Claude-plugin-0C1A2A?style=flat-square" alt="Claude plugin"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-LINKIN%20customers-0C1A2A?style=flat-square" alt="Licence: for LINKIN's customers and partners"></a>
 </p>
@@ -70,7 +70,7 @@ for new profiles. To quote the profiles you can order,
    file creation**. On a Team or Enterprise plan, an Owner turns it on under **Organization
    settings › Capabilities**.
 2. **Upload the plugin.** Download
-   [`linkin-cpq-4.1.0.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v4.1.0/linkin-cpq-4.1.0.zip)
+   [`linkin-cpq-4.2.0.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v4.2.0/linkin-cpq-4.2.0.zip)
    from the [latest release](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest),
    then in Claude choose **Customize › Plugins › Add › Upload plugin** and pick the zip. Upload the zip
    as it is. Safari may unzip downloads: if it did, turn off **Open "safe" files after
@@ -80,10 +80,13 @@ for new profiles. To quote the profiles you can order,
    <!-- Remove this note once mcp.linkin.eu's client registration is verified. -->
    If Claude asks for an OAuth client ID, enter `402sn2rbceqt5r4sjktlekf2vm` and leave the secret
    empty.
-4. **Allow the read-only tools.** Under the connector's **Tool permissions**, set the seven tools
-   that only read to **Always allow**: `get_account`, `find_profiles`, `find_values`,
-   `price_quotation`, `price_inquiry`, `find_documents` and `read_document`. Claude then asks
-   only before it issues or submits.
+4. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
+   **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
+   document** to **Always allow** too: it only reads, and is listed there because it shows the
+   document as a page. Leave **Issue an inquiry**, **Issue a quotation** and **Submit a
+   quotation** on **Needs approval**, so Claude asks before it issues or submits. Where an
+   organization's admin has turned off **Always allow** for Cowork, Claude asks before every tool
+   there, and **Always allow** still works in chats.
 
 Then ask for a price. The plugin works in Cowork too, with the same sign-in.
 
@@ -185,9 +188,10 @@ sequenceDiagram
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
-**Tool permissions.** `submit_quotation`, which is final, asks for approval by default. The seven
-tools that only read can be set to **Always allow** ([Get started](#claude-desktop-or-claudeai),
-step 4).
+**Tool permissions.** Issuing an inquiry, issuing a quotation and submitting one, which is final,
+ask for approval by default. The seven tools that only read, the six **Read-only tools** and
+**Read an issued document**, can be set to **Always allow**
+([Get started](#claude-desktop-or-claudeai), step 4).
 
 <details>
 <summary>The same in Claude Code</summary>
@@ -226,8 +230,9 @@ review of each profile. The issued document is what counts.
 <summary><b>How do I get a LINKIN account?</b></summary>
 
 [Register on linkin.eu](https://linkin.eu/en/sign-up/). With a new account you can price and issue
-inquiries for new profiles from a drawing, up to 20 a day: Claude asks for your company, contact
-name, email and country to issue one. To quote the profiles you can order,
+inquiries for new profiles from a drawing, up to 20 a day. To issue one, you give your company,
+contact name, email, phone, street, city and country, in LINKIN's form where Claude shows it, or
+in the chat. To quote the profiles you can order,
 [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number. The
 inquiries you issued before stay yours.
 </details>

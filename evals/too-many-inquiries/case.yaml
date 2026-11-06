@@ -7,7 +7,7 @@ context:
   # buyer's address. Re-record it when the inquiry skill changes.
   history_file: history.jsonl
 execution:
-  prompt: "Yes, issue it. EXAMPLE PROSPECT LTD, Jane Example, jane@example.com, Germany."
+  prompt: "Yes, issue it. EXAMPLE PROSPECT LTD, Jane Example, jane@example.com, +49 30 1234567, Musterstraße 1, 10115 Berlin, Germany."
   max_turns: 15
   allowed_tools: [Skill, Read]
 graders:
