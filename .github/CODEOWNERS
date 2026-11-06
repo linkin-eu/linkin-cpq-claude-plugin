@@ -1,0 +1,3 @@
+# The main ruleset requires a code owner's review, and that rule only takes effect once this
+# file is on main.
+*    @tlinkin
