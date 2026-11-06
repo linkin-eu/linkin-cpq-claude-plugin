@@ -1,76 +1,47 @@
 LINKIN CPQ plugin for Claude: licence
 
-Version 1, 6 November 2026.
+Version 2, 6 November 2026.
 
 Copyright (c) 2026 LINKIN Ltd. (ЛИНКИН ООД), UIC 115840214, 55 Nestor Abadjiev str., Plovdiv,
 Bulgaria ("LINKIN"). All rights reserved, except as granted below.
 
-1. Who it is for. This licence is granted to the business that holds a LINKIN account as a
-   customer or partner of LINKIN, whether a company, a sole trader or another organisation (the
-   licensee), and to the people who use the plugin on its behalf. The plugin is for business use
-   only. Whoever installs or uses the plugin accepts this licence for the licensee, and confirms
-   that they may do so. Anyone else may install the plugin only to see what it does: it works
-   only with a LINKIN account (clause 7).
+1. Who may use it. This licence is for each business that holds a LINKIN account as LINKIN's
+   customer or partner (the licensee), and for the people who use the plugin on its behalf. The
+   plugin is for business use only. Whoever installs or uses it accepts this licence for the
+   licensee, and confirms that they may do so.
 
-2. The plugin. "The plugin" means the files LINKIN releases as the LINKIN CPQ plugin for Claude:
-   its skills, configuration, documentation and icon, in each version LINKIN releases.
+2. What you may do. LINKIN grants the licensee a free, non-exclusive, non-transferable licence,
+   without the right to sublicense, to install and use the plugin with Claude, including through
+   the licensee's Claude organisation, and to keep copies of it for that purpose. "The plugin"
+   means the files LINKIN releases as the LINKIN CPQ plugin for Claude, in each version.
 
-3. What you may do. LINKIN grants the licensee a non-exclusive, non-transferable, royalty-free
-   licence, without the right to sublicense, to:
-   a. install and use the plugin with Claude, to work with LINKIN's services;
-   b. have the Owner of the licensee's Claude organisation upload it for the licensee's members;
-   c. keep copies of the plugin's zip file for these purposes.
+3. What you may not do. You may not change the plugin, or install or use a changed copy. You may
+   not give, sell, publish or otherwise make the plugin available to anyone outside the licensee
+   without LINKIN's written permission.
 
-4. No changes. You may install and use the plugin only as LINKIN releases it. You may not change
-   it, or install or use a changed copy.
+4. LINKIN's services. The plugin only connects Claude to LINKIN's services. They need a LINKIN
+   account and are governed by LINKIN's terms for them; this licence gives no right to them.
+   Claude is Anthropic's product, used under Anthropic's terms, and LINKIN is not responsible
+   for it.
 
-5. No distribution. You may not give, sell, rent, publish or otherwise make the plugin, changed
-   or not, available to anyone outside the licensee without LINKIN's prior written permission.
+5. What counts. What Claude writes may be wrong. Only the documents LINKIN's services issue
+   count, and only as their status says: a quotation is a draft until LINKIN releases it, and an
+   inquiry is a preliminary offer, subject to LINKIN's technical review. Where Claude's words
+   differ from an issued document, the document prevails.
 
-6. Anthropic and GitHub.
-   a. LINKIN permits Anthropic, PBC and its affiliates to host, scan, review and make the plugin
-      available, unchanged, to Claude users. The end of any licensee's licence does not end this
-      permission.
-   b. Where LINKIN makes the plugin's repository public on GitHub, GitHub's users may view, use,
-      display, perform and fork it through GitHub's service, as section D.5 of GitHub's Terms of
-      Service allows. That gives no other right, and in particular no right to install, use or
-      distribute a changed copy.
+6. No warranty. The plugin is provided free of charge and "as is", without warranty of any kind.
 
-7. LINKIN's services. The plugin only connects Claude to LINKIN's services. Using them needs a
-   LINKIN account and is governed by LINKIN's terms for those services. This licence grants no
-   account and no right to those services. Claude is Anthropic's product, used under Anthropic's
-   terms, and LINKIN is not responsible for it.
+7. Liability. As far as the law permits, LINKIN is not liable for any loss or damage arising
+   from the plugin or its use. This does not exclude or limit liability for intent or gross
+   negligence, or any other liability that the law does not allow to be excluded or limited.
 
-8. What binds. Only the documents LINKIN's services issue bind, and only as their status says: a
-   quotation stands draft until LINKIN releases it, and an inquiry is a preliminary offer,
-   subject to LINKIN's technical review. What Claude writes may be wrong. Where it differs from
-   an issued document, the document prevails.
+8. Ending. The licence ends when the licensee's LINKIN account ends, or at once if the licensee
+   breaches it. LINKIN may also end it, or withdraw the plugin, by notice. The licensee then
+   stops using the plugin and deletes its copies.
 
-9. Trademarks. This licence grants no right to use the names, logos or trademarks of LINKIN or
-   PROFILINK. SAP is a trademark of SAP SE. LINKIN is not affiliated with, sponsored by or
-   endorsed by SAP SE.
+9. New versions. LINKIN may release new versions of the plugin and of this licence. Each version
+   of the plugin is governed by the licence released with it.
 
-10. No warranty. LINKIN provides the plugin free of charge and "as is", without warranty of any
-    kind, express or implied, including any warranty that it is fit for a particular purpose or
-    works without error.
-
-11. Liability. As far as the law permits, LINKIN is not liable for any loss or damage arising
-    from the plugin or its use. Nothing in this licence excludes or limits liability for intent
-    or gross negligence (Art. 94 of the Bulgarian Obligations and Contracts Act), or any other
-    liability that the law does not allow to be excluded or limited.
-
-12. Ending. The licence ends for the licensee when its LINKIN account ends, or at once if it
-    breaches this licence. LINKIN may also withdraw the plugin, or end this licence, by notice.
-    The licensee then stops using the plugin and deletes its copies. Clauses 5, 8, 10, 11, 14 and
-    15 survive the end of the licence.
-
-13. New versions. LINKIN may release new versions of the plugin and of this licence. Each version
-    of the plugin is governed by the licence released with it.
-
-14. Law and courts. Bulgarian law governs this licence. The courts in Plovdiv, Bulgaria, with
-    jurisdiction over the subject matter, have exclusive jurisdiction over any dispute arising out
-    of or in connection with this licence.
-
-15. Severability. If a provision of this licence is invalid, the rest of it remains in force.
+10. Law. Bulgarian law governs this licence.
 
 Contact: devops@linkin.eu · https://linkin.eu

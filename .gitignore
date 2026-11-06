@@ -5,3 +5,7 @@ evals/results/
 Thumbs.db
 desktop.ini
 __MACOSX/
+
+# Sessions an eval writes beside its history_file when it resumes it
+evals/*/*.jsonl
+!evals/*/history.jsonl
