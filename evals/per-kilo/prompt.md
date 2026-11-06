@@ -1,6 +1,6 @@
 ---
-description: "Brought a per-kg offer, Claude gives LINKIN's price per kg on the theoretical weight, compares like for like, and names no supplier."
-tags: [quoting]
+description: "Brought a per-kg offer, Claude gives LINKIN's price per kg on the theoretical weight, puts the other offer on the same weight with a labelled what-if, and names no supplier."
+tags: [per-kilo]
 max_turns: 15
 allowed_tools: [Skill, Read]
 ---
