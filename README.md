@@ -63,17 +63,19 @@
 
 ## Get started
 
-**You need:** a paid Claude plan (Pro, Max, Ultra, Team or Enterprise), and a LINKIN account
-linked to your customer number. No account yet? [Ask LINKIN](https://linkin.eu/en/contact/).
+**You need:** a paid Claude plan (Pro, Max, Ultra, Team or Enterprise), and a LINKIN account.
+Quotations need it linked to your customer number; inquiries for new profiles work before that.
+No account yet? [Ask LINKIN](https://linkin.eu/en/contact/).
 
 ### Claude Desktop or claude.ai
 
 1. **Turn on Code execution.** Skills need it: **Settings › Capabilities › Code execution and
    file creation**. On a Team or Enterprise plan, an Owner turns it on under **Organization
    settings › Capabilities**.
-2. **Upload the plugin.** Download `linkin-cpq-4.0.0.zip` from the
-   [latest release](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest), then
-   in Claude choose **Customize › Plugins › Add › Upload plugin** and pick the zip. Upload the zip
+2. **Upload the plugin.** Download
+   [`linkin-cpq-4.0.0.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v4.0.0/linkin-cpq-4.0.0.zip)
+   from the [latest release](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest),
+   then in Claude choose **Customize › Plugins › Add › Upload plugin** and pick the zip. Upload the zip
    as it is. Safari may unzip downloads: if it did, turn off **Open "safe" files after
    downloading** in its settings, and download the zip again.
 3. **Connect.** Open the plugin's **Connectors** tab, add or connect **linkin-cpq**, and sign in
@@ -81,6 +83,10 @@ linked to your customer number. No account yet? [Ask LINKIN](https://linkin.eu/e
    <!-- Remove this note once mcp.linkin.eu's client registration is in production. -->
    If Claude asks for an OAuth client ID, enter `402sn2rbceqt5r4sjktlekf2vm` and leave the secret
    empty.
+4. **Allow the read-only tools.** Under the connector's **Tool permissions**, set the seven tools
+   that only read to **Always allow**: `get_account`, `find_profiles`, `find_values`,
+   `price_quotation`, `price_inquiry`, `find_documents` and `read_document`. Claude then asks
+   only before it issues or submits.
 
 Then ask for a price. The plugin works in Cowork too, with the same sign-in.
 
@@ -96,21 +102,36 @@ themselves only while **User-created skills** is on.
 
 ### Claude Code
 
-```text
-/plugin install linkin-cpq --marketplace linkin-eu/linkin-cpq-claude-plugin
+A plugin you uploaded in Claude Desktop or claude.ai is already there, as `linkin-cpq@synced`:
+skip to signing in. Otherwise, install it from this repository's marketplace, in one step:
+
+```bash
+claude plugin install linkin-cpq --marketplace linkin-eu/linkin-cpq-claude-plugin
 ```
 
+or in two:
+
+```bash
+claude plugin marketplace add linkin-eu/linkin-cpq-claude-plugin
+claude plugin install linkin-cpq@linkin
+```
+
+Inside Claude Code, the same commands start with `/plugin`. The marketplace is named `linkin`,
+like the one that held the earlier 3.0.0 plugin: if `claude plugin marketplace list` already
+shows a `linkin` marketplace, remove it first
+([Upgrading](#upgrading-from-an-earlier-linkin-plugin)).
+
 Then run `/mcp`, choose `linkin-cpq` and sign in. The sign-in comes back on port `47819`, so keep
-that port free. A plugin you uploaded in Claude Desktop or claude.ai is already there, as
-`linkin-cpq@synced`: skip the install and just sign in.
+that port free.
 
 ## What you can ask
 
 | To | Ask Claude |
 |---|---|
-| Price a profile | *"What would 30 bars of profile 700019 cost: 6 m, T5, powder coated RAL 7016 fine textured matt, Qualicoat class 1?"* |
+| See what you can order | *"Which profiles can I order from LINKIN?"* |
+| Price a profile | *"What would 30 bars of ‹one of your profile numbers› cost: 6 m, T5, powder coated RAL 7016 fine textured matt, Qualicoat class 1?"* |
 | Price an RFQ | *"Here's an RFQ from our customer. What would it cost?"*, with the RFQ pasted or attached |
-| Check a finish | *"Can I get 700019 anodized but in RAL 9016? If not, what are my options?"* |
+| Check a finish | *"Can I get ‹that profile› anodized but in RAL 9016? If not, what are my options?"* |
 | Price a new profile | *"Here's a drawing of a new profile: die D-118, 6063 T6, 1.25 kg/m, 6 m, 500 pieces. What would it cost?"* |
 | Compare per kg | *"Another extruder offers 6.20 €/kg. What does your price come to per kg?"* |
 | Order again | *"Order again what we had on our last quotation."* |
@@ -162,18 +183,17 @@ sequenceDiagram
   you ask Claude to price, issue or look up, and nothing else from your conversation.
 - **No code, no telemetry.** The skills are instructions for Claude. They run no code and send
   nothing.
-- **What LINKIN keeps, and for how long:** see the [privacy notice](PRIVACY.md), which adds to
+- **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
-**Tool permissions.** Claude may ask your approval before it uses one of the connector's tools,
-and `submit_quotation`, which is final, always asks. You can set the tools that only read to
-**Always allow** under the connector's **Tool permissions**: `get_account`, `find_profiles`,
-`find_values`, `price_quotation`, `price_inquiry`, `find_documents` and `read_document`.
+**Tool permissions.** `submit_quotation`, which is final, always asks your approval. The seven
+tools that only read can be set to **Always allow** ([Get started](#claude-desktop-or-claudeai),
+step 4).
 
 <details>
 <summary>The same in Claude Code</summary>
 
-Add them to `permissions.allow` in your settings:
+Add the seven read-only tools to `permissions.allow` in your settings:
 
 ```json
 {
@@ -243,7 +263,7 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 |---|---|
 | Claude says the LINKIN CPQ connector isn't connected | Connect it on the plugin's **Connectors** tab (Claude Code: `/mcp`) |
 | The skills don't run | Turn on **Code execution and file creation** ([Get started](#claude-desktop-or-claudeai), step 1) |
-| `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. Ask your LINKIN contact |
+| `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. You can still price inquiries for new profiles from a drawing. For quotations and your documents, ask your LINKIN contact to link your account |
 | Claude asks which customer | Your account may order for several customers. Name one |
 | Sign-in in Claude Code fails with a redirect error | Another program holds port `47819` |
 

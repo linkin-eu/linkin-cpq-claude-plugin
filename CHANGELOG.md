@@ -14,6 +14,12 @@ One plugin replaces the earlier LINKIN CPQ plugins, 3.0.0 from `linkin-claude` a
   again, explains an issued price and compares a per-kg offer. `inquiring-new-profiles` prices an
   inquiry from a drawing.
 - Price per kg in every price table.
+- "Which profiles can I order?": Claude lists them all, page by page, the customer's own first.
+- Claude asks for everything a request leaves out in one message.
+- A reference given with your yes: Claude prices again with it and, when the price is unchanged,
+  issues on that yes.
+- For a new profile, the die's cavities and the ageing face may be left out: the plant's
+  references by weight per metre fill them in.
 - Several customers: Claude asks which company to act for. For one customer in several sales
   areas, it uses the one that sells the profile and says so.
 
