@@ -3,6 +3,16 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Added
+
+- `comparing-per-kilo-prices`: when the buyer brings another offer per kg or per tonne, or says
+  LINKIN is dearer per kilo, Claude compares the two on the same theoretical weight, with a
+  die-wear what-if at +5% and +10%, checks that both cover the same scope, and explains how
+  billing per piece differs from billing per kilo. It replaces quoting-profiles' per-kg reference,
+  and is never volunteered on a plain quote.
+
 ## 4.0.0
 
 One plugin replaces the earlier LINKIN CPQ plugins, 3.0.0 from `linkin-claude` and 2.0.0 from

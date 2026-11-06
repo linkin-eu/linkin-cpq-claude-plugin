@@ -134,7 +134,7 @@ that port free.
 | Price an RFQ | *"Here's an RFQ from our customer. What would it cost?"*, with the RFQ pasted or attached |
 | Check a finish | *"Can I get ‹that profile› anodized but in RAL 9016? If not, what are my options?"* |
 | Price a new profile | *"Here's a drawing of a new profile: die D-118, 6063 T6, 1.25 kg/m, 6 m, 500 pieces. What would it cost?"* |
-| Compare per kg | *"Another extruder offers 6.20 €/kg. What does your price come to per kg?"* |
+| Compare per kg | *"Another offer is 5.30 €/kg. How does yours compare?"* |
 | Order again | *"Order again what we had on our last quotation."* |
 | Understand a price | *"How was the price on our last quotation made?"* |
 | Issue and submit | *"Yes, issue it with our reference PO-4711."* Then, when you're ready: *"Submit it to LINKIN."* |
@@ -173,8 +173,9 @@ sequenceDiagram
 | Part | What it does |
 |---|---|
 | **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues and submits them, and reads your issued documents |
-| **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits when you ask, orders again, explains an issued price and compares a per-kg offer |
+| **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits when you ask, orders again and explains an issued price |
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
+| **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
 
 ## Privacy and security
 
