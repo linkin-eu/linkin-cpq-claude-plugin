@@ -133,13 +133,19 @@ that port free. A plugin you uploaded in Claude Desktop or claude.ai is already 
 ## How it works
 
 ```mermaid
-flowchart LR
-    you(["You"]) -- "ask in your own words" --> claude["Claude<br/>+ LINKIN CPQ skills"]
-    claude -- "signed in as you" --> cpq["LINKIN CPQ<br/>mcp.linkin.eu"]
-    cpq -- "prices, breakdowns, documents" --> claude
-    claude -- "the price, then: shall I issue it?" --> you
-    classDef linkin fill:#0C1A2A,stroke:#0C1A2A,color:#FFFFFF
-    class cpq linkin
+%%{init: {"sequence": {"mirrorActors": false}}}%%
+sequenceDiagram
+    actor You
+    participant Claude as Claude<br/>with the LINKIN CPQ skills
+    participant CPQ as LINKIN CPQ<br/>mcp.linkin.eu
+    You->>Claude: Ask for a price in your own words
+    Claude->>CPQ: Price it, signed in as you
+    CPQ-->>Claude: Price, breakdown and minimums
+    Claude-->>You: The price table. Shall I issue it?
+    You->>Claude: Yes
+    Claude->>CPQ: Issue the quotation
+    CPQ-->>Claude: The quotation's number and document
+    Claude-->>You: Your quotation, a draft until LINKIN releases it
 ```
 
 | Part | What it does |
