@@ -80,10 +80,13 @@ for new profiles. To quote the profiles you can order,
    <!-- Remove this note once mcp.linkin.eu's client registration is verified. -->
    If Claude asks for an OAuth client ID, enter `402sn2rbceqt5r4sjktlekf2vm` and leave the secret
    empty.
-4. **Allow the read-only tools.** Under the connector's **Tool permissions**, set the seven tools
-   that only read to **Always allow**: `get_account`, `find_profiles`, `find_values`,
-   `price_quotation`, `price_inquiry`, `find_documents` and `read_document`. Claude then asks
-   only before it issues or submits.
+4. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
+   **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
+   document** to **Always allow** too: it only reads, and is listed there because it shows the
+   document as a page. Leave **Issue an inquiry**, **Issue a quotation** and **Submit a
+   quotation** on **Needs approval**, so Claude asks before it issues or submits. Where an
+   organization's admin has turned off **Always allow** for Cowork, Claude asks before every tool
+   there, and **Always allow** still works in chats.
 
 Then ask for a price. The plugin works in Cowork too, with the same sign-in.
 
@@ -185,9 +188,10 @@ sequenceDiagram
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
-**Tool permissions.** `submit_quotation`, which is final, asks for approval by default. The seven
-tools that only read can be set to **Always allow** ([Get started](#claude-desktop-or-claudeai),
-step 4).
+**Tool permissions.** Issuing an inquiry, issuing a quotation and submitting one, which is final,
+ask for approval by default. The seven tools that only read, the six **Read-only tools** and
+**Read an issued document**, can be set to **Always allow**
+([Get started](#claude-desktop-or-claudeai), step 4).
 
 <details>
 <summary>The same in Claude Code</summary>

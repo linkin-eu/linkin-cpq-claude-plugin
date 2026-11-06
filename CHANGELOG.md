@@ -11,6 +11,12 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   tells the buyer that it is marked as from an unverified account. The buyer's own view of the
   inquiry no longer shows that mark either; LINKIN still sees it.
 
+### Fixed
+
+- Getting started names the tool permissions as Claude shows them. **Read an issued document** is
+  listed under **Interactive tools** and is set to **Always allow** there. The three tools that
+  issue or submit keep **Needs approval**.
+
 ## 4.1.0
 
 ### Added
