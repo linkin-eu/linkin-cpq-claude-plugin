@@ -1,0 +1,7 @@
+---
+type: tool_used
+tool: mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry
+input_match: '"salesOrganization"'
+min: 0
+max: 0
+---

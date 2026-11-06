@@ -1,12 +1,7 @@
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.png">
-    <img src=".github/assets/banner-light.png" alt="LINKIN CPQ plugin for Claude: quote aluminium profiles in a conversation." width="100%">
-  </picture>
-</p>
+![LINKIN CPQ plugin for Claude: quote aluminium profiles in a conversation.](https://raw.githubusercontent.com/linkin-eu/linkin-cpq-claude-plugin/main/.github/assets/banner-light.png)
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-4.0.0-0C1A2A?style=flat-square" alt="Version 4.0.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-4.1.0-0C1A2A?style=flat-square" alt="Version 4.1.0"></a>
   <a href="#get-started"><img src="https://img.shields.io/badge/Claude-plugin-0C1A2A?style=flat-square" alt="Claude plugin"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-LINKIN%20customers-0C1A2A?style=flat-square" alt="Licence: for LINKIN's customers and partners"></a>
 </p>
@@ -45,27 +40,28 @@
 
 ## See it in action
 
-> **You:** What would 120 bars of profile 7999999 cost? 6 m, T5, powder coated RAL 9016 smooth
+> **You:** What would 120 bars of profile ‹number› cost? 6 m, T5, powder coated RAL 9016 smooth
 > gloss, Qualicoat class 1.
 >
 > **Claude:** 120 bars come to **€1,914.42**, EXW Plovdiv, priced today.
 >
 > | Line | Profile | Pieces | Price per piece | Net value | Price per kg |
 > |---|---|---|---|---|---|
-> | 10 | 7999999 · T5 · 6000 mm · RAL 9016 smooth gloss | 120 | €15.95 | €1,914.42 | €4.43 |
+> | 10 | ‹number› · T5 · 6000 mm · RAL 9016 smooth gloss | 120 | €15.95 | €1,914.42 | €4.43 |
 >
 > Metal €1,321.92 · extrusion €353.50 · powder coating €239.00. Two minimums apply per order: the
 > die's press run adds €37.06, and the colour's powder adds €12.92.
 >
 > Shall I issue this as a quotation?
 
-<sub>An example on LINKIN's test profile. Its figures are illustrative, not a price offer.</sub>
+<sub>Put in the number of a profile from LINKIN's catalogue, or one of your own. The figures are
+illustrative, not a price offer.</sub>
 
 ## Get started
 
 **You need:** a paid Claude plan (Pro, Max, Ultra, Team or Enterprise), and a LINKIN account.
-[Create one on linkin.eu](https://linkin.eu/en/sign-up/): with it you can price inquiries for new
-profiles. To quote the profiles you can order and see your documents,
+[Create one on linkin.eu](https://linkin.eu/en/sign-up/): with it you can price and issue inquiries
+for new profiles. To quote the profiles you can order,
 [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number.
 
 ### Claude Desktop or claude.ai
@@ -74,14 +70,14 @@ profiles. To quote the profiles you can order and see your documents,
    file creation**. On a Team or Enterprise plan, an Owner turns it on under **Organization
    settings › Capabilities**.
 2. **Upload the plugin.** Download
-   [`linkin-cpq-4.0.0.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v4.0.0/linkin-cpq-4.0.0.zip)
+   [`linkin-cpq-4.1.0.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v4.1.0/linkin-cpq-4.1.0.zip)
    from the [latest release](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest),
    then in Claude choose **Customize › Plugins › Add › Upload plugin** and pick the zip. Upload the zip
    as it is. Safari may unzip downloads: if it did, turn off **Open "safe" files after
    downloading** in its settings, and download the zip again.
 3. **Connect.** Open the plugin's **Connectors** tab, add or connect **linkin-cpq**, and sign in
    with your LINKIN account.
-   <!-- Remove this note once mcp.linkin.eu's client registration is in production. -->
+   <!-- Remove this note once mcp.linkin.eu's client registration is verified. -->
    If Claude asks for an OAuth client ID, enter `402sn2rbceqt5r4sjktlekf2vm` and leave the secret
    empty.
 4. **Allow the read-only tools.** Under the connector's **Tool permissions**, set the seven tools
@@ -229,10 +225,11 @@ review of each profile. The issued document is what counts.
 <details>
 <summary><b>How do I get a LINKIN account?</b></summary>
 
-[Register on linkin.eu](https://linkin.eu/en/sign-up/). With a new account you can price
-inquiries for new profiles from a drawing. To quote the profiles you can order and see your
-documents, [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer
-number.
+[Register on linkin.eu](https://linkin.eu/en/sign-up/). With a new account you can price and issue
+inquiries for new profiles from a drawing, up to 20 a day: Claude asks for your company, contact
+name, email and country to issue one. To quote the profiles you can order,
+[contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number. The
+inquiries you issued before stay yours.
 </details>
 
 <details>
@@ -275,7 +272,8 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 |---|---|
 | Claude says the LINKIN CPQ connector isn't connected | Connect it on the plugin's **Connectors** tab (Claude Code: `/mcp`) |
 | The skills don't run | Turn on **Code execution and file creation** ([Get started](#claude-desktop-or-claudeai), step 1) |
-| `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. You can still price inquiries for new profiles from a drawing. For quotations and your documents, [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
+| `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. You can still price and issue inquiries for new profiles from a drawing. For quotations, [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
+| `TOO_MANY_INQUIRIES` | An account not yet linked to a customer issues up to 20 inquiries a day, and nothing was issued. Issue it tomorrow, or [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
 | Claude asks which customer | Your account may order for several customers. Name one |
 | Sign-in in Claude Code fails with a redirect error | Another program holds port `47819` |
 
@@ -316,8 +314,8 @@ claude plugin eval . --no-publish   # model calls on your own Claude sign-in; an
 ./build.sh                          # dist/linkin-cpq-<version>.zip from HEAD, or ./build.sh <tag>
 ```
 
-The zip is built with `git archive`, so it holds only committed files, without `evals/`,
-`.github/` and the build files (see `.gitattributes`). The eval mocks follow the sandbox's
-answers, with made-up rates.
+The zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
+files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
+CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
 </details>
