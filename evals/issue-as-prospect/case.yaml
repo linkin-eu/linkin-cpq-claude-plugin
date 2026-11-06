@@ -39,5 +39,6 @@ graders:
     name: answer
     criteria: >-
       PASS if the reply says the inquiry LI26000001 was issued and stands open as a preliminary
-      offer. FAIL if it asks again whether to issue, says nothing was issued, or warns the buyer
-      that they may not be who they claim to be.
+      offer. FAIL if it asks again whether to issue, says nothing was issued, says the inquiry or
+      the account is marked or shown as unverified, or warns the buyer that they may not be who
+      they claim to be.
