@@ -318,4 +318,7 @@ The zip is built with `git archive` from the paths `build.sh` names, so it holds
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
 CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
+Pull requests go to `dev`, squashed. A release merges `dev` into `main` with a merge commit, then
+tags `main`: the marketplace installs from `main`.
+
 </details>
