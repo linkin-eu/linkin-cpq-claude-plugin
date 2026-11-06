@@ -20,7 +20,8 @@ only on the customer's yes; submit only when the customer asks to submit that qu
    connected. Connect it on the LINKIN CPQ plugin's Connectors tab, then ask again." Then stop.
 2. `get_account`. With one customer in one sales area, act for it. Otherwise:
    - **No linked customer:** say quotations and the customer's own documents need the account
-     linked by their LINKIN contact, and offer an inquiry for a new profile
+     linked to their customer number, which LINKIN does on request
+     (https://linkin.eu/en/contact/), and offer an inquiry for a new profile
      (inquiring-new-profiles).
    - **Different customers** (different `soldToParty`): ask which one, and never choose. A
      quotation issued for the wrong company is a real error.

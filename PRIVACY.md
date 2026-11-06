@@ -33,9 +33,9 @@ LINKIN never receives your conversation with Claude.
   **service logs**, for security and troubleshooting: LINKIN's legitimate interests
   (Art. 6(1)(f)).
 
-You need a LINKIN account linked to your customer to use the connector; without one, Claude
-can't price or issue anything through it. No decision about you is made solely by automated
-means.
+You need a LINKIN account. Inquiries for new profiles work without a linked customer; quotations and
+your customer's documents need your account linked to your customer. No decision about you is made
+solely by automated means.
 
 ## Who else receives it
 
@@ -60,7 +60,8 @@ means.
 | The pricing service's logs: routes, statuses and the ids of documents issued | 90 days |
 | Your LINKIN account and its sign-in | As LINKIN's privacy policy says |
 
-No log holds a request's contents, an email or IP address, or a sign-in token.
+None of the logs listed above holds a request's contents, an email or IP address, or a sign-in
+token.
 
 ## Your rights
 

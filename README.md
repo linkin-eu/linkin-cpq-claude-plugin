@@ -64,8 +64,9 @@
 ## Get started
 
 **You need:** a paid Claude plan (Pro, Max, Ultra, Team or Enterprise), and a LINKIN account.
-Quotations need it linked to your customer number; inquiries for new profiles work before that.
-No account yet? [Ask LINKIN](https://linkin.eu/en/contact/).
+[Create one on linkin.eu](https://linkin.eu/en/sign-up/): with it you can price inquiries for new
+profiles. To quote the profiles you can order and see your documents,
+[contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number.
 
 ### Claude Desktop or claude.ai
 
@@ -224,6 +225,15 @@ review of each profile. The issued document is what counts.
 </details>
 
 <details>
+<summary><b>How do I get a LINKIN account?</b></summary>
+
+[Register on linkin.eu](https://linkin.eu/en/sign-up/). With a new account you can price
+inquiries for new profiles from a drawing. To quote the profiles you can order and see your
+documents, [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer
+number.
+</details>
+
+<details>
 <summary><b>What does it cost?</b></summary>
 
 The plugin is free for LINKIN's customers and partners. You need a paid Claude plan.
@@ -263,7 +273,7 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 |---|---|
 | Claude says the LINKIN CPQ connector isn't connected | Connect it on the plugin's **Connectors** tab (Claude Code: `/mcp`) |
 | The skills don't run | Turn on **Code execution and file creation** ([Get started](#claude-desktop-or-claudeai), step 1) |
-| `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. You can still price inquiries for new profiles from a drawing. For quotations and your documents, ask your LINKIN contact to link your account |
+| `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. You can still price inquiries for new profiles from a drawing. For quotations and your documents, [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
 | Claude asks which customer | Your account may order for several customers. Name one |
 | Sign-in in Claude Code fails with a redirect error | Another program holds port `47819` |
 
