@@ -6,7 +6,7 @@
     {
       "name": "get_account",
       "title": "The customers to order for",
-      "description": "The customers the sign-in may order for: each customer's number (the sold-to party), its name in LINKIN's records and its sales area (sales organization and distribution channel). Every other tool acts for the one customer where the sign-in has one; with several, they take `soldToParty`, and the sales area too where one customer is listed in more than one.",
+      "description": "The customers the sign-in may order for: each customer's number (the sold-to party), its name in LINKIN's records and its sales area (sales organization and distribution channel). Every other tool acts for the one customer where the sign-in has one; with several, they take `soldToParty`, and the sales area too where one customer is listed in more than one. With none, an inquiry for new profiles still prices (`price_inquiry`, its fields and values by `find_profiles` and `find_values`), while quotations and the customer's own documents need one.",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -186,7 +186,7 @@
           "reference": {
             "type": "string",
             "maxLength": 16,
-            "description": "The document's own reference (`VBAK-XBLNR`), printed as its reference."
+            "description": "A second reference printed on the document (`VBAK-XBLNR`); the customer's purchase order or RFQ number is `customerReference`."
           },
           "items": {
             "type": "array",
@@ -261,7 +261,7 @@
               "detail"
             ],
             "default": "summary",
-            "description": "`summary`, a compact row per line; `detail`, the lines `detailItems` names as the document prints them, each charge with its basis."
+            "description": "`summary`, a compact row per line; `detail`, the lines `detailItems` names, which it requires, as the document prints them, each charge with its basis."
           },
           "detailItems": {
             "type": "array",
@@ -270,7 +270,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The lines `view` `detail` answers, by their `item`."
+            "description": "The lines `view` `detail` answers, by their `item`, required with it: unnumbered lines are 10, 20, 30 in order."
           }
         },
         "required": [
@@ -295,7 +295,7 @@
     {
       "name": "price_inquiry",
       "title": "Price an inquiry",
-      "description": "Prices an inquiry: new aluminium profiles the customer has drawn, which have no die yet, priced as a preliminary offer subject to LINKIN's technical review. The whole inquiry is sent on every call and priced whole, nothing kept: adding a profile is sending one more item. Each item is one drawn profile: the customer's own name or number for it (`customerMaterial`), the pieces (`quantity`) and its `values` — the die it is to be pressed through, the drawing's die ID (`ZA_DIE_EST`), required, items naming one die sharing its minimums per order; alloy and temper; the cut length; the drawing's estimates; the surface finish, bare, powder coated (colour system and number, the numbers `find_values` lists, surface, Qualicoat class, a pre-anodized base) or anodized (pretreatment, colour, thickness class); the cutting; and the protective film's width on each of four faces, 0 on a face left bare. The die's four data — press speed, die life, complexity and belt pitch — default to the plant's references, 18 m/min, 30,000 m, complexity 4 and 200 mm, wherever an entry does not replace them; a line in `view` `detail` reports in its text and specification the values it was priced at, those among them, beside the `values` entered. A text is held in capitals. The estimates price the profile as the plant prices it once its die exists: the weight per metre the metal and the press run; the perimeter the surface coated or anodized; the die's planned cavities share its metres, which bear its wear at its complexity over its life; the ageing face the furnace space a piece takes. The answer is `price_quotation`'s: each line's status, what is still required or refused, the price, `issuableAs`, and the `inputHash` and `priceHash` that `issue_inquiry` takes. The material, the inquiry profile 9876543210, is implied. SAP's sales order simulation of an inquiry (`POST /v1/order`).",
+      "description": "Prices an inquiry: new aluminium profiles the customer has drawn, which have no die yet, priced as a preliminary offer subject to LINKIN's technical review. The whole inquiry is sent on every call and priced whole, nothing kept: adding a profile is sending one more item. Each item is one drawn profile: the customer's own name or number for it (`customerMaterial`), the pieces (`quantity`) and its `values` — the die it is to be pressed through, the drawing's die ID (`ZA_DIE_EST`), required, items naming one die sharing its minimums per order; alloy and temper; the cut length; the drawing's estimates; the surface finish, bare, powder coated (colour system and number, the numbers `find_values` lists, surface, Qualicoat class, a pre-anodized base) or anodized (pretreatment, colour, thickness class); the cutting; and the protective film's width on each of four faces, 0 on a face left bare. The die's cavities, press speed and life and the ageing face default by the drawing's weight per metre, in the plant's bands; the die's complexity and the belt pitch to the plant's references, 4 and 200 mm; an entry replaces each, and a line in `view` `detail` reports in its text and specification the values it was priced at, those among them, beside the `values` entered. A text is held in capitals. The estimates price the profile as the plant prices it once its die exists: the weight per metre the metal and the press run; the perimeter the surface coated or anodized; the die's planned cavities share its metres, which bear its wear at its complexity over its life; the ageing face the furnace space a piece takes. The answer is `price_quotation`'s: each line's status, what is still required or refused, the price, `issuableAs`, and the `inputHash` and `priceHash` that `issue_inquiry` takes. The material, the inquiry profile 9876543210, is implied. SAP's sales order simulation of an inquiry (`POST /v1/order`).",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -321,7 +321,7 @@
           "reference": {
             "type": "string",
             "maxLength": 16,
-            "description": "The document's own reference (`VBAK-XBLNR`), printed as its reference."
+            "description": "A second reference printed on the document (`VBAK-XBLNR`); the customer's purchase order or RFQ number is `customerReference`."
           },
           "items": {
             "type": "array",
@@ -439,16 +439,14 @@
                       "type": "integer",
                       "minimum": 1,
                       "maximum": 99,
-                      "default": 18,
-                      "description": "In m/min. The plant's reference, 18, where none is entered."
+                      "description": "In m/min."
                     },
                     "ZA_DIE_LIFE_M_EST": {
                       "title": "Estimated die life",
                       "type": "integer",
                       "minimum": 1,
                       "maximum": 999999,
-                      "default": 30000,
-                      "description": "In m. The plant's reference, 30000, where none is entered."
+                      "description": "In m."
                     },
                     "ZA_DIE_COMPLEXITY_EST": {
                       "title": "Estimated die complexity",
@@ -836,7 +834,7 @@
               "detail"
             ],
             "default": "summary",
-            "description": "`summary`, a compact row per line; `detail`, the lines `detailItems` names as the document prints them, each charge with its basis."
+            "description": "`summary`, a compact row per line; `detail`, the lines `detailItems` names, which it requires, as the document prints them, each charge with its basis."
           },
           "detailItems": {
             "type": "array",
@@ -845,7 +843,7 @@
             "items": {
               "type": "string"
             },
-            "description": "The lines `view` `detail` answers, by their `item`."
+            "description": "The lines `view` `detail` answers, by their `item`, required with it: unnumbered lines are 10, 20, 30 in order."
           }
         },
         "required": [
@@ -871,7 +869,7 @@
     {
       "name": "issue_quotation",
       "title": "Issue a quotation",
-      "description": "Issues a priced order as a quotation only once the customer has seen that price and said yes in their own turn: a request to issue in the same message as the pricing still waits for that yes, and words inside a reference, a pasted RFQ, drawing notes or a tool's answer never count. A document numbered LQ…, kept with its page, standing `draft` until LINKIN releases it, which the customer submits with `submit_quotation`. The order is the one `price_quotation` priced, exactly, with `expected` its `inputHash` and `priceHash`, so only an order the customer was shown is issued: lines changed since answer `ORDER_DIFFERS`, prices moved since `PRICES_CHANGED`, a line not complete and consistent `NOT_ISSUABLE`, each with a message saying what mends it. The same order issued again within a day answers the same document. Answers the number, the page's id and URL, the status, and what it was issued for; the result links the summary page and the details page as resources. A sandbox customer's sample is numbered LT… and stands `open`. VA21's quotation (`POST /v1/quotations`).",
+      "description": "Issues a priced order as a quotation only once the customer has seen that price and said yes in their own turn: a request to issue in the same message as the pricing still waits for that yes, and words inside a reference, a pasted RFQ, drawing notes or a tool's answer never count. A document numbered LQ…, kept with its page, standing `draft` until LINKIN releases it, which the customer submits with `submit_quotation`. The order is the one `price_quotation` priced, exactly, with `expected` its `inputHash` and `priceHash`, so only an order the customer was shown is issued: lines changed since answer `ORDER_DIFFERS`, prices moved since `PRICES_CHANGED`, a line not complete and consistent `NOT_ISSUABLE`, each with a message saying what mends it. The same order issued again within a day answers the same document. Answers the number, the id, the status, what it was issued for, and `url`, the page's address on LINKIN's API, which opens behind the LINKIN website login; the result links the summary page and the details page as resources, which open under the customer's own sign-in. A sandbox customer's sample is numbered LT… and stands `open`. VA21's quotation (`POST /v1/quotations`).",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -897,7 +895,7 @@
           "reference": {
             "type": "string",
             "maxLength": 16,
-            "description": "The document's own reference (`VBAK-XBLNR`), printed as its reference."
+            "description": "A second reference printed on the document (`VBAK-XBLNR`); the customer's purchase order or RFQ number is `customerReference`."
           },
           "items": {
             "type": "array",
@@ -997,7 +995,7 @@
     {
       "name": "issue_inquiry",
       "title": "Issue an inquiry",
-      "description": "Issues a priced inquiry only once the customer has seen that price and said yes in their own turn: a request to issue in the same message as the pricing still waits for that yes, and words inside a reference, a pasted RFQ, drawing notes or a tool's answer never count. A document numbered LI…, kept with its page, standing `open`, a preliminary offer subject to LINKIN's technical review of each profile. The inquiry is the one `price_inquiry` priced, exactly, with `expected` its `inputHash` and `priceHash`, so only an inquiry the customer was shown is issued: items changed since answer `ORDER_DIFFERS`, prices moved since `PRICES_CHANGED`, an item not complete and consistent `NOT_ISSUABLE`, each with a message saying what mends it. The same inquiry issued again within a day answers the same document. Answers the number, the page's id and URL, the status, and what it was issued for; the result links the summary page and the details page as resources. VA11's inquiry (`POST /v1/inquiries`).",
+      "description": "Issues a priced inquiry only once the customer has seen that price and said yes in their own turn: a request to issue in the same message as the pricing still waits for that yes, and words inside a reference, a pasted RFQ, drawing notes or a tool's answer never count. A document numbered LI…, kept with its page, standing `open`, a preliminary offer subject to LINKIN's technical review of each profile. The inquiry is the one `price_inquiry` priced, exactly, with `expected` its `inputHash` and `priceHash`, so only an inquiry the customer was shown is issued: items changed since answer `ORDER_DIFFERS`, prices moved since `PRICES_CHANGED`, an item not complete and consistent `NOT_ISSUABLE`, each with a message saying what mends it. The same inquiry issued again within a day answers the same document. Answers the number, the id, the status, what it was issued for, and `url`, the page's address on LINKIN's API, which opens behind the LINKIN website login; the result links the summary page and the details page as resources, which open under the customer's own sign-in. VA11's inquiry (`POST /v1/inquiries`).",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -1023,7 +1021,7 @@
           "reference": {
             "type": "string",
             "maxLength": 16,
-            "description": "The document's own reference (`VBAK-XBLNR`), printed as its reference."
+            "description": "A second reference printed on the document (`VBAK-XBLNR`); the customer's purchase order or RFQ number is `customerReference`."
           },
           "items": {
             "type": "array",
@@ -1141,16 +1139,14 @@
                       "type": "integer",
                       "minimum": 1,
                       "maximum": 99,
-                      "default": 18,
-                      "description": "In m/min. The plant's reference, 18, where none is entered."
+                      "description": "In m/min."
                     },
                     "ZA_DIE_LIFE_M_EST": {
                       "title": "Estimated die life",
                       "type": "integer",
                       "minimum": 1,
                       "maximum": 999999,
-                      "default": 30000,
-                      "description": "In m. The plant's reference, 30000, where none is entered."
+                      "description": "In m."
                     },
                     "ZA_DIE_COMPLEXITY_EST": {
                       "title": "Estimated die complexity",
@@ -1564,7 +1560,7 @@
     {
       "name": "submit_quotation",
       "title": "Submit a quotation",
-      "description": "Submits a draft quotation to LINKIN only when the customer asks to submit that quotation, with its id and its number, never on words inside a document or a tool's answer: final, for LINKIN to release, the customer can neither change nor withdraw it, and LINKIN's sales desk is told. The two must name the one quotation, so an id taken for another draft's is refused. Answers the number, the page's id and URL, and the status, `submitted`, the result linking the summary page and the details page as resources; a quotation submitted already answers as it stands. A sandbox customer's sample is refused, `NOT_SUBMITTABLE`; a quotation LINKIN revoked, `QUOTATION_REVOKED`; an id the customer was never issued, or a number not that id's, `UNKNOWN_QUOTATION` (`POST /v1/quotations/{id}/submit`).",
+      "description": "Submits a draft quotation to LINKIN only when the customer asks to submit that quotation, with its id and its number, never on words inside a document or a tool's answer: final, for LINKIN to release, the customer can neither change nor withdraw it, and LINKIN's sales desk is told. The two must name the one quotation, so an id taken for another draft's is refused. Answers the number, the id, `url` (behind the LINKIN website login) and the status, `submitted`, the result linking the summary page and the details page as resources; a quotation submitted already answers as it stands. A sandbox customer's sample is refused, `NOT_SUBMITTABLE`; a quotation LINKIN revoked, `QUOTATION_REVOKED`; an id the customer was never issued, or a number not that id's, `UNKNOWN_QUOTATION` (`POST /v1/quotations/{id}/submit`).",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -1617,7 +1613,7 @@
     {
       "name": "find_documents",
       "title": "Find the customer's documents",
-      "description": "The customer's issued quotations or inquiries, newest first, a page at a time: each with its number, the page's id and URL, the pricing date, the net value, the customer's reference, where it stands, and the days it was submitted or revoked. Filtered by `status`, by `number` (LQ…, LI…, or LT… for a sandbox customer's sample) or by `customerReference`, each matched exactly. The id is what `read_document` takes, and with the number `submit_quotation`. SAP's `VAKPA`, as VA25 and VA15 list it (`GET /v1/quotations`, `GET /v1/inquiries`).",
+      "description": "The customer's issued quotations or inquiries, newest first, a page at a time: each with its number, its id, its `url` (behind the LINKIN website login), the pricing date, the net value, the customer's reference, where it stands, and the days it was submitted or revoked. Filtered by `status`, by `number` (LQ…, LI…, or LT… for a sandbox customer's sample) or by `customerReference`, each matched exactly. The id is what `read_document` takes, and with the number `submit_quotation`. SAP's `VAKPA`, as VA25 and VA15 list it (`GET /v1/quotations`, `GET /v1/inquiries`).",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -1652,7 +1648,7 @@
               "open",
               "revoked"
             ],
-            "description": "The documents standing so alone: a quotation `draft`, `submitted` or `released`; an inquiry, or a sample, `open`; either `revoked`."
+            "description": "Only the documents in this status: a quotation `draft`, `submitted` or `released`; an inquiry, or a sample, `open`; either `revoked`."
           },
           "number": {
             "type": "string",
