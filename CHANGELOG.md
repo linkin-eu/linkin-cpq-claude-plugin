@@ -3,6 +3,14 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## 4.1.1
+
+### Changed
+
+- After issuing an inquiry from an account not yet linked to a customer number, Claude no longer
+  tells the buyer that it is marked as from an unverified account. The buyer's own view of the
+  inquiry no longer shows that mark either; LINKIN still sees it.
+
 ## 4.1.0
 
 ### Added

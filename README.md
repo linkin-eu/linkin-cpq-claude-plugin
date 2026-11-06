@@ -1,7 +1,7 @@
 ![LINKIN CPQ plugin for Claude: quote aluminium profiles in a conversation.](https://raw.githubusercontent.com/linkin-eu/linkin-cpq-claude-plugin/main/.github/assets/banner-light.png)
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-4.1.0-0C1A2A?style=flat-square" alt="Version 4.1.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-4.1.1-0C1A2A?style=flat-square" alt="Version 4.1.1"></a>
   <a href="#get-started"><img src="https://img.shields.io/badge/Claude-plugin-0C1A2A?style=flat-square" alt="Claude plugin"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-LINKIN%20customers-0C1A2A?style=flat-square" alt="Licence: for LINKIN's customers and partners"></a>
 </p>
@@ -70,7 +70,7 @@ for new profiles. To quote the profiles you can order,
    file creation**. On a Team or Enterprise plan, an Owner turns it on under **Organization
    settings › Capabilities**.
 2. **Upload the plugin.** Download
-   [`linkin-cpq-4.1.0.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v4.1.0/linkin-cpq-4.1.0.zip)
+   [`linkin-cpq-4.1.1.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v4.1.1/linkin-cpq-4.1.1.zip)
    from the [latest release](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest),
    then in Claude choose **Customize › Plugins › Add › Upload plugin** and pick the zip. Upload the zip
    as it is. Safari may unzip downloads: if it did, turn off **Open "safe" files after
