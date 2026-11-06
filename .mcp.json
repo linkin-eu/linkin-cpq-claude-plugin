@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "linkin-cpq": {
+      "type": "http",
+      "url": "https://mcp.linkin.eu/mcp",
+      "oauth": {
+        "clientId": "402sn2rbceqt5r4sjktlekf2vm",
+        "callbackPort": 47819
+      }
+    }
+  }
+}

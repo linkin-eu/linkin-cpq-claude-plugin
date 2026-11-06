@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "linkin",
+  "description": "LINKIN's plugins for Claude.",
+  "owner": {
+    "name": "LINKIN Ltd.",
+    "email": "devops@linkin.eu"
+  },
+  "plugins": [
+    {
+      "name": "linkin-cpq",
+      "description": "Quote LINKIN's aluminium extruded profiles in Claude, and price new profiles from a drawing as an inquiry.",
+      "category": "productivity",
+      "source": "./"
+    }
+  ]
+}
