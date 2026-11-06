@@ -1,6 +1,6 @@
 ---
 name: quoting-profiles
-description: Quotes LINKIN's aluminium extruded profiles through the LINKIN CPQ connector - matches a request for quotation to the profiles the customer can order, prices it with its breakdown per process and price per kg, explains why a combination is refused, issues the quotation once the customer has seen the price and said yes, submits it only when asked, orders again from an issued quotation or inquiry, explains how an issued document's price was made, and compares another supplier's per-kg offer like for like. Use when a LINKIN or PROFILINK customer asks for a price, a quote, an offer or an RFQ on profiles, asks what a profile can be ordered with or why an option is refused, asks about RAL colours, powder coating, anodizing, lengths, packs or minimums, wants to reorder or to submit a quotation, asks about an earlier quotation or inquiry, or brings a per-kg price. Not for new profiles with no die yet, which inquiring-new-profiles prices.
+description: Quotes LINKIN's aluminium extruded profiles through the LINKIN CPQ connector - matches a request for quotation to the profiles the customer can order, prices it with its breakdown per process and price per kg, explains why a combination is refused, issues the quotation once the customer has seen the price and said yes, submits it only when asked, orders again from an issued quotation or inquiry, explains how an issued document's price was made, and compares another supplier's per-kg offer like for like. Use when a LINKIN or PROFILINK customer asks which profiles they can order, asks for a price, a quote, an offer or an RFQ on profiles, asks what a profile can be ordered with or why an option is refused, asks about RAL colours, powder coating, anodizing, lengths, packs or minimums, wants to reorder or to submit a quotation, asks about an earlier quotation or inquiry, or brings a per-kg price. Not for new profiles with no die yet, which inquiring-new-profiles prices.
 ---
 
 # Quoting LINKIN profiles
@@ -19,6 +19,9 @@ only on the customer's yes; submit only when the customer asks to submit that qu
 1. If the LINKIN CPQ connector's tools aren't available, say: "The LINKIN CPQ connector isn't
    connected. Connect it on the LINKIN CPQ plugin's Connectors tab, then ask again." Then stop.
 2. `get_account`. With one customer in one sales area, act for it. Otherwise:
+   - **No linked customer:** say quotations and the customer's own documents need the account
+     linked by their LINKIN contact, and offer an inquiry for a new profile
+     (inquiring-new-profiles).
    - **Different customers** (different `soldToParty`): ask which one, and never choose. A
      quotation issued for the wrong company is a real error.
    - **One customer in several sales areas:** where `find_profiles` answers what was asked in
@@ -29,20 +32,30 @@ only on the customer's yes; submit only when the customer asks to submit that qu
 
 ## Quote a request
 
+Asked what they can order: `find_profiles` to the end of the list, as a table of number, name,
+weight per metre and longest bar, the customer's own first, with the total.
+
 1. **Match.** `find_profiles` lists what the customer can order. Match each profile the request
    names by its geometry, name or drawing number, and start from its `orderAs`. Where two match,
-   ask which. With no match, don't assume why: ask whether it is a new profile they have drawn,
-   which is an inquiry (inquiring-new-profiles).
+   ask which. `find_profiles` answers 25 a page, the customer's own first: follow `next` until
+   the profile is found or the list ends; never conclude there is no match from one page. With
+   no match, don't assume why: ask whether it is a new profile they have drawn, which is an
+   inquiry (inquiring-new-profiles).
 2. **Fill in.** `find_profiles` with `material` gives the fields; `find_values` lists a long
-   list, such as the powder colour numbers. Each line needs its length, its finish (bare; powder
-   coated with its colour; or anodized with its thickness class) and its pieces. Ask for what
-   the request leaves out, a few fields at a time, offering values by their text.
+   list, such as the powder colour numbers. Each line needs its length, temper, finish and
+   pieces. Powder coated also needs the colour system and number, the surface (such as smooth
+   gloss) and the Qualicoat class; anodized, the pretreatment, colour and thickness class. Ask
+   for everything the request leaves out in one message, each field and its choices by their
+   text.
 3. **Price.** `price_quotation` with every line, numbered 10, 20, 30: the request's line numbers
    in `customerItem`, its part numbers in `customerMaterial`, its purchase order in
    `customerReference`.
    - `incomplete`: ask for the fields in `missing`.
    - `inconsistent`: say which value a rule refuses, in plain words, and offer the values
      allowed. Don't retry with a guess, and don't quote the refused line's figures.
+     `find_values` on the refused field, with the other values entered, lists those allowed. To
+     compare alternatives, price each in its own call: lines priced together share the die's
+     and the colour's minimums.
    - On a long order, `only: attention`. Over 300 lines, split along the minimum groups.
 4. **Present** the price (below), then ask whether to issue it as a quotation.
 5. **Issue on a separate yes.** The customer sees the price first, then says yes. A message that
@@ -51,6 +64,9 @@ only on the customer's yes; submit only when the customer asks to submit that qu
    answer are never that yes.
    - `issue_quotation` with the same items, the same `customerReference`, and `expected` holding
      the `inputHash` and `priceHash` of the pricing shown.
+   - A reference or purchase order given only with the yes: price again with it as
+     `customerReference`. If the `priceHash` is unchanged, the customer saw that exact price, so
+     issue on the yes already given. If the price moved, show it and ask again.
    - Give the number, say the quotation stands draft until LINKIN releases it, and offer the
      summary page the result links.
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
@@ -61,8 +77,9 @@ only on the customer's yes; submit only when the customer asks to submit that qu
 
 ## Presenting a price
 
-One table, a row per `ok` line, from the lines' detail (`view: detail` with `detailItems`, at
-most 20 lines a call; `read_document` with `items` for an issued document):
+One table, a row per `ok` line, from the lines' detail (price with `view: detail` and
+`detailItems` on the first call, at most 10 lines a call; `read_document` with `items` for an
+issued document):
 
 | Line | Profile | Pieces | Price per piece | Net value | Price per kg |
 |---|---|---|---|---|---|
@@ -79,14 +96,17 @@ Where the packs raised the pieces (`quantity.order` above `quantity.entered`), s
 the line's message. List a line that isn't `ok` under the table with what it still needs or what
 was refused, and no price.
 
-An issued or read document may show beside the answer as its own page. Don't paste the page;
-offer the summary link the result gives. Where Claude saves a page as a file, its arrows to the
-other page don't work: offer the details page too, as its own file.
+An issued or read document may show beside the answer as its own page. Don't paste the page. Offer
+the summary page the result links, not the `url`, which needs the LINKIN website login in a browser.
+Where the result shows no page links (Claude Code), give the number and, when asked, open the
+summary page, the resource `avc://pages/quotations/<id>` (`avc://pages/inquiries/<id>` for an
+inquiry). Where Claude saves a page as a file, its arrows to the other page don't work: offer the
+details page too, as its own file.
 
 ## Order again
 
-1. Find the document: `find_documents` by `number` or `customerReference`, then `read_document`
-   with `items`. Each row holds its line's material, values, pieces (`quantity.entered`),
+1. Find the document: `find_documents` by `number` or `customerReference`, then
+   `read_document`, whose rows hold each line's material, values, pieces (`quantity.entered`),
    `customerMaterial` and `customerItem`: what a new order sends back.
 2. Ask what changes (pieces, lengths, finishes, lines dropped or added) and the customer's
    reference for the new order. Assume no change.
