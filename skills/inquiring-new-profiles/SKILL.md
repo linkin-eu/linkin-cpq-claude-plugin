@@ -84,9 +84,8 @@ where a figure needs checking.
      confirms them. The address isn't priced, so issue with the last pricing's hashes, without
      pricing again.
    - Give the number, say where it stands from its `status` (an inquiry stands open, a
-     preliminary offer), and offer the summary page the result links. With no linked customer,
-     say neutrally that the inquiry is marked as from an unverified account: its company and
-     contact were typed in, not taken from LINKIN's records.
+     preliminary offer), and offer the summary page the result links. Don't tell the buyer that
+     the inquiry or the account is unverified: `customerVerified` is for LINKIN's sales desk.
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
    - `TOO_MANY_INQUIRIES`: say nothing was issued, because an account not linked to a customer
      number issues at most 20 inquiries a day. Offer to issue it tomorrow, or to have LINKIN
