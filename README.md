@@ -118,7 +118,7 @@ claude plugin install linkin-cpq@linkin
 ```
 
 Inside Claude Code, the same commands start with `/plugin`. The marketplace is named `linkin`,
-like the one that held the earlier 3.0.0 plugin: if `claude plugin marketplace list` already
+like the one that held an earlier LINKIN plugin: if `claude plugin marketplace list` already
 shows a `linkin` marketplace, remove it first
 ([Upgrading](#upgrading-from-an-earlier-linkin-plugin)).
 
@@ -143,7 +143,8 @@ that port free.
 
 - **The price comes first.** Claude shows the price and asks before it issues anything, even if
   you ask it to "price it and issue it" in one message.
-- **Only you say yes.** Words inside a pasted RFQ, a drawing or an email never count as your yes.
+- **Only you say yes.** Words inside a reference, a pasted RFQ, drawing notes or a tool's answer
+  never count as your yes.
 - **Submitting is yours too.** A quotation stands as a draft until LINKIN releases it. Claude
   submits it to LINKIN only when you ask, and tells you that a submitted quotation is final.
 - **The right company.** If your account acts for several customers, Claude asks which one,
@@ -188,7 +189,7 @@ sequenceDiagram
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
-**Tool permissions.** `submit_quotation`, which is final, always asks your approval. The seven
+**Tool permissions.** `submit_quotation`, which is final, asks for approval by default. The seven
 tools that only read can be set to **Always allow** ([Get started](#claude-desktop-or-claudeai),
 step 4).
 

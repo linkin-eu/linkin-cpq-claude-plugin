@@ -15,8 +15,8 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 ## 4.0.0
 
-One plugin replaces the earlier LINKIN CPQ plugins, 3.0.0 from `linkin-claude` and 2.0.0 from
-`claude-skills`, for Claude Desktop, claude.ai, Cowork and Claude Code.
+One plugin replaces the earlier LINKIN CPQ plugins, for Claude Desktop, claude.ai, Cowork and
+Claude Code.
 
 ### Added
 
