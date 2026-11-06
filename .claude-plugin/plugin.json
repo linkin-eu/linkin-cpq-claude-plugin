@@ -9,6 +9,7 @@
     "url": "https://linkin.eu"
   },
   "homepage": "https://linkin.eu",
+  "repository": "https://github.com/linkin-eu/linkin-cpq-claude-plugin",
   "license": "LicenseRef-LINKIN-Proprietary",
   "keywords": [
     "linkin",
