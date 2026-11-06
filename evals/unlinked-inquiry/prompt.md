@@ -1,5 +1,5 @@
 ---
-description: "An account linked to no customer number prices an inquiry as LINKIN's one-time customer, and with the price Claude asks for the company, contact name, email and country that issuing needs; nothing is issued and no quotation tool is used."
+description: "An account linked to no customer number prices an inquiry as LINKIN's one-time customer, and with the price Claude asks for the details that issuing needs (Claude Code shows no apps, so no form); nothing is issued and no quotation tool is used."
 tags: [inquiry, customers]
 max_turns: 20
 allowed_tools: [Skill, Read]

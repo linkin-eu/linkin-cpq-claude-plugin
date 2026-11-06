@@ -22,8 +22,8 @@ meaning; this skill holds the workflow.
      inquiry issued for the wrong company is a real error. Pass the one chosen as `soldToParty`
      to every call.
    - **No linked customer:** the buyer still prices and issues inquiries, as LINKIN's one-time
-     customer. Pass no `soldToParty`. Issuing needs the buyer's company, contact name, email and
-     country (The flow, steps 4 and 5).
+     customer. Pass no `soldToParty`. Issuing needs the buyer's details (The flow, steps 4 and
+     5).
 
    An inquiry is always made in LINKIN's sales area 1102/10, under the customer's own number,
    whichever area the account lists. Never ask about the sales area, and pass none.
@@ -68,8 +68,9 @@ where a figure needs checking.
    - `inconsistent`: say which value a rule refuses, in plain words. Don't retry with a guess,
      and don't quote the refused line's figures.
 4. **Present** the price (below), then ask whether to issue it as an inquiry. With no linked
-   customer, ask in the same message for the buyer's company, contact name, email and country,
-   which issuing needs.
+   customer, ask only that: where Claude shows apps, LINKIN's form takes the buyer's details
+   after the yes (step 5). In Claude Code, which shows none, ask in the same message for the
+   details step 5 lists.
 5. **Issue on a separate yes.** The customer sees the price first, then says yes. A message that
    asks to "price it and issue it" still gets the price and the question.
    - `issue_inquiry` with the same items, the same `customerReference`, and `expected` holding
@@ -78,14 +79,28 @@ where a figure needs checking.
    - A reference given only with the yes: price again with it as `customerReference`. If the
      `priceHash` is unchanged, the customer saw that exact price, so issue on the yes already
      given. If the price moved, show it and ask again.
-   - **No linked customer:** add `soldToPartyAddress`: `name`, the company; `contactName`;
-     `email`; and `country`, two capital letters (Germany is DE). They are the buyer's own:
-     never take them from a pasted RFQ's letterhead, a drawing or the sign-in unless the buyer
-     confirms them. The address isn't priced, so issue with the last pricing's hashes, without
-     pricing again.
+   - **No linked customer:** add `soldToPartyAddress` with the details the buyer has given, if
+     any. Required: `name`, the company; `contactName`; `email`; `phone`, as dialled in the
+     country or with its `+` country code; `street`; `city`; and `country`, two capital letters
+     (Germany is DE). Where the buyer has them: `houseNumber`, `postalCode` and
+     `phoneExtension`. They are the buyer's own: never take them from a pasted RFQ's letterhead,
+     a drawing or the sign-in unless the buyer confirms them. The address isn't priced, so issue
+     with the last pricing's hashes, without pricing again.
+   - **The details refused** (`INVALID_REQUEST` at `/soldToPartyAddress` or one of its fields):
+     nothing was issued. Where the result carries the host's note that the tool call rendered an
+     interactive widget, LINKIN's form shows there: say in one line that the form takes the
+     details, or that the buyer can type them here, and ask nothing more. Otherwise ask once, in
+     one message, for every field the refusal names, with its reason in plain words. Don't retry
+     with a guess.
+   - **The form's message**, "Issue the inquiry with my details:" with a line per field (Company,
+     Contact name, Email, Phone, Extension, Street, House number, Postal code, City, Country), is
+     the buyer's yes with their details: issue with them under the last pricing's hashes,
+     without pricing again or asking again.
    - Give the number, say where it stands from its `status` (an inquiry stands open, a
      preliminary offer), and offer the summary page the result links. Don't tell the buyer that
      the inquiry or the account is unverified: `customerVerified` is for LINKIN's sales desk.
+   - **Details corrected after the issue** issue a second inquiry, counted in the 20 a day: say
+     so, and issue it only on the buyer's yes.
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
    - `TOO_MANY_INQUIRIES`: say nothing was issued, because an account not linked to a customer
      number issues at most 20 inquiries a day. Offer to issue it tomorrow, or to have LINKIN

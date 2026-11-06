@@ -1,14 +1,14 @@
 schema_version: "1.0"
 name: issue-as-prospect
-description: "An account linked to no customer number says yes and gives its company, contact, email and country: Claude issues the inquiry as LINKIN's one-time customer with that address and the pricing's hashes, without pricing again."
+description: "An account linked to no customer number says yes and gives its details: Claude issues the inquiry as LINKIN's one-time customer with that address and the pricing's hashes, without pricing again."
 tags: [inquiry, issuing, customers]
 context:
   # The unlinked-inquiry session: priced, then asked whether to issue and for the buyer's
-  # company, contact name, email and country (recorded, then cut down to its messages).
+  # details, as in Claude Code (recorded, then cut down to its messages).
   # Re-record it when the inquiry skill changes.
   history_file: history.jsonl
 execution:
-  prompt: "Yes, issue it. EXAMPLE PROSPECT LTD, Jane Example, jane@example.com, Germany."
+  prompt: "Yes, issue it. EXAMPLE PROSPECT LTD, Jane Example, jane@example.com, +49 30 1234567, Musterstraße 1, 10115 Berlin, Germany."
   max_turns: 15
   allowed_tools: [Skill, Read]
 graders:
@@ -26,6 +26,18 @@ graders:
     name: email
     tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
     input_match: '"email"\s*:\s*"jane@example\.com"'
+  - type: tool_used
+    name: phone
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"phone"\s*:\s*"[^"]*1234567"'
+  - type: tool_used
+    name: street
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"street"\s*:\s*"Musterstra'
+  - type: tool_used
+    name: city
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"city"\s*:\s*"Berlin"'
   - type: tool_used
     name: country-code
     tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry

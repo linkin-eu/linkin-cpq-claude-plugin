@@ -3,6 +3,17 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## 4.2.0
+
+### Changed
+
+- To issue an inquiry from an account not yet linked to a customer number, you also give a phone
+  number, street and city, and a house number, postal code and phone extension where you have
+  them. LINKIN checks that the phone number is a valid one in your country.
+- Where Claude shows apps, Claude asks only whether to issue, and you give your details in
+  LINKIN's form under its answer. In Claude Code, Claude asks for them with the price. Where
+  LINKIN refuses a detail, Claude asks once for what it names.
+
 ## 4.1.1
 
 ### Changed

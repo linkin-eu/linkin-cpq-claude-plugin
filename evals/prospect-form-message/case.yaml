@@ -1,0 +1,58 @@
+schema_version: "1.0"
+name: prospect-form-message
+description: "An account linked to no customer number said yes, the issue was refused for want of its details, and LINKIN's form sent them as the buyer's message: Claude issues with them on the pricing's hashes, without pricing or asking again."
+tags: [inquiry, issuing, customers]
+context:
+  # issue-as-prospect's session, its question cut to the yes alone, then the turns a host that
+  # shows apps gives: the yes, the issue with no address, the refusal with the host's widget
+  # note, and Claude's one line. Claude Code shows no apps, so those turns are written, the
+  # refusal in the server's words. Rebuild it when issue-as-prospect's history is re-recorded.
+  history_file: history.jsonl
+execution:
+  prompt: |-
+    Issue the inquiry with my details:
+    Company: EXAMPLE PROSPECT LTD
+    Contact name: Jane Example
+    Email: jane@example.com
+    Phone: +49 30 1234567
+    Street: Musterstraße
+    House number: 1
+    Postal code: 10115
+    City: Berlin
+    Country: DE
+  max_turns: 15
+  allowed_tools: [Skill, Read]
+graders:
+  - type: tool_used
+    name: issued-once-on-the-pricing
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: 'h1:7f8453aac8457535ef988d3edc8bbe2ef67be5192a7aa234830e7c1add7a1b4e'
+    min: 1
+    max: 1
+  - type: tool_used
+    name: address
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"soldToPartyAddress"'
+  - type: tool_used
+    name: phone
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"phone"\s*:\s*"[^"]*1234567"'
+  - type: tool_used
+    name: city
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"city"\s*:\s*"Berlin"'
+  - type: tool_used
+    name: country-code
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"country"\s*:\s*"DE"'
+  - type: tool_used
+    name: not-priced-again
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry
+    min: 0
+    max: 0
+  - type: llm
+    name: answer
+    criteria: >-
+      PASS if the reply says the inquiry LI26000001 was issued and stands open as a preliminary
+      offer. FAIL if it asks again whether to issue, asks for any detail, says nothing was
+      issued, or says the inquiry or the account is marked or shown as unverified.
