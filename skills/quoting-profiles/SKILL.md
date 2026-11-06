@@ -1,6 +1,6 @@
 ---
 name: quoting-profiles
-description: Quotes LINKIN's aluminium extruded profiles through the LINKIN CPQ connector - matches a request for quotation to the profiles the customer can order, prices it with its breakdown per process and price per kg, explains why a combination is refused, issues the quotation once the customer has seen the price and said yes, submits it only when asked, orders again from an issued quotation or inquiry, explains how an issued document's price was made, and compares another supplier's per-kg offer like for like. Use when a LINKIN or PROFILINK customer asks which profiles they can order, asks for a price, a quote, an offer or an RFQ on profiles, asks what a profile can be ordered with or why an option is refused, asks about RAL colours, powder coating, anodizing, lengths, packs or minimums, wants to reorder or to submit a quotation, asks about an earlier quotation or inquiry, or brings a per-kg price. Not for new profiles with no die yet, which inquiring-new-profiles prices.
+description: Quotes LINKIN's aluminium extruded profiles through the LINKIN CPQ connector - matches a request for quotation to the profiles the customer can order, prices it with its breakdown per process and price per kg, explains why a combination is refused, issues the quotation once the customer has seen the price and said yes, submits it only when asked, orders again from an issued quotation or inquiry, and explains how an issued document's price was made. Use when a LINKIN or PROFILINK customer asks which profiles they can order, asks for a price, a quote, an offer or an RFQ on profiles, asks what a profile can be ordered with or why an option is refused, asks about RAL colours, powder coating, anodizing, lengths, packs or minimums, wants to reorder or to submit a quotation, or asks about an earlier quotation or inquiry. Not for new profiles with no die yet, which inquiring-new-profiles prices, or for comparing another offer per kg or per tonne, which comparing-per-kilo-prices does.
 ---
 
 # Quoting LINKIN profiles
@@ -129,9 +129,8 @@ details page too, as its own file.
 
 ## Price per kg
 
-The price table always carries the price per kg. When the customer brings another supplier's
-per-kg offer, or asks how LINKIN's price compares with one, follow
-[references/per-kilo.md](references/per-kilo.md). Don't start that comparison unasked.
+The price table always carries the price per kg. A comparison with another offer per kg or per
+tonne, only when the buyer brings it, is comparing-per-kilo-prices'.
 
 ## Limits
 
