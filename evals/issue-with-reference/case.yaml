@@ -18,8 +18,9 @@ graders:
     min: 1
     max: 1
   - type: tool_used
-    name: issued-once
+    name: issued-once-on-the-new-pricing
     tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_quotation
+    input_match: 'h1:d6e7bc548c76237e2b6a0297f9603f89afd9c870e47b98e02d62ccda08281459'
     min: 1
     max: 1
   - type: tool_order
