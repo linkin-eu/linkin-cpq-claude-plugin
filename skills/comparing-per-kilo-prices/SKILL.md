@@ -1,6 +1,6 @@
 ---
 name: comparing-per-kilo-prices
-description: Compares LINKIN's price for aluminium extruded profiles with a per-kg or per-tonne offer the buyer brings, like for like - prices the same profile through the LINKIN CPQ connector, puts LINKIN's price per kg and per tonne on the theoretical weight, applies the other offer's rate to that same weight with a die-wear what-if labelled as an illustration, checks that both offers cover the same scope, and explains in neutral terms how billing per piece on theoretical weight differs from billing per kg on shipped weight. Use only when the buyer brings the comparison - another supplier's or a competitor's price in EUR/kg or EUR/t, a remark that LINKIN is more expensive per kilo, or a request for LINKIN's price per kg or per tonne to compare with another offer. Not for a plain price or quote, which quoting-profiles handles with its price per kg column, and never volunteered.
+description: Compares LINKIN's price for aluminium extruded profiles with another offer per kg or per tonne, like for like, through the LINKIN CPQ connector. Use only when the buyer brings the comparison - another supplier's or a competitor's price in EUR/kg or EUR/t, a remark that LINKIN is more expensive per kilo, or a request for LINKIN's price per kg or per tonne to compare with another offer. Not for a plain price or quote, which quoting-profiles handles with its price per kg column, and never volunteered.
 ---
 
 # Comparing per-kilo prices
@@ -10,20 +10,14 @@ for LINKIN's price per kg to compare. Every price table already shows the price 
 (quoting-profiles). This skill is the explanation behind that column, given only when the buyer
 asks. Never start it unasked, and never press it on the buyer.
 
-Give the figures first, then the explanation, briefly. Keep the server's rules: a price is final
-only on a line whose status is `ok`, and a line that isn't `ok` gives no figures to quote; ask,
-never guess, a value only the customer can give; issue only on the customer's yes.
+Give the figures first, then the explanation, briefly. Keep the connector's rules.
 
 ## 1. LINKIN's price
 
-1. If the LINKIN CPQ connector's tools aren't available, say: "The LINKIN CPQ connector isn't
-   connected. Connect it on the LINKIN CPQ plugin's Connectors tab, then ask again." Then stop.
-2. `get_account`. With several different customers, ask which one and never choose.
-3. Match the profile with `find_profiles`, and ask in one message for what the offer leaves out:
-   length, temper, finish, pieces.
-4. Price it with `price_quotation`, with `view: detail` and `detailItems` on the first call. For a
-   new profile with no die yet, price it with `price_inquiry` (inquiring-new-profiles): its
-   weights are the drawing's estimates and its price is preliminary, so say both.
+Do quoting-profiles' First and its steps 1–3: match, fill in and price, with `view: detail` and
+`detailItems` on the first call. For a new profile with no die yet, do inquiring-new-profiles'
+instead: `price_inquiry` needs the customer's `customerReference`, its weights are the drawing's
+estimates and its price is preliminary, so say both.
 
 Only LINKIN's tools give LINKIN's figures. Never estimate LINKIN's price, never adjust it, and
 never work it out from rates: to see another quantity or finish, price it.
@@ -86,8 +80,8 @@ finishes. Don't push.
 If the buyer wants only the number, give it with one line: a per-piece price on theoretical
 weight and a per-kg price on shipped weight don't compare one to one. Offer the rest.
 
-If they doubt the 10%: it is a general range across a die's life, not a figure about any
-supplier. The profile standards (EN 755-9, and EN 12020-2 for 6060 and 6063) limit the wall
+If they doubt the 10%: it is LINKIN's figure, from its own delivery records, and a general range
+across a die's life, not a figure about any supplier. The profile standards (EN 755-9, and EN 12020-2 for 6060 and 6063) limit the wall
 thickness, not the weight, and ±0.15 mm on a 1.5 mm wall is ±10% of that wall. The buyer can
 check their own deliveries: the kilos invoiced against the drawing's kg per metre times the
 metres delivered.

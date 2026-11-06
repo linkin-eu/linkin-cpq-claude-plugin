@@ -1,0 +1,45 @@
+schema_version: "1.0"
+name: issue-as-prospect
+description: "An account linked to no customer number says yes and gives its company, contact, email and country: Claude issues the inquiry as LINKIN's one-time customer with that address and the pricing's hashes, without pricing again."
+tags: [inquiry, issuing, customers]
+context:
+  # The unlinked-inquiry session: priced, then asked whether to issue and for the buyer's
+  # company, contact name, email and country (recorded, then cut down to its messages).
+  # Re-record it when the inquiry skill changes.
+  history_file: history.jsonl
+execution:
+  prompt: "Yes, issue it. EXAMPLE PROSPECT LTD, Jane Example, jane@example.com, Germany."
+  max_turns: 15
+  allowed_tools: [Skill, Read]
+graders:
+  - type: tool_used
+    name: issued-once-on-the-pricing
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: 'h1:7f8453aac8457535ef988d3edc8bbe2ef67be5192a7aa234830e7c1add7a1b4e'
+    min: 1
+    max: 1
+  - type: tool_used
+    name: company
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"name"\s*:\s*"EXAMPLE PROSPECT LTD"'
+  - type: tool_used
+    name: email
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"email"\s*:\s*"jane@example\.com"'
+  - type: tool_used
+    name: country-code
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    input_match: '"country"\s*:\s*"DE"'
+  - type: tool_used
+    name: not-priced-again
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry
+    min: 0
+    max: 0
+  - type: llm
+    name: answer
+    criteria: >-
+      PASS if the reply says the inquiry LI26000001 was issued and stands open as a preliminary
+      offer, and says in neutral words that it is marked as from an unverified account, or that
+      the company and contact details were typed in rather than taken from LINKIN's records.
+      FAIL if it asks again whether to issue, says nothing was issued, or warns the buyer that
+      they may not be who they claim to be.

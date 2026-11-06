@@ -3,15 +3,28 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 4.1.0
 
 ### Added
 
+- Inquiries from an account not yet linked to a customer number: a new LINKIN account prices and
+  issues inquiries for new profiles. Claude asks for your company, contact name, email and
+  country to issue one, up to 20 a day. Once your account is linked, those inquiries stay yours.
 - `comparing-per-kilo-prices`: when the buyer brings another offer per kg or per tonne, or says
   LINKIN is dearer per kilo, Claude compares the two on the same theoretical weight, with a
   die-wear what-if at +5% and +10%, checks that both cover the same scope, and explains how
   billing per piece differs from billing per kilo. It replaces quoting-profiles' per-kg reference,
   and is never volunteered on a plain quote.
+
+### Changed
+
+- An inquiry is always made in LINKIN's sales area 1102/10, under your own customer number:
+  Claude no longer asks which sales area.
+- Claude says where an issued document stands from its status.
+- The skills follow the connector's rules instead of repeating them, and their descriptions name
+  the requests they are for.
+- The zip holds only the plugin: its manifest, connector, skills, icon, README, licence, privacy
+  notice and changelog.
 
 ## 4.0.0
 

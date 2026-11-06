@@ -54,7 +54,6 @@ solely by automated means.
 | What | Kept |
 |---|---|
 | Each quotation and inquiry issued, with the account that issued it and when, and a submitted quotation's email | As LINKIN's business records |
-| A sandbox account's samples | 30 days |
 | Records that stop a request from issuing a document twice | 1 day |
 | Service logs: which account called which tool, the result and how long it took | 30 days |
 | The pricing service's logs: routes, statuses and the ids of documents issued | 90 days |

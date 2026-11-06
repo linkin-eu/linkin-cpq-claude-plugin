@@ -1,0 +1,30 @@
+schema_version: "1.0"
+name: too-many-inquiries
+description: "An account linked to no customer number has issued its 20 inquiries today: Claude says nothing was issued and why, offers tomorrow or linking the account, and doesn't retry."
+tags: [inquiry, issuing, customers]
+context:
+  # The same session as issue-as-prospect's: priced, then asked whether to issue and for the
+  # buyer's address. Re-record it when the inquiry skill changes.
+  history_file: history.jsonl
+execution:
+  prompt: "Yes, issue it. EXAMPLE PROSPECT LTD, Jane Example, jane@example.com, Germany."
+  max_turns: 15
+  allowed_tools: [Skill, Read]
+graders:
+  - type: tool_used
+    name: tried-once
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry
+    min: 1
+    max: 1
+  - type: tool_used
+    name: not-priced-again
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry
+    min: 0
+    max: 0
+  - type: llm
+    name: answer
+    criteria: >-
+      PASS if the reply says nothing was issued because an account not linked to a customer
+      number issues at most 20 inquiries a day, and offers to issue it tomorrow or to have
+      LINKIN link the account.
+      FAIL if it says the inquiry was issued, or suggests a way around the limit.

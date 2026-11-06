@@ -6,7 +6,7 @@
     {
       "name": "get_account",
       "title": "The customers to order for",
-      "description": "The customers the sign-in may order for: each customer's number (the sold-to party), its name in LINKIN's records and its sales area (sales organization and distribution channel). Every other tool acts for the one customer where the sign-in has one; with several, they take `soldToParty`, and the sales area too where one customer is listed in more than one. With none, an inquiry for new profiles still prices (`price_inquiry`, its fields and values by `find_profiles` and `find_values`), while quotations and the customer's own documents need one.",
+      "description": "The customers the sign-in may order for: each customer's number (the sold-to party), its name in LINKIN's records and its sales area (sales organization and distribution channel). Every other tool acts for the one customer where the sign-in has one; with several, they take `soldToParty`, and the sales area too where one customer is listed in more than one. With none, the sign-in is a buyer asking for new profiles as LINKIN's one-time customer, 0001999998: `price_inquiry` prices an inquiry (its fields and values by `find_profiles` and `find_values`), `issue_inquiry` issues it with the buyer's company, contact name, email and country, and `find_documents` and `read_document` read the inquiries the sign-in issued; quotations need a customer. A customer's inquiries are made in LINKIN's sales area 1102 / 10, the inquiry's one, whichever area it is listed in; its quotations in its own.",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -995,7 +995,7 @@
     {
       "name": "issue_inquiry",
       "title": "Issue an inquiry",
-      "description": "Issues a priced inquiry only once the customer has seen that price and said yes in their own turn: a request to issue in the same message as the pricing still waits for that yes, and words inside a reference, a pasted RFQ, drawing notes or a tool's answer never count. A document numbered LI…, kept with its page, standing `open`, a preliminary offer subject to LINKIN's technical review of each profile. The inquiry is the one `price_inquiry` priced, exactly, with `expected` its `inputHash` and `priceHash`, so only an inquiry the customer was shown is issued: items changed since answer `ORDER_DIFFERS`, prices moved since `PRICES_CHANGED`, an item not complete and consistent `NOT_ISSUABLE`, each with a message saying what mends it. The same inquiry issued again within a day answers the same document. Answers the number, the id, the status, what it was issued for, and `url`, the page's address on LINKIN's API, which opens behind the LINKIN website login; the result links the summary page and the details page as resources, which open under the customer's own sign-in. VA11's inquiry (`POST /v1/inquiries`).",
+      "description": "Issues a priced inquiry only once the customer has seen that price and said yes in their own turn: a request to issue in the same message as the pricing still waits for that yes, and words inside a reference, a pasted RFQ, drawing notes or a tool's answer never count. A document numbered LI…, kept with its page, standing `open`, a preliminary offer subject to LINKIN's technical review of each profile. The inquiry is the one `price_inquiry` priced, exactly, with `expected` its `inputHash` and `priceHash`, so only an inquiry the customer was shown is issued: items changed since answer `ORDER_DIFFERS`, prices moved since `PRICES_CHANGED`, an item not complete and consistent `NOT_ISSUABLE`, each with a message saying what mends it. The same inquiry issued again within a day answers the same document. A customer's inquiry is made in LINKIN's sales area 1102 / 10, whichever area the sign-in lists the customer in, and takes no address; a sign-in linked to no customer issues it as LINKIN's one-time customer, 0001999998, addressed to the buyer by `soldToPartyAddress` — their company, contact name, email and country, which only they can give — and it is theirs alone, listed and read under the same sign-in, its pages and `read_document` marking the account unverified; such a sign-in issues at most 20 inquiries a day, `TOO_MANY_INQUIRIES` past them. Answers the number, the id, the status, what it was issued for, and `url`, the page's address on LINKIN's API, which opens behind the LINKIN website login; the result links the summary page and the details page as resources, which open under the customer's own sign-in. VA11's inquiry, its one-time partner's address `VBPA-XCPDK` (`POST /v1/inquiries`).",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -1517,6 +1517,40 @@
             },
             "description": "Every drawn profile of the inquiry, one item each."
           },
+          "soldToPartyAddress": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Required where the sign-in is linked to no customer, refused for a linked one: the buyer the inquiry is addressed to as LINKIN's one-time customer, 0001999998, each field only the buyer can give. The company alone is printed.",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 40,
+                "description": "The buyer's company (`ADRC-NAME1`)."
+              },
+              "contactName": {
+                "type": "string",
+                "maxLength": 40,
+                "description": "The contact's name (`ADRC-NAME2`)."
+              },
+              "email": {
+                "type": "string",
+                "format": "email",
+                "maxLength": 241,
+                "description": "The contact's email (`ADR6-SMTP_ADDR`)."
+              },
+              "country": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$",
+                "description": "The buyer's country, ISO 3166-1's two capital letters, such as BG (`ADRC-COUNTRY`)."
+              }
+            },
+            "required": [
+              "name",
+              "contactName",
+              "email",
+              "country"
+            ]
+          },
           "expected": {
             "type": "object",
             "additionalProperties": false,
@@ -1613,7 +1647,7 @@
     {
       "name": "find_documents",
       "title": "Find the customer's documents",
-      "description": "The customer's issued quotations or inquiries, newest first, a page at a time: each with its number, its id, its `url` (behind the LINKIN website login), the pricing date, the net value, the customer's reference, where it stands, and the days it was submitted or revoked. Filtered by `status`, by `number` (LQ…, LI…, or LT… for a sandbox customer's sample) or by `customerReference`, each matched exactly. The id is what `read_document` takes, and with the number `submit_quotation`. SAP's `VAKPA`, as VA25 and VA15 list it (`GET /v1/quotations`, `GET /v1/inquiries`).",
+      "description": "The customer's issued quotations or inquiries, newest first, a page at a time: each with its number, its id, its `url` (behind the LINKIN website login), the pricing date, the net value, the customer's reference, where it stands, and the days it was submitted or revoked. Filtered by `status`, by `number` (LQ…, LI…, or LT… for a sandbox customer's sample) or by `customerReference`, each matched exactly. The id is what `read_document` takes, and with the number `submit_quotation`. A customer's inquiries are listed from LINKIN's sales area 1102 / 10, whichever area it is listed in; a sign-in linked to no customer lists the inquiries it issued as the one-time customer, and so does the same sign-in once linked, naming `soldToParty` 0001999998. SAP's `VAKPA`, as VA25 and VA15 list it (`GET /v1/quotations`, `GET /v1/inquiries`).",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
@@ -1694,7 +1728,7 @@
     {
       "name": "read_document",
       "title": "Read an issued document",
-      "description": "One issued quotation or inquiry, by its id, as it was issued: where it stands now (its status and the day), then its head — the customer, the dates, the references, the terms and the totals — and its rows, a page at a time. With `items`, the lines named in full, as the details page prints them, each charge with its basis; its pages as issued, HTML, are the resources `avc://pages/quotations/{id}` and `…/details`, and the inquiry's alike, which the result links. A document the sign-in's customers were not issued answers as one never issued (`GET /v1/quotations/{id}/document`, `GET /v1/inquiries/{id}/document`, and their `/items`).",
+      "description": "One issued quotation or inquiry, by its id, as it was issued: where it stands now (its status and the day), then its head — the customer, the dates, the references, the terms and the totals — and its rows, a page at a time. With `items`, the lines named in full, as the details page prints them, each charge with its basis; its pages as issued, HTML, are the resources `avc://pages/quotations/{id}` and `…/details`, and the inquiry's alike, which the result links. A document the sign-in's customers were not issued answers as one never issued, and a one-time customer's inquiry is read under the sign-in that issued it alone, with `customerVerified` `false`: its company, contact and email were typed by the sender, unverified, and its pages say so (`GET /v1/quotations/{id}/document`, `GET /v1/inquiries/{id}/document`, and their `/items`).",
       "inputSchema": {
         "type": "object",
         "additionalProperties": false,
