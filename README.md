@@ -80,10 +80,13 @@ for new profiles. To quote the profiles you can order,
    <!-- Remove this note once mcp.linkin.eu's client registration is verified. -->
    If Claude asks for an OAuth client ID, enter `402sn2rbceqt5r4sjktlekf2vm` and leave the secret
    empty.
-4. **Allow the read-only tools.** Under the connector's **Tool permissions**, set the seven tools
-   that only read to **Always allow**: `get_account`, `find_profiles`, `find_values`,
-   `price_quotation`, `price_inquiry`, `find_documents` and `read_document`. Claude then asks
-   only before it issues or submits.
+4. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
+   **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
+   document** to **Always allow** too: it only reads, and is listed there because it shows the
+   document as a page. Leave the tools that issue, submit or revoke on **Needs approval**, so
+   Claude asks before it issues, submits or revokes. Where an organization's admin has turned off
+   **Always allow** for Cowork, Claude asks before every tool there, and **Always allow** still
+   works in chats.
 
 Then ask for a price. The plugin works in Cowork too, with the same sign-in.
 
@@ -169,7 +172,7 @@ sequenceDiagram
 
 | Part | What it does |
 |---|---|
-| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues and submits them, and reads your issued documents |
+| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, and estimates the trucks a quotation takes |
 | **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits when you ask, orders again and explains an issued price |
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
 | **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
@@ -185,14 +188,15 @@ sequenceDiagram
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
-**Tool permissions.** `submit_quotation`, which is final, asks for approval by default. The seven
-tools that only read can be set to **Always allow** ([Get started](#claude-desktop-or-claudeai),
-step 4).
+**Tool permissions.** Issuing an inquiry or a quotation, submitting a quotation and revoking a
+document ask for approval by default. The eight tools that only read, the seven **Read-only
+tools** and **Read an issued document**, can be set to **Always allow**
+([Get started](#claude-desktop-or-claudeai), step 4).
 
 <details>
 <summary>The same in Claude Code</summary>
 
-Add the seven read-only tools to `permissions.allow` in your settings:
+Add the eight read-only tools to `permissions.allow` in your settings:
 
 ```json
 {
@@ -204,7 +208,8 @@ Add the seven read-only tools to `permissions.allow` in your settings:
       "mcp__plugin_linkin-cpq_linkin-cpq__price_quotation",
       "mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry",
       "mcp__plugin_linkin-cpq_linkin-cpq__find_documents",
-      "mcp__plugin_linkin-cpq_linkin-cpq__read_document"
+      "mcp__plugin_linkin-cpq_linkin-cpq__read_document",
+      "mcp__plugin_linkin-cpq_linkin-cpq__plan_load"
     ]
   }
 }
@@ -226,8 +231,8 @@ review of each profile. The issued document is what counts.
 <summary><b>How do I get a LINKIN account?</b></summary>
 
 [Register on linkin.eu](https://linkin.eu/en/sign-up/). With a new account you can price and issue
-inquiries for new profiles from a drawing, up to 20 a day: Claude asks for your company, contact
-name, email and country to issue one. To quote the profiles you can order,
+inquiries for new profiles from a drawing, up to 20 a day, in the company and contact details
+you registered on linkin.eu. To quote the profiles you can order,
 [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number. The
 inquiries you issued before stay yours.
 </details>
@@ -310,13 +315,18 @@ trademark of SAP SE. LINKIN is not affiliated with SAP SE.
 
 ```bash
 claude plugin validate . --strict
-claude plugin eval . --no-publish   # model calls on your own Claude sign-in; answers come from evals/*/mocks
+evals/check-histories.sh            # each recorded history's lines chained, so a resumed eval keeps them all
+claude plugin eval . --no-publish --judge-model opus   # model calls on your own Claude sign-in; answers come from evals/*/mocks
 ./build.sh                          # dist/linkin-cpq-<version>.zip from HEAD, or ./build.sh <tag>
 ```
 
 The zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
 CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
+
+The evals are judged by Opus: the default judge passed a reply that told a buyer about LINKIN's
+internal mark on their inquiry. Its rubrics stay short, one claim each, since the judge answers
+only PASS or FAIL.
 
 To try the plugin in Claude Code against another server that needs no sign-in, such as a local
 one, set `LINKIN_CPQ_MCP_URL`: `LINKIN_CPQ_MCP_URL=<address> claude --plugin-dir .`. Unset, the

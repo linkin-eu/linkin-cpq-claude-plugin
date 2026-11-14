@@ -3,6 +3,21 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Changed
+
+- An account not yet linked to a customer number issues inquiries in the company and contact
+  details registered on linkin.eu: Claude no longer asks for them, and doesn't call the inquiry
+  unverified.
+- The connector's twelve tools, with `revoke_document` and `plan_load`. `plan_load` only reads.
+
+### Fixed
+
+- Getting started names the tool permissions as Claude shows them. **Read an issued document** is
+  listed under **Interactive tools** and is set to **Always allow** there. The tools that issue,
+  submit or revoke keep **Needs approval**.
+
 ## 4.1.0
 
 ### Added

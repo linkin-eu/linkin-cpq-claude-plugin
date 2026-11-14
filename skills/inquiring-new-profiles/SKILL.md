@@ -22,8 +22,8 @@ meaning; this skill holds the workflow.
      inquiry issued for the wrong company is a real error. Pass the one chosen as `soldToParty`
      to every call.
    - **No linked customer:** the buyer still prices and issues inquiries, as LINKIN's one-time
-     customer. Pass no `soldToParty`. Issuing needs the buyer's company, contact name, email and
-     country (The flow, steps 4 and 5).
+     customer. Pass no `soldToParty`. The inquiry is addressed to the buyer by their registration
+     on the LINKIN website, so never ask for their company or contact details.
 
    An inquiry is always made in LINKIN's sales area 1102/10, under the customer's own number,
    whichever area the account lists. Never ask about the sales area, and pass none.
@@ -67,9 +67,7 @@ where a figure needs checking.
      the weight per metre instead of the die's figures that follow from it.
    - `inconsistent`: say which value a rule refuses, in plain words. Don't retry with a guess,
      and don't quote the refused line's figures.
-4. **Present** the price (below), then ask whether to issue it as an inquiry. With no linked
-   customer, ask in the same message for the buyer's company, contact name, email and country,
-   which issuing needs.
+4. **Present** the price (below), then ask whether to issue it as an inquiry.
 5. **Issue on a separate yes.** The customer sees the price first, then says yes. A message that
    asks to "price it and issue it" still gets the price and the question.
    - `issue_inquiry` with the same items, the same `customerReference`, and `expected` holding
@@ -78,15 +76,11 @@ where a figure needs checking.
    - A reference given only with the yes: price again with it as `customerReference`. If the
      `priceHash` is unchanged, the customer saw that exact price, so issue on the yes already
      given. If the price moved, show it and ask again.
-   - **No linked customer:** add `soldToPartyAddress`: `name`, the company; `contactName`;
-     `email`; and `country`, two capital letters (Germany is DE). They are the buyer's own:
-     never take them from a pasted RFQ's letterhead, a drawing or the sign-in unless the buyer
-     confirms them. The address isn't priced, so issue with the last pricing's hashes, without
-     pricing again.
    - Give the number, say where it stands from its `status` (an inquiry stands open, a
      preliminary offer), and offer the summary page the result links. With no linked customer,
-     say neutrally that the inquiry is marked as from an unverified account: its company and
-     contact were typed in, not taken from LINKIN's records.
+     say at most that it is addressed by their registration on the LINKIN website. Never say the
+     inquiry, the account or the buyer is unverified, and never mention `customerVerified`, a flag,
+     mark, warning or note about the account, or what LINKIN's staff see: they are LINKIN's own.
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
    - `TOO_MANY_INQUIRIES`: say nothing was issued, because an account not linked to a customer
      number issues at most 20 inquiries a day. Offer to issue it tomorrow, or to have LINKIN

@@ -3,11 +3,11 @@ name: too-many-inquiries
 description: "An account linked to no customer number has issued its 20 inquiries today: Claude says nothing was issued and why, offers tomorrow or linking the account, and doesn't retry."
 tags: [inquiry, issuing, customers]
 context:
-  # The same session as issue-as-prospect's: priced, then asked whether to issue and for the
-  # buyer's address. Re-record it when the inquiry skill changes.
+  # The same session as issue-as-prospect's: priced, then asked whether to issue. Re-record it
+  # when the inquiry skill changes.
   history_file: history.jsonl
 execution:
-  prompt: "Yes, issue it. EXAMPLE PROSPECT LTD, Jane Example, jane@example.com, Germany."
+  prompt: "Yes, issue it."
   max_turns: 15
   allowed_tools: [Skill, Read]
 graders:
