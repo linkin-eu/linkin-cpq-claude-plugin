@@ -20,11 +20,12 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - The privacy notice: the sales desk receives each inquiry issued and each inquiry revoked, besides
   each quotation submitted; LINKIN receives the reason for a revocation; and an account not yet
   linked to a customer has its registered details put on its inquiries.
-
 - An account not yet linked to a customer number issues inquiries in the company and contact
   details registered on linkin.eu: Claude no longer asks for them, and doesn't call the inquiry
   unverified.
 - The connector's twelve tools, with `revoke_document` and `plan_load`. `plan_load` only reads.
+- Plain words: the skills say "field" for an inquiry's values, and name a sales area once as the
+  LINKIN company and channel a customer buys through.
 
 ### Fixed
 
