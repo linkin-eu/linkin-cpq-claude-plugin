@@ -13,7 +13,9 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - `planning-truck-loads`: how many trucks an order or a quotation takes, what room the trucks
   leave, and what-ifs: which quantities clear a minimum charge, each priced and planned, compared
   side by side. The plan is an estimate for booking your carrier, never volunteered on a plain
-  quote.
+  quote. It covers everything asked or nothing: where LINKIN's packing data is missing, Claude
+  says so and to contact your sales representative at LINKIN, and plans the rest only when you
+  ask, saying what it leaves out.
 
 ### Changed
 

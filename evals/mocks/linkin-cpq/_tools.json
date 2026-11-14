@@ -1860,7 +1860,7 @@
     {
       "name": "plan_load",
       "title": "Plan the trucks",
-      "description": "Plans how the customer's profiles load onto trucks, an estimate for booking its carrier: the crates its lines are packed in, side by side across a standard trailer and stacked up to its inside height, under its legal payload, and how many trucks they take. It plans together, in one call, lines being priced, as `price_quotation` takes them, up to 300 lines, priced again as one order, and quotations already issued, by number (LQ…), up to 10 documents, at least one line or document and at most 600 crates in all; nothing is kept. It follows a quotation's lines pricing `ok`, or shows whether issued quotations share a truck. Each line and document answers whether it was `planned`, and one that was not says why: a line not `ok`, a coated profile whose pack the plant has not measured yet, left out and never estimated, a number the customer was never issued, a revoked quotation. An inquiry is never planned, neither an inquiry profile's line nor an issued inquiry (LI…): its die does not exist yet, so it has no packing values; only profiles on existing dies are loaded. Each truck answers its crates by carrier and length, where each stands and what it holds, its net weight against the payload, the floor, volume and weight it takes, what it leaves `free` (the payload less the net weight, each lane's unused length; neither says what fits), and `drawing`, an SVG of it from above and from the side, to show as an image or save as a `.svg` file, left out where `drawings` is false, as for a large plan or to compare options; `provenLeast` says whether no load stacking crates of one length and width alone takes fewer trucks. Prices are ex works: the customer's carrier brings the truck. The weights are theoretical, the crates' own weight not counted until the plant weighs them, the axles not checked; the plan is no delivery, no shipment and no promise of how the plant loads. SAP plans a load only in TM, on a freight order, which a quotation never reaches: the plan is the API's own (`POST /customer/v1/load-plan`).",
+      "description": "Plans how the customer's profiles load onto trucks, an estimate for booking its carrier: the crates its lines are packed in, side by side across a standard trailer and stacked up to its inside height, under its legal payload, and how many trucks they take. It plans together lines being priced, as `price_quotation` takes them, up to 300 lines, priced again as one order, and quotations already issued, by number (LQ…), whole or the items named, up to 10 documents, at least one line or document and at most 600 crates in all; nothing is kept. Every line and item given is loaded, or none is: `NOT_PLANNABLE` names each that cannot be, with its mend. A line not `ok`, an inquiry (an inquiry profile's line or an issued inquiry, LI…: its die does not exist yet, so it is never loaded), a number the customer was never issued, a revoked quotation or an item it does not hold is the customer's to mend; packing data LINKIN lacks, such as a coated profile's pack not measured yet, is no mistake of the customer's, who asks their sales representative at LINKIN to have it fixed. Each line and item answers its name as priced; each truck its crates by carrier and length, where each stands and what it holds, a coated crate's packs by their face and grid, its net weight against the payload, the floor, volume and weight it takes, and what it leaves `free` (the payload less the net weight, each lane's unused length; neither says what fits); `provenLeast` says whether no load stacking crates of one length and width alone takes fewer trucks. `drawing`, an SVG of each truck from above and from the side, is given only when the person asks for a drawing; a large plan or a comparison needs none. The weights are theoretical, the crates' own weight not counted until the plant weighs them, the axles not checked; the plan is no delivery, no shipment and no promise of how the plant loads. SAP plans a load only in TM, on a freight order, which a quotation never reaches: the plan is the API's own (`POST /customer/v1/load-plan`).",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -1949,17 +1949,26 @@
                   "description": "The quotation's number, LQ…, as issuing or `find_documents` answered it.",
                   "maxLength": 10,
                   "pattern": "^L[QIT][0-9]{8}$"
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "The quotation's items to plan, by their `item`; every item where left out.",
+                  "maxItems": 300,
+                  "minItems": 1
                 }
               },
               "additionalProperties": false
             },
-            "description": "The quotations issued to plan, by number.",
+            "description": "The quotations issued to plan, by number, whole or the items named.",
             "maxItems": 10
           },
           "drawings": {
             "type": "boolean",
-            "description": "`false` leaves each truck's `drawing` out, to compare plans by their figures alone.",
-            "default": true
+            "description": "`true` draws each truck, its `drawing`, only when the person asks for a drawing.",
+            "default": false
           }
         },
         "additionalProperties": false
