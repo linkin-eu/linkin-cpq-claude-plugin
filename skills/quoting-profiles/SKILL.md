@@ -18,7 +18,8 @@ document.
 1. If the LINKIN CPQ connector's tools aren't available, say: "The LINKIN CPQ connector isn't
    connected. Connect it on the LINKIN CPQ plugin's Connectors tab (in Claude Code, `/mcp`), then
    ask again." Then stop.
-2. `get_account`. With one customer in one sales area, act for it. Otherwise:
+2. `get_account`. With one customer in one sales area (the LINKIN name and channel the customer
+   buys under: 1102/10 LINKIN Bulgaria, 1002/10 PROFILINK), act for it. Otherwise:
    - **No linked customer:** say quotations need the account linked to the customer's number,
      which LINKIN does on request (https://linkin.eu/en/contact/). Until then the account prices
      and issues inquiries for new profiles (inquiring-new-profiles), and `find_documents` and
