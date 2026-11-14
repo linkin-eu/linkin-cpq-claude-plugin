@@ -99,4 +99,4 @@ the summary page the result links, not the `url`, which needs the LINKIN website
 Where the host shows no document app (Claude Code), give the number and, when asked, open the
 summary page, the resource `avc://pages/inquiries/<id>`.
 
-To find an issued inquiry, order it again or explain its price, see quoting-profiles.
+To find an issued inquiry, order it again, explain its price or revoke it, see quoting-profiles.

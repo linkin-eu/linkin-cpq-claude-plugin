@@ -18,15 +18,17 @@ The plugin holds only instructions for Claude, the connector's address and an ic
 code and collects nothing.
 
 When you sign in to the connector with your LINKIN account, LINKIN receives your account's
-identifier, and takes the customers your account may act for from its own records. After that,
-LINKIN receives only what Claude sends to the connector's tools: the profiles, quantities,
-finishes, lengths, references and drawing figures you ask about, and the customer you choose.
-LINKIN never receives your conversation with Claude.
+identifier, and takes the customers your account may act for from its own records. For an
+account not yet linked to a customer, it takes the company and contact details you registered on
+linkin.eu, and puts them on your inquiries. After that, LINKIN receives only what Claude sends to
+the connector's tools: the profiles, quantities, finishes, lengths, references and drawing
+figures you ask about, the customer you choose, and the reason you give when you revoke a
+document. LINKIN never receives your conversation with Claude.
 
 ## Why, and on what legal basis
 
-- **Pricing, issuing, submitting and reading documents at your request.** If you are LINKIN's
-  customer yourself, as a sole trader: a contract with you, or steps you ask for before one
+- **Pricing, issuing, submitting, revoking and reading documents at your request.** If you are
+  LINKIN's customer yourself, as a sole trader: a contract with you, or steps you ask for before one
   (GDPR Art. 6(1)(b)). If you act for an organisation: LINKIN's legitimate interest in serving
   its customers through the people who act for them (Art. 6(1)(f)).
 - **Keeping issued documents**, as a record of LINKIN's offers and for legal claims, and
@@ -45,15 +47,15 @@ solely by automated means.
 - **Amazon Web Services**, LINKIN's processor, hosts the connector, LINKIN's services and the
   sign-in, and sends LINKIN's email, in its Frankfurt region (eu-central-1).
 - **Google**, LINKIN's processor, hosts LINKIN's mailboxes (Google Workspace), including the
-  sales desk's, which receives each quotation you submit. Google may process them in the United
-  States, under the EU–U.S. Data Privacy Framework, which the European Commission has found to
-  give adequate protection.
+  sales desk's, which receives each quotation you submit, each inquiry issued and each inquiry
+  revoked. Google may process them in the United States, under the EU–U.S. Data Privacy
+  Framework, which the European Commission has found to give adequate protection.
 
 ## How long LINKIN keeps it
 
 | What | Kept |
 |---|---|
-| Each quotation and inquiry issued, with the account that issued it and when, and a submitted quotation's email | As LINKIN's business records |
+| Each quotation and inquiry issued, with the account that issued it and when, its revocation and reason, and the sales desk's emails about it | As LINKIN's business records |
 | Records that stop a request from issuing a document twice | 1 day |
 | Service logs: which account called which tool, the result and how long it took | 30 days |
 | The pricing service's logs: routes, statuses and the ids of documents issued | 90 days |
