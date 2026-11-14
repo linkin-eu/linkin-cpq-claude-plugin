@@ -16,7 +16,8 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   quote. A plan covers everything given or nothing. Claude says what can't be loaded and why;
   where LINKIN's packing data is missing, it says so and to contact your sales representative at
   LINKIN. It plans the rest only when you ask, or when an inquiry or a revoked quotation can only
-  be left out, and says what it leaves out. A quotation can be planned in part, by its items.
+  be left out, and says what it leaves out. For a line the planner can't plan, Claude works out
+  no trucks, crates or fit of its own. A quotation can be planned in part, by its items.
 
 ### Changed
 

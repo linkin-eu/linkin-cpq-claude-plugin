@@ -8,8 +8,12 @@ description: Plans how a LINKIN order loads onto trucks through the LINKIN CPQ c
 `plan_load` estimates how the customer's profiles load onto standard trailers, for booking the
 customer's own carrier, since prices are ex works. It plans lines being priced, as
 `price_quotation` takes them, and issued quotations by number, whole or the items named,
-together, and all it is given or nothing. Keep the connector's rules: its tool descriptions hold
-each field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
+together, and all it is given or nothing. Trucks and crates come from it alone: of a line, item
+or quotation it didn't plan, refused or was never given, draw no conclusion of your own, not that
+it fits or likely fits, nor its trucks, crates, room or share of the payload, by weight, length,
+volume or free space, even called an estimate. Give its weight only when asked, as priced or
+entered, never set against the truck. Keep the connector's rules: its tool descriptions hold each
+field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
 
 ## First
 
@@ -31,7 +35,7 @@ each field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    own:
    - **LINKIN's data** (a pack not measured yet, a pack no carrier takes): say what is missing,
      and pass on as they are its words "this is LINKIN's data, not a mistake of yours: contact
-     your sales representative at LINKIN so it can be fixed". Never estimate the line.
+     your sales representative at LINKIN so it can be fixed".
    - **The customer's own** (an inquiry's line, a quotation not theirs, unknown or revoked, an
      item it doesn't hold, a line not `ok`): say what it is and its mend.
 
@@ -41,6 +45,8 @@ each field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    waiting for LINKIN's data), ask. A plan without a line, item or quotation names what it leaves
    out, and is never given as the whole order.
 4. **Present:**
+   - what it didn't plan, and why it can't be planned yet, in plain words, saying plainly that
+     the plan doesn't include it;
    - the trucks (`totals.trucks`; where `provenLeast` is false, fewer may be possible, down to
      `bound`), and per truck its net weight against the payload, its fill (floor, volume, weight)
      and what it leaves `free` (the payload less the net weight, and each lane's unused length);
