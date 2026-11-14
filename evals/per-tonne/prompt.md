@@ -5,4 +5,4 @@ max_turns: 15
 allowed_tools: [Skill, Read]
 ---
 
-Another supplier quoted us 5,250 EUR per tonne. What would 400 bars of your sandbox profile 7999999, 6 m, T5, bare, come to per tonne?
+Another supplier quoted us 5,250 EUR per tonne. What would 400 bars of our profile 7800001, 6 m, T5, bare, come to per tonne?

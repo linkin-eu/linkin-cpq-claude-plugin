@@ -1,4 +1,4 @@
 ---
 ---
 
-{"customers":[{"soldToParty":"0001999999","name":"Sandbox customer","salesOrganization":"1002","distributionChannel":"10"}]}
+{"customers":[{"soldToParty":"0000900001","name":"EXAMPLE PROFILES LTD","salesOrganization":"1002","distributionChannel":"10"}]}

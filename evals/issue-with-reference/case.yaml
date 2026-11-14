@@ -32,6 +32,6 @@ graders:
   - type: llm
     name: answer
     criteria: >-
-      PASS if the reply says the quotation LT26000001 was issued with the reference PO-4711,
+      PASS if the reply says the quotation LQ26000002 was issued with the reference PO-4711,
       without asking again whether to issue it.
       FAIL if it asks for confirmation again, or says nothing was issued.

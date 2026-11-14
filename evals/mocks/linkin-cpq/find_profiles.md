@@ -1,11 +1,11 @@
 ---
 # One fixed answer for both kinds of call: a fixture keyed on input.material fails when
-# material is left out, so the list and the fields of the sandbox material come together.
+# material is left out, so the list and the fields of the material come together.
 ---
 
 Without `material`:
 
-{"profiles":[{"kind":"own","geometry":"7999999","geometryText":"Sandbox profile","material":"1370000305","orderAs":{"material":"1370000305","values":{"ZA_GEOMETRY":"7999999"}},"packs":[{"finish":"BARE","bundle":"AW1","minimum":200,"rounding":200,"pieces":200},{"finish":"BARE","bundle":"AW1/2","minimum":100,"rounding":100,"pieces":100},{"finish":"BARE","bundle":"AW1/3","minimum":50,"rounding":50,"pieces":50},{"finish":"POWDER_COATED","bundle":"PACK","minimum":1,"rounding":1,"pieces":4},{"finish":"ANODIZED","bundle":"AW1/2","minimum":100,"rounding":100,"pieces":100}],"length":{"min":6,"max":7500,"unit":"MMT","sapUnit":"MM"},"barMax":{"quantity":7500,"unit":"MMT","sapUnit":"MM"},"stockLengths":[],"minimumGroups":[{"conditionType":"ZPDM","key":"699999"},{"conditionType":"ZTLM","key":"699999"}],"weightPerMetre":{"quantity":0.6,"unit":"KL","sapUnit":"kg/m"},"perimeter":{"quantity":200,"unit":"MMT","sapUnit":"MM"}}],"total":1,"barRules":{"kerf":5,"offcut":200,"minimum":3000,"coatedMinimum":4000,"maximum":7500,"unit":"MMT","sapUnit":"MM"}}
+{"profiles":[{"kind":"own","geometry":"7800001","geometryText":"Example profile","material":"1370000305","orderAs":{"material":"1370000305","values":{"ZA_GEOMETRY":"7800001"}},"packs":[{"finish":"BARE","bundle":"AW1","minimum":200,"rounding":200,"pieces":200},{"finish":"BARE","bundle":"AW1/2","minimum":100,"rounding":100,"pieces":100},{"finish":"BARE","bundle":"AW1/3","minimum":50,"rounding":50,"pieces":50},{"finish":"POWDER_COATED","bundle":"PACK","minimum":1,"rounding":1,"pieces":4},{"finish":"ANODIZED","bundle":"AW1/2","minimum":100,"rounding":100,"pieces":100}],"length":{"min":6,"max":7500,"unit":"MMT","sapUnit":"MM"},"barMax":{"quantity":7500,"unit":"MMT","sapUnit":"MM"},"stockLengths":[],"minimumGroups":[{"conditionType":"ZPDM","key":"680001"},{"conditionType":"ZTLM","key":"680001"}],"weightPerMetre":{"quantity":0.6,"unit":"KL","sapUnit":"kg/m"},"perimeter":{"quantity":200,"unit":"MMT","sapUnit":"MM"}}],"total":1,"barRules":{"kerf":5,"offcut":200,"minimum":3000,"coatedMinimum":4000,"maximum":7500,"unit":"MMT","sapUnit":"MM"}}
 
 
 With `material` 1370000305:
