@@ -2,5 +2,5 @@
 type: llm
 ---
 
-PASS if the reply says LQ26000001 was submitted, that this is final (it can no longer be changed or withdrawn), and gives its net value of 1,826.40 EUR.
-FAIL if it says the quotation was only issued or is still a draft, or that it can still be changed.
+PASS if the reply says LQ26000001 was submitted and that this is final (it can no longer be changed or withdrawn).
+FAIL if it says the quotation was only issued or is still a draft, that it can still be changed, or gives the https://api.linkin.eu link.
