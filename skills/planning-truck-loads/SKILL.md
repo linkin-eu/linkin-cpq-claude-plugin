@@ -11,9 +11,9 @@ customer's own carrier, since prices are ex works. It plans lines being priced, 
 together, and all it is given or nothing. Trucks and crates come from it alone: of a line, item
 or quotation it didn't plan, refused or was never given, draw no conclusion of your own, not that
 it fits or likely fits, nor its trucks, crates, room or share of the payload, by weight, length,
-volume or free space, even called an estimate. Asked, give its weight as priced or entered, never
-set against the truck. Keep the connector's rules: its tool descriptions hold each field's
-meaning. Quoting, issuing and submitting stay quoting-profiles'.
+volume or free space, even called an estimate. Give its weight only when asked, as priced or
+entered, never set against the truck. Keep the connector's rules: its tool descriptions hold each
+field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
 
 ## First
 
