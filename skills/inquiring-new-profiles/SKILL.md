@@ -72,7 +72,8 @@ the pieces; and `values`, by characteristic name.
      inquiry, the account or the buyer is unverified, and never mention `customerVerified`, a flag,
      mark, warning or note about the account, or what LINKIN's staff see: they are LINKIN's own.
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
-   - `TOO_MANY_INQUIRIES`: say nothing was issued and why, from its message. Don't retry.
+   - `TOO_MANY_INQUIRIES`: say nothing was issued, why, and what mends it, from its message. Don't
+     retry.
 
 ## Presenting the price
 
