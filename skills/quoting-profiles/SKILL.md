@@ -15,7 +15,8 @@ Keep the connector's rules, and submit only when the customer asks to submit tha
 ## First
 
 1. If the LINKIN CPQ connector's tools aren't available, say: "The LINKIN CPQ connector isn't
-   connected. Connect it on the LINKIN CPQ plugin's Connectors tab, then ask again." Then stop.
+   connected. Connect it on the LINKIN CPQ plugin's Connectors tab (in Claude Code, `/mcp`), then
+   ask again." Then stop.
 2. `get_account`. With one customer in one sales area, act for it. Otherwise:
    - **No linked customer:** say quotations need the account linked to the customer's number,
      which LINKIN does on request (https://linkin.eu/en/contact/). Until then the account prices
@@ -27,7 +28,8 @@ Keep the connector's rules, and submit only when the customer asks to submit tha
      only one of them, use that area and say which and why. Where more than one sells it, ask,
      because the areas price differently.
 
-   Pass the `soldToParty`, and the sales area where there are several, to every call.
+   Pass the `soldToParty`, and the sales area where there are several, to every call that takes
+   them; for an inquiry, no sales area (inquiring-new-profiles).
 
 ## Quote a request
 
@@ -36,7 +38,7 @@ of number, name, weight per metre and longest bar, the customer's own first, wit
 
 1. **Match.** `find_profiles` lists what the customer can order. Match each profile the request
    names by its geometry, name or drawing number, and start from its `orderAs`. Where two match,
-   ask which. `find_profiles` answers 25 a page, the customer's own first: follow `next` until
+   ask which. `find_profiles` with `limit` 200, the customer's own first: follow `next` until
    the profile is found or the list ends; never conclude there is no match from one page. With
    no match, don't assume why: ask whether it is a new profile they have drawn, which is an
    inquiry (inquiring-new-profiles).
@@ -55,7 +57,8 @@ of number, name, weight per metre and longest bar, the customer's own first, wit
      `find_values` on the refused field, with the other values entered, lists those allowed. To
      compare alternatives, price each in its own call: lines priced together share the die's
      and the colour's minimums.
-   - On a long order, `only: attention`. Over 300 lines, split along the minimum groups.
+   - On a long order, `only: attention` finds the lines to mend; the table still comes from
+     detail calls of 10 lines. Over 300 lines, split along the minimum groups.
 4. **Present** the price (below), then ask whether to issue it as a quotation.
 5. **Issue on a separate yes.** The customer sees the price first, then says yes. A message that
    asks to "price it and issue it" still gets the price and the question, and nothing is issued
@@ -77,8 +80,8 @@ of number, name, weight per metre and longest bar, the customer's own first, wit
 ## Presenting a price
 
 One table, a row per `ok` line, from the lines' detail (price with `view: detail` and
-`detailItems` on the first call, at most 10 lines a call (the server takes up to 20; 10 keeps
-each answer small); `read_document` with `items` for an issued document):
+`detailItems` on the first call, at most 10 lines a call; for an issued document, `read_document`
+for its head and rows, then with `items` for the lines' detail):
 
 | Line | Profile | Pieces | Price per piece | Net value | Price per kg |
 |---|---|---|---|---|---|
@@ -97,17 +100,17 @@ was refused, and no price.
 
 An issued or read document may show beside the answer as its own page. Don't paste the page. Offer
 the summary page the result links, not the `url`, which needs the LINKIN website login in a browser.
-Where the result shows no page links (Claude Code), give the number and, when asked, open the
+Where the host shows no document app (Claude Code), give the number and, when asked, open the
 summary page, the resource `avc://pages/quotations/<id>` (`avc://pages/inquiries/<id>` for an
-inquiry). Where Claude saves a page as a file, its arrows to the other page don't work: offer the
-details page too, as its own file.
+inquiry).
 
 ## Order again
 
-1. Find the document: `find_documents` by `number` or `customerReference`, then
+1. Find the document: `find_documents` by `number` or `customerReference`, or newest first, then
    `read_document`, whose rows hold each line's material, values, pieces (`quantity.entered`),
-   `customerMaterial` and `customerItem`: what a new order sends back. Inquiries issued before
-   the account was linked: `find_documents` with `soldToParty` 0001999998.
+   `customerMaterial` and `customerItem`: what a new order sends back. Where it stands `revoked`,
+   say so, and ask which document to use. Inquiries issued before the account was linked:
+   `find_documents` with `soldToParty` 0001999998.
 2. Ask what changes (pieces, lengths, finishes, lines dropped or added) and the customer's
    reference for the new order. Assume no change.
 3. Price the lines today: a quotation's with `price_quotation`, an inquiry's with
@@ -120,8 +123,10 @@ details page too, as its own file.
 
 ## Explain an issued price
 
-1. `find_documents`, then `read_document` with `kind`, `id` and `items`: each charge with its
-   basis, such as "Metal, billed weight: 956.4 kg × 2,420.00 EUR / 1,000 kg".
+1. `find_documents`; where the document stands `revoked`, say so first. Then `read_document`
+   with `kind` and `id` for its head (totals, minimums, the pricing date), and again with `items`
+   for each charge with its basis, such as "Metal, billed weight: 956.4 kg × 2,420.00 EUR /
+   1,000 kg".
 2. For each line, or the lines asked about: the profile from its text; the pieces after the
    packs; each process as printed, with its charges and their bases, in plain words.
 3. The minimums: which apply, which lines share each, and what each adds to a line.
