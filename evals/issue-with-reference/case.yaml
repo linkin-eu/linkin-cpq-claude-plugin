@@ -38,6 +38,5 @@ graders:
   - type: llm
     name: no-copy
     criteria: >-
-      PASS if the reply gives no page address or URL, doesn't say a page was opened or saved, and
-      says nothing about the pages beyond at most a closing clause that a link is there on request.
-      FAIL otherwise.
+      PASS if the reply mentions no page, link or address for the document.
+      FAIL if it gives an address, says a page was opened or saved, or offers a page or a link.
