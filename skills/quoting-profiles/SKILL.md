@@ -156,11 +156,17 @@ inquiry).
 The price table always carries the price per kg. A comparison with another offer per kg or per
 tonne, only when the buyer brings it, is comparing-per-kilo-prices'.
 
+## Trucks
+
+How many trucks an order or a quotation takes, and what-ifs on its load, are
+planning-truck-loads'. Never volunteer a load plan on a plain quote.
+
 ## Limits
 
 - Only aluminium profiles are priced. Say LINKIN doesn't price PVC here, and never estimate.
 - No tool gives the price list. Explain charges from a pricing's or a document's detail. Never
   work a price, or the quantity at which a minimum stops applying, out from rates: to see
-  another quantity, price it.
+  another quantity, price it. planning-truck-loads estimates which quantities to price from a
+  pricing's own figures, and prices each.
 - A real SAP system, or products other than LINKIN's and PROFILINK's profiles: the connector
   knows only LINKIN's model.

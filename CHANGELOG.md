@@ -10,6 +10,10 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - Revoking: ask Claude to revoke or withdraw a draft quotation or an open inquiry. It asks why,
   from LINKIN's reasons, revokes it and says it is final. Claude never submits a revoked
   quotation.
+- `planning-truck-loads`: how many trucks an order or a quotation takes, what room the trucks
+  leave, and what-ifs: which quantities clear a minimum charge, each priced and planned, compared
+  side by side. The plan is an estimate for booking your carrier, never volunteered on a plain
+  quote.
 
 ### Changed
 

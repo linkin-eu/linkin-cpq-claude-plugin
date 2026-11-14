@@ -138,6 +138,8 @@ that port free.
 | Understand a price | *"How was the price on our last quotation made?"* |
 | Issue and submit | *"Yes, issue it with our reference PO-4711."* Then, when you're ready: *"Submit it to LINKIN."* |
 | Withdraw | *"Revoke our quotation ‹number›: we ordered from another supplier."* |
+| Plan the trucks | *"How many trucks will our quotation ‹number› take?"* |
+| Fill a truck | *"How do we fill the truck without falling under your minimums?"* |
 
 ## You stay in control
 
@@ -178,6 +180,7 @@ sequenceDiagram
 | **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, and estimates the trucks a quotation takes |
 | **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits or revokes when you ask, orders again and explains an issued price |
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
+| **Skill** `planning-truck-loads` | Estimates the trucks an order or a quotation takes, for booking your carrier, and compares the quantities that clear a minimum charge, each priced and planned |
 | **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
 
 ## Privacy and security
