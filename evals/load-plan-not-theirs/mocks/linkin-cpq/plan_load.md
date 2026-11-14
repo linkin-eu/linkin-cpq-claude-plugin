@@ -1,5 +1,5 @@
 ---
-# The server's refusal, worded as avc-model a00ea09c words it: a quotation not the customer's.
+# The server's refusal for a quotation not the customer's, worded as the server words it.
 error: true
 ---
 

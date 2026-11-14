@@ -1,5 +1,5 @@
 ---
-# The server's refusal, worded as avc-model a00ea09c words it: LINKIN's missing data.
+# The server's refusal for LINKIN's missing data, worded as the server words it.
 error: true
 ---
 

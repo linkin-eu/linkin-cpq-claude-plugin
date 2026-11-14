@@ -29,15 +29,17 @@ each field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    `documents`.
 3. **A refusal,** `NOT_PLANNABLE`, plans nothing. Its message gives each fault a sentence of its
    own:
-   - **LINKIN's data** (a pack not measured yet, a pack no carrier takes): pass that sentence on
-     as it is, with its "contact your sales representative at LINKIN". Never estimate the line.
+   - **LINKIN's data** (a pack not measured yet, a pack no carrier takes): say what is missing,
+     and pass on as they are its words "this is LINKIN's data, not a mistake of yours: contact
+     your sales representative at LINKIN so it can be fixed". Never estimate the line.
    - **The customer's own** (an inquiry's line, a quotation not theirs, unknown or revoked, an
-     item it doesn't hold, a line not `ok`): say what it is and its mend, in plain words.
+     item it doesn't hold, a line not `ok`): say what it is and its mend.
 
-   Where the only mend is to leave it out (an inquiry's line, a revoked quotation), plan the rest
-   and say so; where the customer must choose (another number, or waiting for LINKIN's data),
-   ask. A plan without a line or quotation names what it leaves out, and is never given as the
-   whole order.
+   Say the mends in plain words, without the request's field names (`items[0]`,
+   `documents[0].items`). Where the only mend is to leave it out (an inquiry's line, a revoked
+   quotation), plan the rest and say so; where the customer must choose (another number, or
+   waiting for LINKIN's data), ask. A plan without a line, item or quotation names what it leaves
+   out, and is never given as the whole order.
 4. **Present:**
    - the trucks (`totals.trucks`; where `provenLeast` is false, fewer may be possible, down to
      `bound`), and per truck its net weight against the payload, its fill (floor, volume, weight)
