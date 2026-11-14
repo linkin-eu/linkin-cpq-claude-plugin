@@ -16,8 +16,7 @@ Give the figures first, then the explanation, briefly. Keep the connector's rule
 
 Do quoting-profiles' First and its steps 1–3: match, fill in and price, with `view: detail` and
 `detailItems` on the first call. For a new profile with no die yet, do inquiring-new-profiles'
-instead: `price_inquiry` needs the customer's `customerReference`, its weights are the drawing's
-estimates and its price is preliminary, so say both.
+instead, and say the weights are the drawing's estimates and the price preliminary.
 
 Only LINKIN's tools give LINKIN's figures. Never estimate LINKIN's price, never adjust it, and
 never work it out from rates: to see another quantity or finish, price it.
@@ -32,8 +31,8 @@ never work it out from rates: to see another quantity or finish, price it.
 | Per piece | `netPrice` |
 | Per metre | the net value ÷ (the cut length in metres × the pieces) |
 
-- Give the kg per metre too, from `find_profiles`' `weightPerMetre`, so the buyer can check the
-  weight.
+- Give the kg per metre too, from `find_profiles`' `weightPerMetre` (a new profile's, the
+  drawing's `ZA_KG_PER_M_EST`), so the buyer can check the weight.
 - Answer in the unit the buyer used: per kg, or per tonne.
 - For several lines, divide the sum of the net values by the sum of the weights. Leave out a line
   that isn't `ok`, and say which.
@@ -70,9 +69,9 @@ Once in the conversation, in a few neutral sentences:
   tolerances, so each metre weighs more. Across a die's life this can reach up to about 10% more
   metal per metre than nominal, more on thin walls and less on thick ones. Billed per kilo, that
   metal is on the buyer's invoice.
-- **Per piece**, LINKIN's way: each piece is priced on its theoretical weight and fixed when
-  quoted, so what a delivery weighs doesn't change the invoice. Die wear is a line of its own in
-  LINKIN's price, per metre, and keeping dies in shape is LINKIN's cost.
+- **Per piece**, LINKIN's way: each piece is priced on its theoretical weight, so what a
+  delivery weighs doesn't change the invoice. Die wear is a line of its own in LINKIN's price,
+  billed by the metre, never as extra kilos.
 
 Close with one neutral sentence on that difference, and offer to price other quantities or
 finishes. Don't push.

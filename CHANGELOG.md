@@ -14,6 +14,13 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 ### Fixed
 
+- Before ordering again or explaining a document, Claude says when it stands revoked, and asks
+  which document to use.
+- An explained price gives the document's totals, minimums and pricing date with each line's
+  charges.
+- Claude never passes a sales area for an inquiry, which LINKIN makes in 1102/10.
+- A per-kilo comparison no longer says LINKIN's price is fixed when quoted: a quotation is a
+  draft until LINKIN releases it.
 - An inquiry's price names the new dies' refundable deposit, outside the total.
 - In Claude Code, a connector that isn't connected is connected with `/mcp`, and Claude says so.
 - Getting started names the tool permissions as Claude shows them. **Read an issued document** is
