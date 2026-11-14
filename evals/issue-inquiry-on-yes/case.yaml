@@ -32,7 +32,7 @@ graders:
   - type: llm
     name: answer
     criteria: >-
-      PASS if the reply says the inquiry LT26000001 was issued and that it stands open, without
+      PASS if the reply says the inquiry LI26000002 was issued and that it stands open, without
       asking again whether to issue it.
       FAIL if it asks for confirmation again, asks for a company, contact or email address, or
       says nothing was issued.

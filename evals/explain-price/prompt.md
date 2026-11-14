@@ -5,4 +5,4 @@ max_turns: 15
 allowed_tools: [Skill, Read]
 ---
 
-How was the price on LT26000001 made?
+How was the price on LQ26000002 made?
