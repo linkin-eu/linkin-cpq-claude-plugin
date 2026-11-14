@@ -315,6 +315,7 @@ trademark of SAP SE. LINKIN is not affiliated with SAP SE.
 
 ```bash
 claude plugin validate . --strict
+evals/check-histories.sh            # each recorded history's lines chained, so a resumed eval keeps them all
 claude plugin eval . --no-publish --judge-model opus   # model calls on your own Claude sign-in; answers come from evals/*/mocks
 ./build.sh                          # dist/linkin-cpq-<version>.zip from HEAD, or ./build.sh <tag>
 ```
