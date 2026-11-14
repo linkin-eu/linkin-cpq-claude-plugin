@@ -53,6 +53,11 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    - that it is an estimate on theoretical weights, with no promise of how the plant loads; and,
      while `emptyWeightCounted` and `axlesChecked` are false, that the crates' own weight isn't
      counted and the axles aren't checked.
+
+   The plan may show beside the answer in the host's view of it. Shown or not, give it in words
+   from the answer alone. Draw no truck of your own (no ASCII, SVG or diagram), take nothing from
+   the view as the plan's facts (where axles, bars or a crate's inside stand), and offer no
+   drawing, file or download unasked.
 5. **The drawing**, only when asked, for the plan chosen: `plan_load` again with
    `drawings: true`. Offer none unasked. Where the host shows no SVG, as Claude Code doesn't, save
    each truck's `drawing` as a `.svg` file and give its path.
