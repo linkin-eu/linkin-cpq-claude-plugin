@@ -5,6 +5,12 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 ## Unreleased
 
+### Added
+
+- Revoking: ask Claude to revoke or withdraw a draft quotation or an open inquiry. It asks why,
+  from LINKIN's reasons, revokes it and says it is final. Claude never submits a revoked
+  quotation.
+
 ### Changed
 
 - An account not yet linked to a customer number issues inquiries in the company and contact

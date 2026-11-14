@@ -137,6 +137,7 @@ that port free.
 | Order again | *"Order again what we had on our last quotation."* |
 | Understand a price | *"How was the price on our last quotation made?"* |
 | Issue and submit | *"Yes, issue it with our reference PO-4711."* Then, when you're ready: *"Submit it to LINKIN."* |
+| Withdraw | *"Revoke our quotation ‹number›: we ordered from another supplier."* |
 
 ## You stay in control
 
@@ -146,6 +147,8 @@ that port free.
   never count as your yes.
 - **Submitting is yours too.** A quotation stands as a draft until LINKIN releases it. Claude
   submits it to LINKIN only when you ask, and tells you that a submitted quotation is final.
+- **So is revoking.** Claude revokes a draft quotation or an open inquiry only when you ask,
+  asks you why, and tells you that revoking is final.
 - **The right company.** If your account acts for several customers, Claude asks which one,
   and never picks one itself. For one customer in several sales areas, it uses the one that sells
   the profile and says why.
@@ -173,7 +176,7 @@ sequenceDiagram
 | Part | What it does |
 |---|---|
 | **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, and estimates the trucks a quotation takes |
-| **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits when you ask, orders again and explains an issued price |
+| **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits or revokes when you ask, orders again and explains an issued price |
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
 | **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
 
@@ -247,7 +250,7 @@ The plugin is free for LINKIN's customers and partners. You need a paid Claude p
 <summary><b>Can Claude order or submit without me?</b></summary>
 
 No. Pricing issues nothing. Claude issues a quotation or inquiry only after you have seen the
-price and said yes, and submits a quotation only when you ask.
+price and said yes. It submits a quotation, or revokes a quotation or inquiry, only when you ask.
 </details>
 
 <details>
