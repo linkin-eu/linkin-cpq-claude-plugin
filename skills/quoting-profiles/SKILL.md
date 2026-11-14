@@ -156,6 +156,11 @@ inquiry).
 The price table always carries the price per kg. A comparison with another offer per kg or per
 tonne, only when the buyer brings it, is comparing-per-kilo-prices'.
 
+## Trucks
+
+How many trucks an order or a quotation takes, and what-ifs on its load, are
+planning-truck-loads'. Never volunteer a load plan on a plain quote.
+
 ## Limits
 
 - Only aluminium profiles are priced. Say LINKIN doesn't price PVC here, and never estimate.
