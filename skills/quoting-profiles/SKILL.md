@@ -118,7 +118,7 @@ the line's message. List a line that isn't `ok` under the table with what it sti
 was refused, and no price.
 
 An issued or read document may show beside the answer in the host's document view. Shown or not,
-open, save or link no page unasked. When asked, open the summary page, the resource
+open, save, link or offer no page unasked. When asked, open the summary page, the resource
 `avc://pages/quotations/<id>` (`avc://pages/inquiries/<id>` for an inquiry), as it is, never
 rewritten; give the `url`, behind the LINKIN website login, only when asked for a link.
 

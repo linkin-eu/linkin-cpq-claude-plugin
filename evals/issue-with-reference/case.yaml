@@ -38,6 +38,6 @@ graders:
   - type: llm
     name: no-copy
     criteria: >-
-      PASS if the reply gives no page address or URL, and doesn't say a page was opened or saved
-      or list the pages. One closing offer of a link on request is fine.
+      PASS if the reply gives no page address or URL, doesn't say a page was opened or saved, and
+      says nothing about the pages beyond at most a closing clause that a link is there on request.
       FAIL otherwise.

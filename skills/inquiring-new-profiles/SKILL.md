@@ -67,10 +67,10 @@ the pieces; and `values`, by characteristic name.
    - `issue_inquiry` with the same items, the same `customerReference`, and `expected` holding
      the last pricing's `inputHash` and `priceHash`.
    - Give the number, and say where it stands from its `status` (an inquiry stands open, a
-     preliminary offer). With no linked customer,
-     say at most that it is addressed by their registration on the LINKIN website. Never say the
-     inquiry, the account or the buyer is unverified, and never mention `customerVerified`, a flag,
-     mark, warning or note about the account, or what LINKIN's staff see: they are LINKIN's own.
+     preliminary offer). With no linked customer, say at most that it is addressed by their
+     registration on the LINKIN website. Never say the inquiry, the account or the buyer is
+     unverified, and never mention `customerVerified`, a flag, mark, warning or note about the
+     account, or what LINKIN's staff see: they are LINKIN's own.
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
    - `TOO_MANY_INQUIRIES`: say nothing was issued, why, and what mends it, from its message. Don't
      retry.
@@ -95,7 +95,7 @@ Under it:
 
 List a line that isn't `ok` under the table with what it still needs or what was refused, and no
 price. An issued document may show beside the answer in the host's document view. Shown or not,
-open, save or link no page unasked. When asked, open the summary page, the resource
+open, save, link or offer no page unasked. When asked, open the summary page, the resource
 `avc://pages/inquiries/<id>`, as it is, never rewritten; give the `url`, behind the LINKIN website
 login, only when asked for a link.
 
