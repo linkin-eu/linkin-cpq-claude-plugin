@@ -95,7 +95,8 @@ Under it:
 
 List a line that isn't `ok` under the table with what it still needs or what was refused, and no
 price. An issued document may show beside the answer in the host's document view. Shown or not,
-open, save or link no page unasked. When asked, open the summary page, the resource `avc://pages/inquiries/<id>`, as it is, never
-rewritten; give the `url`, behind the LINKIN website login, only when asked for a link.
+open, save or link no page unasked. When asked, open the summary page, the resource
+`avc://pages/inquiries/<id>`, as it is, never rewritten; give the `url`, behind the LINKIN website
+login, only when asked for a link.
 
 To find an issued inquiry, order it again, explain its price or revoke it, see quoting-profiles.
