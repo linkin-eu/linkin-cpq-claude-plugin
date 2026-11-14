@@ -36,3 +36,8 @@ graders:
       asking again whether to issue it.
       FAIL if it asks for confirmation again, asks for a company, contact or email address, or
       says nothing was issued.
+  - type: llm
+    name: no-copy
+    criteria: >-
+      PASS if the reply mentions no page, link or address for the document.
+      FAIL if it gives an address, says a page was opened or saved, or offers a page or a link.

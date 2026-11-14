@@ -83,7 +83,7 @@ for new profiles. To quote the profiles you can order,
 4. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
    **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
    document** to **Always allow** too: it only reads, and is listed there because it shows the
-   document as a page. Leave the tools that issue, submit or revoke on **Needs approval**, so
+   document in its view. Leave the tools that issue, submit or revoke on **Needs approval**, so
    Claude asks before it issues, submits or revokes. Where an organization's admin has turned off
    **Always allow** for Cowork, Claude asks before every tool there, and **Always allow** still
    works in chats.

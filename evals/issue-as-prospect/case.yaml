@@ -36,3 +36,8 @@ graders:
       FAIL if it asks again whether to issue, asks for the buyer's company or contact details,
       says nothing was issued, says the inquiry or the account is unverified, or says what
       LINKIN's staff or sales desk see about it (a flag, a mark, a warning or a note).
+  - type: llm
+    name: no-copy
+    criteria: >-
+      PASS if the reply mentions no page, link or address for the document.
+      FAIL if it gives an address, says a page was opened or saved, or offers a page or a link.

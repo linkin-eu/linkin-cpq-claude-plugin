@@ -35,3 +35,8 @@ graders:
       PASS if the reply says the quotation LQ26000002 was issued with the reference PO-4711,
       without asking again whether to issue it.
       FAIL if it asks for confirmation again, or says nothing was issued.
+  - type: llm
+    name: no-copy
+    criteria: >-
+      PASS if the reply mentions no page, link or address for the document.
+      FAIL if it gives an address, says a page was opened or saved, or offers a page or a link.
