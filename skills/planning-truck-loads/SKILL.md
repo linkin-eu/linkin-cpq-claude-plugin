@@ -7,9 +7,9 @@ description: Plans how a LINKIN order loads onto trucks through the LINKIN CPQ c
 
 `plan_load` estimates how the customer's profiles load onto standard trailers, for booking the
 customer's own carrier, since prices are ex works. It plans lines being priced, as
-`price_quotation` takes them, and issued quotations by number, together. Keep the connector's
-rules: its tool descriptions hold each field's meaning. Quoting, issuing and submitting stay
-quoting-profiles'.
+`price_quotation` takes them, and issued quotations by number, whole or the items named,
+together, and all it is given or nothing. Keep the connector's rules: its tool descriptions hold
+each field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
 
 ## First
 
@@ -24,20 +24,32 @@ quoting-profiles'.
 
 1. **The lines.** From the conversation, priced first with `price_quotation` (`view: detail`),
    since only `ok` lines are planned; or an issued quotation, found with `find_documents` and
-   planned by its number.
-2. **Plan** with `plan_load`, `drawings: false`: the lines as priced, the quotations as
+   planned by its number, with `items` where only some of its items are meant.
+2. **Plan** with `plan_load`, without drawings: the lines as priced, the quotations as
    `documents`.
-3. **Present:**
+3. **A refusal,** `NOT_PLANNABLE`, plans nothing. Its message gives each fault a sentence of its
+   own:
+   - **LINKIN's data** (a pack not measured yet, a pack no carrier takes): say what is missing,
+     and pass on as they are its words "this is LINKIN's data, not a mistake of yours: contact
+     your sales representative at LINKIN so it can be fixed". Never estimate the line.
+   - **The customer's own** (an inquiry's line, a quotation not theirs, unknown or revoked, an
+     item it doesn't hold, a line not `ok`): say what it is and its mend.
+
+   Say the mends in plain words, without the request's field names (`items[0]`,
+   `documents[0].items`). Where the only mend is to leave it out (an inquiry's line, a revoked
+   quotation), plan the rest and say so; where the customer must choose (another number, or
+   waiting for LINKIN's data), ask. A plan without a line, item or quotation names what it leaves
+   out, and is never given as the whole order.
+4. **Present:**
    - the trucks (`totals.trucks`; where `provenLeast` is false, fewer may be possible, down to
      `bound`), and per truck its net weight against the payload, its fill (floor, volume, weight)
      and what it leaves `free` (the payload less the net weight, and each lane's unused length);
-   - each line or quotation not planned, and why, from its messages, never estimated;
    - that it is an estimate on theoretical weights, with no promise of how the plant loads; and,
      while `emptyWeightCounted` and `axlesChecked` are false, that the crates' own weight isn't
      counted and the axles aren't checked.
-4. **The drawing**, only when asked, for the plan chosen: `plan_load` again with
-   `drawings: true`. Where the host shows no SVG, as Claude Code doesn't, save each truck's
-   `drawing` as a `.svg` file and give its path.
+5. **The drawing**, only when asked, for the plan chosen: `plan_load` again with
+   `drawings: true`. Offer none unasked. Where the host shows no SVG, as Claude Code doesn't, save
+   each truck's `drawing` as a `.svg` file and give its path.
 
 ## What-ifs: the minimums and the load
 
@@ -58,10 +70,10 @@ change:
    - a group, in proportion: one line reaches it at about its `quantity.order` × `minimum` ÷
      `value`; lines sharing it, by each line's share of the `basis`;
    - where the quantity a line's own minimum lifts isn't shown, price more pieces instead.
-3. **Price and plan each option**, in calls of its own, `drawings: false`: `price_quotation`
+3. **Price and plan each option**, in calls of its own, without drawings: `price_quotation`
    (`view: detail`) with every line of the option, then `plan_load`. The packs round the pieces
    up, and `quantity.order` says to what. The price comes only from the tool: never work one
-   out.
+   out. An option refused is compared as refused, with its fault, as in Plan an order.
 4. **Compare** the options in one table: the pieces per line, the net value, the price per kg,
    the minimums still paid, the trucks, and what the last truck leaves free. The free payload and
    free lane lengths don't say a crate fits, since a crate needs a lane of its own length and its
