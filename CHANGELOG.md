@@ -25,7 +25,7 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   unverified.
 - The connector's twelve tools, with `revoke_document` and `plan_load`. `plan_load` only reads.
 - Plain words: the skills say "field" for an inquiry's values, and name a sales area once as the
-  LINKIN company and channel a customer buys through.
+  LINKIN name and channel a customer buys under.
 
 ### Fixed
 
