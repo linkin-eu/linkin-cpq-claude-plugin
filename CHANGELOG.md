@@ -16,7 +16,6 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 - An inquiry's price names the new dies' refundable deposit, outside the total.
 - In Claude Code, a connector that isn't connected is connected with `/mcp`, and Claude says so.
-
 - Getting started names the tool permissions as Claude shows them. **Read an issued document** is
   listed under **Interactive tools** and is set to **Always allow** there. The tools that issue,
   submit or revoke keep **Needs approval**.
