@@ -318,9 +318,10 @@ The zip is built with `git archive` from the paths `build.sh` names, so it holds
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
 CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
-Claude Code takes the connector's address from `LINKIN_CPQ_MCP_URL`, `https://mcp.linkin.eu/mcp`
-when it is unset, to try the plugin against another server:
-`LINKIN_CPQ_MCP_URL=<address> claude --plugin-dir .`. The zip holds the default address, since
+To try the plugin in Claude Code against another server that needs no sign-in, such as a local
+one, set `LINKIN_CPQ_MCP_URL`: `LINKIN_CPQ_MCP_URL=<address> claude --plugin-dir .`. Unset, the
+address is `https://mcp.linkin.eu/mcp`. The sign-in stays LINKIN's own, since Claude Code reads no
+variable in the `oauth` block. The zip holds the default address, written by `build.sh`, since
 Claude Desktop and claude.ai take a fixed one.
 
 Pull requests go to `dev`, squashed. A release merges `dev` into `main` with a merge commit, then
