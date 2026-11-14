@@ -34,5 +34,5 @@ graders:
       PASS if the reply says the inquiry LI26000001 was issued and stands open as a preliminary
       offer.
       FAIL if it asks again whether to issue, asks for the buyer's company or contact details,
-      says nothing was issued, says the inquiry or the account is unverified, or warns the buyer
-      that they may not be who they claim to be.
+      says nothing was issued, says the inquiry or the account is unverified, or says what
+      LINKIN's staff or sales desk see about it (a flag, a mark, a warning or a note).
