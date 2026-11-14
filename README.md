@@ -315,13 +315,17 @@ trademark of SAP SE. LINKIN is not affiliated with SAP SE.
 
 ```bash
 claude plugin validate . --strict
-claude plugin eval . --no-publish   # model calls on your own Claude sign-in; answers come from evals/*/mocks
+claude plugin eval . --no-publish --judge-model opus   # model calls on your own Claude sign-in; answers come from evals/*/mocks
 ./build.sh                          # dist/linkin-cpq-<version>.zip from HEAD, or ./build.sh <tag>
 ```
 
 The zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
 CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
+
+The evals are judged by Opus: the default judge passed a reply that told a buyer about LINKIN's
+internal mark on their inquiry. Its rubrics stay short, one claim each, since the judge answers
+only PASS or FAIL.
 
 To try the plugin in Claude Code against another server that needs no sign-in, such as a local
 one, set `LINKIN_CPQ_MCP_URL`: `LINKIN_CPQ_MCP_URL=<address> claude --plugin-dir .`. Unset, the
