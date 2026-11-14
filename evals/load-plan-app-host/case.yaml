@@ -1,0 +1,40 @@
+schema_version: "1.0"
+name: load-plan-app-host
+description: "In a host that shows the plan's view, Claude puts the plan in words, draws no truck of its own, and offers no drawing, file or download."
+tags: [planning, app]
+execution:
+  prompt: "How many trucks will our quotation LQ26000002 take?"
+  # As a host that renders MCP Apps tells it, for the plan's view (ui://avc/load-plan).
+  append_system_prompt: "This host shows MCP App views: a tool result that carries a UI resource is rendered inline as its view, and the person sees it in the conversation."
+  max_turns: 15
+  allowed_tools: [Skill, Read]
+graders:
+  - type: tool_used
+    name: skill-fired
+    tool: Skill
+    input_match: '"skill"\s*:\s*"(?:[\w-]+:)?planning-truck-loads"'
+  - type: tool_used
+    name: planned-by-number
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__plan_load
+    input_match: '"LQ26000002"'
+    min: 1
+  - type: tool_used
+    name: no-drawings
+    tool: mcp__plugin_linkin-cpq_linkin-cpq__plan_load
+    input_match: '"drawings"\s*:\s*true'
+    min: 0
+    max: 0
+  - type: llm
+    name: answer
+    criteria: >-
+      PASS if the reply puts the plan in words: LQ26000002 takes one truck, 432 kg against a
+      24,000 kg payload, with what it leaves free.
+      FAIL if it draws a truck or a load of its own (ASCII art, an SVG, a Mermaid or other
+      diagram, or a grid of characters standing for crates), offers a drawing, a file or a
+      download, or says where the axles are, or where the bars lie along a crate.
+  - type: llm
+    name: no-view-claim
+    criteria: >-
+      PASS if the reply says nothing about a view, picture or app of the plan.
+      FAIL if it says the plan, a picture or a view of it is shown, above or anywhere, or tells
+      the person to look at, tap, turn, open or go full screen on one.
