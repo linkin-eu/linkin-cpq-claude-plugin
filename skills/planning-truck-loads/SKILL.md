@@ -14,7 +14,8 @@ quoting-profiles'.
 ## First
 
 1. If the LINKIN CPQ connector's tools aren't available, say: "The LINKIN CPQ connector isn't
-   connected. Connect it on the LINKIN CPQ plugin's Connectors tab, then ask again." Then stop.
+   connected. Connect it on the LINKIN CPQ plugin's Connectors tab (in Claude Code, `/mcp`), then
+   ask again." Then stop.
 2. `get_account`, and the customer and sales area as quoting-profiles takes them. A sign-in
    linked to no customer plans nothing: its documents are inquiries, whose profiles have no die
    yet.
