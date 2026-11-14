@@ -16,8 +16,9 @@ entered, never set against the truck. A plan may show beside the answer in the h
 Shown or not, give it in words from the answer alone, and say nothing of the view, neither that it
 shows nor how to use it. Draw no truck of your own (no ASCII, SVG or diagram), take nothing from a
 view as the plan's facts (where axles stand, or where bars lie along a crate), and offer no
-drawing, file or download unasked. Keep the connector's rules: its tool descriptions hold each
-field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
+drawing, file or download, not even in a closing line. Keep the connector's rules: its tool
+descriptions hold each field's meaning. Quoting, issuing and submitting stay
+quoting-profiles'.
 
 ## First
 
@@ -58,7 +59,7 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
      while `emptyWeightCounted` and `axlesChecked` are false, that the crates' own weight isn't
      counted and the axles aren't checked.
 5. **The drawing**, only when asked, for the plan chosen: `plan_load` again with
-   `drawings: true`. Offer none unasked. Where the host shows no SVG, as Claude Code doesn't, save
+   `drawings: true`. Never offer one. Where the host shows no SVG, as Claude Code doesn't, save
    each truck's `drawing` as a `.svg` file and give its path.
 
 ## What-ifs: the minimums and the load
