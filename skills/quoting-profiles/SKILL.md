@@ -166,6 +166,7 @@ planning-truck-loads'. Never volunteer a load plan on a plain quote.
 - Only aluminium profiles are priced. Say LINKIN doesn't price PVC here, and never estimate.
 - No tool gives the price list. Explain charges from a pricing's or a document's detail. Never
   work a price, or the quantity at which a minimum stops applying, out from rates: to see
-  another quantity, price it.
+  another quantity, price it. planning-truck-loads estimates which quantities to price from a
+  pricing's own figures, and prices each.
 - A real SAP system, or products other than LINKIN's and PROFILINK's profiles: the connector
   knows only LINKIN's model.

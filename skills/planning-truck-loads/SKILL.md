@@ -28,12 +28,13 @@ quoting-profiles'.
 2. **Plan** with `plan_load`, `drawings: false`: the lines as priced, the quotations as
    `documents`.
 3. **Present:**
-   - the trucks (`totals.trucks`), and per truck its net weight against the payload, its fill
-     (floor, volume, weight) and what it leaves `free` (the payload less the net weight, and each
-     lane's unused length);
+   - the trucks (`totals.trucks`; where `provenLeast` is false, fewer may be possible, down to
+     `bound`), and per truck its net weight against the payload, its fill (floor, volume, weight)
+     and what it leaves `free` (the payload less the net weight, and each lane's unused length);
    - each line or quotation not planned, and why, from its messages, never estimated;
-   - that it is an estimate: theoretical weights, the crates' own weight not yet counted, the
-     axles not checked, and no promise of how the plant loads.
+   - that it is an estimate on theoretical weights, with no promise of how the plant loads; and,
+     while `emptyWeightCounted` and `axlesChecked` are false, that the crates' own weight isn't
+     counted and the axles aren't checked.
 4. **The drawing**, only when asked, for the plan chosen: `plan_load` again with
    `drawings: true`. Where the host shows no SVG, as Claude Code doesn't, save each truck's
    `drawing` as a `.svg` file and give its path.
@@ -44,21 +45,23 @@ For "how do I fill the truck without falling under the minimum", or what more or
 change:
 
 1. **Find what binds**, in the priced detail:
-   - **the metal:** a line whose metal charges have `minimum: true` is billed a weight above its
-     `weights.net`, and that weight is its minimum;
+   - **a line's own minimum:** a charge with `minimum: true` and `perOrder: false` bills a
+     minimum quantity for the line, such as the metal's weight above `weights.net`;
    - **a die's press run and wear, a powder colour, the anodizing:** the order's `groups` with an
      `uplift`, each with the lines that share it.
 
    No tool gives the price list, so a minimum that doesn't bind can't be read. Say so, and price
    fewer pieces to see where one starts.
-2. **Estimate the pieces that clear it**, from the answer's own figures, never from rates:
+2. **Estimate which pieces to price**, from the pricing's own figures, only to choose what to
+   price:
    - the metal: the billed weight ÷ (the weight per metre × the length in metres), rounded up;
-   - a group: its `basis` × `minimum` ÷ `value` is the basis that reaches it, shared by its lines;
-   - then up to the finish's packs in `find_profiles`: at least the smallest `minimum`, in steps
-     of its `rounding`.
+   - a group, in proportion: one line reaches it at about its `quantity.order` × `minimum` ÷
+     `value`; lines sharing it, by each line's share of the `basis`;
+   - where the quantity a line's own minimum lifts isn't shown, price more pieces instead.
 3. **Price and plan each option**, in calls of its own, `drawings: false`: `price_quotation`
-   with every line of the option, then `plan_load`. The price comes only from the tool: never
-   work one out.
+   (`view: detail`) with every line of the option, then `plan_load`. The packs round the pieces
+   up, and `quantity.order` says to what. The price comes only from the tool: never work one
+   out.
 4. **Compare** the options in one table: the pieces per line, the net value, the price per kg,
    the minimums still paid, the trucks, and what the last truck leaves free. The free payload and
    free lane lengths don't say a crate fits, since a crate needs a lane of its own length and its
@@ -68,7 +71,4 @@ change:
 
 ## Limits
 
-- A plan takes at most 300 lines, 10 quotations and 600 crates. Past them, plan fewer at once.
-- New profiles with no die yet are never planned, neither an inquiry's line nor an issued
-  inquiry.
-- A coated pack the plant hasn't measured yet is left out and named, never estimated.
+Past a plan's limits (`plan_load`'s description), plan fewer lines or quotations at once.
