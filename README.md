@@ -82,11 +82,11 @@ for new profiles. To quote the profiles you can order,
    empty.
 4. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
    **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
-   document** to **Always allow** too: it only reads, and is listed there because it shows the
-   document in its view. Leave the tools that issue, submit or revoke on **Needs approval**, so
-   Claude asks before it issues, submits or revokes. Where an organization's admin has turned off
-   **Always allow** for Cowork, Claude asks before every tool there, and **Always allow** still
-   works in chats.
+   document** and **Plan the trucks** to **Always allow** too: they only read, and are listed
+   there because they show the document or the plan in a view. Leave the tools that issue,
+   submit or revoke on **Needs approval**, so Claude asks before it issues, submits or revokes.
+   Where an organization's admin has turned off **Always allow** for Cowork, Claude asks before
+   every tool there, and **Always allow** still works in chats.
 
 Then ask for a price. The plugin works in Cowork too, with the same sign-in.
 
@@ -196,8 +196,8 @@ sequenceDiagram
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
 **Tool permissions.** Issuing an inquiry or a quotation, submitting a quotation and revoking a
-document ask for approval by default. The eight tools that only read, the seven **Read-only
-tools** and **Read an issued document**, can be set to **Always allow**
+document ask for approval by default. The eight tools that only read, the six **Read-only
+tools**, **Read an issued document** and **Plan the trucks**, can be set to **Always allow**
 ([Get started](#claude-desktop-or-claudeai), step 4).
 
 <details>

@@ -7,7 +7,7 @@ execution:
   # As a host that renders MCP Apps tells it, for the plan's view (ui://avc/load-plan).
   append_system_prompt: "This host shows MCP App views: a tool result that carries a UI resource is rendered inline as its view, and the person sees it in the conversation."
   max_turns: 15
-  allowed_tools: [Skill, Read, Write]
+  allowed_tools: [Skill, Read]
 graders:
   - type: tool_used
     name: skill-fired
@@ -24,11 +24,6 @@ graders:
     input_match: '"drawings"\s*:\s*true'
     min: 0
     max: 0
-  - type: tool_used
-    name: no-file
-    tool: Write
-    min: 0
-    max: 0
   - type: llm
     name: answer
     criteria: >-
@@ -36,4 +31,10 @@ graders:
       24,000 kg payload, with what it leaves free.
       FAIL if it draws a truck or a load of its own (ASCII art, an SVG, a Mermaid or other
       diagram, or a grid of characters standing for crates), offers a drawing, a file or a
-      download, or says where the axles, the bars inside a crate or a crate's inside stand.
+      download, or says where the axles are, or where the bars lie along a crate.
+  - type: llm
+    name: no-view-claim
+    criteria: >-
+      PASS if the reply says nothing about a view, picture or app of the plan.
+      FAIL if it says the plan, a picture or a view of it is shown, above or anywhere, or tells
+      the person to look at, tap, turn, open or go full screen on one.
