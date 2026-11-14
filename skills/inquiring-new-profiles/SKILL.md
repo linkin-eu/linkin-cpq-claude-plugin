@@ -32,9 +32,9 @@ meaning; this skill holds the workflow.
 ## The items
 
 One item per drawn profile: `customerMaterial`, the customer's name or number for it; `quantity`,
-the pieces; and `values`, by characteristic name.
+the pieces; and `values`, by field name.
 
-| From the drawing | Characteristic |
+| From the drawing | Field |
 |---|---|
 | The die ID, required: any name for the new die, such as its drawing number. Profiles pressed through one die take the same ID and share its minimums per order | `ZA_DIE_EST` |
 | Alloy and temper | `ZA_ALLOY`, `ZA_TEMPER` |
