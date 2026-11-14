@@ -185,7 +185,8 @@ sequenceDiagram
 - **Signed in as you.** The connector signs in with your LINKIN account through LINKIN's sign-in.
   Claude holds the sign-in; the plugin contains no credentials.
 - **Only what you ask is sent.** LINKIN receives the profiles, values, quantities and references
-  you ask Claude to price, issue or look up, and nothing else from your conversation.
+  you ask Claude to price, issue or look up, and the reason you give when you revoke a document,
+  and nothing else from your conversation.
 - **No code, no telemetry.** The skills are instructions for Claude. They run no code and send
   nothing.
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
