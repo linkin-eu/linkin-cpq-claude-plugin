@@ -48,11 +48,12 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    quotation), plan the rest and say so; where the customer must choose (another number, or
    waiting for LINKIN's data), ask. A plan without a line, item or quotation names what it leaves
    out, and is never given as the whole order.
-4. **Present.** Where the plan leaves something out, first say what, and why it can't be planned
-   yet, in plain words, saying plainly that the plan doesn't include it: the plan's "all" is all
-   it planned. Then lead with `summary`'s sentences as they are, translated only where the
-   conversation isn't in English: `head`, `reason` where given, a sentence per truck, and
-   `closing`. Change none of their figures, and add no cause of your own to `reason`'s. With them:
+4. **Present.** Where part of the order wasn't planned (left out after a refusal, or a profile
+   with no die yet), first say what, and why it can't be planned yet, in plain words, saying
+   plainly that the plan doesn't include it: the plan's "all" is all it was given. Then lead with
+   `summary`'s sentences as they are, translated only where the conversation isn't in English:
+   `head`, `reason` where given, a sentence per truck, and `closing`. Change none of their
+   figures, and add no cause of your own to `reason`'s. With them:
    - the net weight, the goods alone, beside the gross;
    - a truck's two shares are of its payload and of its space, as its sentence gives them; never
      its `fill.volume` or `fill.floor`, which measure otherwise;
