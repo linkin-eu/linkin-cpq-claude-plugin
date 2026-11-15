@@ -18,8 +18,8 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   LINKIN. It plans the rest only when you ask, or when an inquiry or a revoked quotation can only
   be left out, and says what it leaves out. For a line the planner can't plan, Claude works out
   no trucks, crates or fit of its own. A quotation can be planned in part, by its items. The plan
-  is given in words: the connector gives no drawing, and Claude draws none. Where the host shows
-  the plan in its own view, Claude says nothing of the view.
+  is given in words, and Claude draws none. Where the host shows the plan in its own view, Claude
+  says nothing of the view.
 
 ### Changed
 
