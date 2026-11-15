@@ -1,6 +1,6 @@
 ---
 name: planning-truck-loads
-description: Plans how a LINKIN order loads onto trucks through the LINKIN CPQ connector, and tries what-ifs on it. Use when the buyer asks how many trucks an order or a quotation takes, what room a truck leaves, whether quotations share a truck, how to fill a truck, or how many pieces to order so a line clears a minimum charge (the metal's weight, a die's press run, a powder colour) with the load in mind. Not for a plain price, which quoting-profiles gives, and never volunteered on one. Not for new profiles with no die yet, which have no packing to plan.
+description: Plans how a LINKIN order loads onto trucks through the LINKIN CPQ connector, and tries what-ifs on it. Use when the buyer asks how many trucks an order or a quotation takes, what room a truck leaves, whether quotations share a truck, where an article is in the load, how to fill a truck, or how many pieces to order so a line clears a minimum charge (the metal's weight, a die's press run, a powder colour) with the load in mind. Not for a plain price, which quoting-profiles gives, and never volunteered on one. Not for new profiles with no die yet, which have no packing to plan.
 ---
 
 # Planning truck loads
@@ -58,6 +58,13 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    - that it is an estimate on theoretical weights, each crate's empty weight LINKIN's estimate,
      with no promise of how the plant loads; and, while `axlesChecked` is false, that the axles
      aren't checked.
+5. **Where an article is,** when asked: every crate on every truck whose `contents` name it, by
+   its line's item, or by its quotation's number and item together (two quotations may each have
+   an item 10). Its pieces, packs and weight in a crate are that entry's, not the crate's. A crate
+   may hold several articles of one cut length, of other quotations too: say it is shared, and
+   with what. Never guess a crate from its size or the line's `packing`. The order of packs in a
+   crate's `bands` is a drawing's convention, not how the plant packs: don't give it as where
+   the packs lie.
 
 ## What-ifs: the minimums and the load
 
