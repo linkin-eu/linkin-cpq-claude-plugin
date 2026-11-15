@@ -9,3 +9,6 @@ __MACOSX/
 # Sessions an eval writes beside its history_file when it resumes it
 evals/*/*.jsonl
 !evals/*/history.jsonl
+
+# Python caches of evals/tools
+__pycache__/
