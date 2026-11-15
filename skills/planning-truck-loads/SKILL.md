@@ -1,6 +1,6 @@
 ---
 name: planning-truck-loads
-description: Estimates how much of a LINKIN order fits standard trucks, to size the order, through the LINKIN CPQ connector, and tries what-ifs on it. Use when the buyer asks how many trucks an order or a quotation takes, why so many, what room a truck leaves, whether quotations share a truck, where an article is in the load, how to fill a truck, or how many pieces to order so a line clears a minimum charge (the metal's weight, a die's press run, a powder colour) with the load in mind. Not for a plain price, which quoting-profiles gives, and never volunteered on one. Not for new profiles with no die yet, which have no packing to plan.
+description: Estimates how much of a LINKIN order fits standard trucks, to size the order, through the LINKIN CPQ connector, and tries what-ifs on it. Use when the buyer asks how many trucks an order or a quotation takes, why so many, what room a truck leaves, how much more of an article would fit, whether quotations share a truck, where an article is in the load, how to fill a truck, or how many pieces to order so a line clears a minimum charge (the metal's weight, a die's press run, a powder colour) with the load in mind. Not for a plain price, which quoting-profiles gives, and never volunteered on one. Not for new profiles with no die yet, which have no packing to plan.
 ---
 
 # Planning truck loads
@@ -80,6 +80,13 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    height absent means no row of its packs fits across that carrier. Without `smaller`, the crate
    is its smallest carrier or is itself the pack, and the plan gives no other reason. Never work
    it out from the bands or the packs.
+7. **How much more of an article fits,** only when asked: plan again with `fill` naming it, a
+   line by its `item`, a quotation's item by its `document` and `item`, up to five. Lead with its
+   sentence in `summary.fills` as it is. It is a number of packs more with which a plan still
+   takes as many trucks, as a new plan crates and loads them: never the most that could fit,
+   never that every smaller amount fits, never room for another article, and never that the plant
+   ships so many. It carries no price: to price that quantity, price it. Never work it out from
+   the free payload or lane lengths.
 
 ## What-ifs: the minimums and the load
 
@@ -108,9 +115,9 @@ change:
    minimums still paid, the trucks, and the last truck's shares of its payload and of its space.
    Neither share, nor the free payload and lane lengths, says a crate fits: a crate needs a lane as
    wide as it and its own length in one piece, or a crate of its width at least as long to stand
-   on under `stackHeight`, and the payload for its goods and its own empty weight. To see whether
-   more fits, or what a quantity asked about would take, price and plan it: never work it out from
-   the options planned.
+   on under `stackHeight`, and the payload for its goods and its own empty weight. To see how much
+   more of an article fits, plan with `fill` (Plan an order, step 7); to see what a quantity asked
+   about would take, price and plan it. Never work either out from the options planned.
 5. **The customer chooses.** Issue only as quoting-profiles issues: price, show, ask, and issue
    on a separate yes.
 

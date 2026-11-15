@@ -1418,7 +1418,7 @@
     {
       "name": "plan_load",
       "title": "Plan the trucks",
-      "description": "Estimates how much of the customer's order fits standard trucks, to size the order: not a loading plan. The crates its lines are packed in, lines of one length sharing crates, side by side across a standard trailer and stacked under a margin to its roof, a shorter crate on a longer one, under its legal payload, and how many trucks they take. It plans together lines being priced, as `price_quotation` takes them, up to 300 lines, priced again as one order, and quotations already issued, by number (LQ…), whole or the items named, up to 10 documents, at least one line or document and at most 600 crates in all; nothing is kept. Every line and item given is loaded, or none is: `NOT_PLANNABLE` names each that cannot be, with its mend. A line not `ok`, an inquiry (an inquiry profile's line or an issued inquiry, LI…: its die does not exist yet, so it is never loaded), a number the customer was never issued, a revoked quotation or an item it does not hold is the customer's to mend; packing data LINKIN lacks, such as a coated profile's pack not measured yet, is no mistake of the customer's, who asks their LINKIN sales representative to fix it. A line or document it refuses or is not given is never estimated: trucks and crates are counted by this tool alone. Each line and item answers its name as priced; each truck its crates by carrier and length, where each stands and what it holds, its net and gross weight, the space it takes, and what it leaves `free` (the payload less the gross weight, each lane's unused length; neither says what fits); `provenLeast` says whether no load of lengthwise crates takes fewer trucks, `boundBy` what sets `bound`, `toSaveATruck` the least the order must shrink; `summary` says the plan in plain sentences, to lead with. The weights are theoretical, each crate's own empty weight LINKIN's estimate, the axles not checked; no delivery, no shipment. Prices are ex works: the customer's carrier brings the truck. Where the host shows apps, the load plan app shows the plan; the answer draws no truck.",
+      "description": "Estimates how much of the customer's order fits standard trucks, to size the order: not a loading plan. The crates its lines are packed in, lines of one length sharing crates, on a standard trailer under its roof and payload, and how many trucks they take. It plans together lines being priced, as `price_quotation` takes them, up to 300 lines, priced again as one order, and quotations issued, by number (LQ…), whole or the items named, up to 10 documents, at least one line or document and at most 600 crates in all; nothing is kept. Every line and item given is loaded, or none is: `NOT_PLANNABLE` names each that cannot be, with its mend. A line not `ok`, an inquiry (an inquiry profile's line or an issued inquiry, LI…: its die does not exist yet), a number the customer was never issued, a revoked quotation or an item it does not hold is the customer's to mend; packing data LINKIN lacks, such as a coated profile's pack not measured yet, is no mistake of the customer's, who asks their LINKIN sales representative. A line or document it refuses or is not given is never estimated: trucks and crates are counted by this tool alone. Each line and item answers its name as priced; each truck its crates by carrier and length, where each stands and what it holds, its net and gross weight, the space it takes, and what it leaves `free` (the payload less the gross weight, each lane's unused length; neither says what fits); `provenLeast` whether no load of lengthwise crates takes fewer trucks, `boundBy` what sets `bound`, `toSaveATruck` the least the order must shrink, `fills` more packs of each article `fill` names (up to 5 articles, when asked) a plan still takes on as many trucks, not the most; `summary` says the plan in plain sentences, to lead with. The weights are theoretical, each crate's own empty weight LINKIN's estimate, the axles not checked; no delivery, no shipment. Prices are ex works: the customer's carrier brings the truck. Where the host shows apps, the load plan app shows the plan; the answer draws no truck.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -1524,6 +1524,32 @@
             },
             "description": "The quotations issued to plan, by number, whole or the items named.",
             "maxItems": 10
+          },
+          "fill": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "item"
+              ],
+              "properties": {
+                "document": {
+                  "type": "string",
+                  "description": "The quotation's number, as `documents` names it, where the article is one of its items; left out for a line of `items`.",
+                  "maxLength": 10,
+                  "pattern": "^L[QIT][0-9]{8}$"
+                },
+                "item": {
+                  "description": "The line's or the item's `item`, as the plan numbers it.",
+                  "type": "string",
+                  "maxLength": 6,
+                  "pattern": "^0*[1-9][0-9]*$"
+                }
+              },
+              "additionalProperties": false
+            },
+            "description": "The articles to fill, up to 5 articles, only where the customer asks how much more of one fits: each planned again with more full packs, `fills` saying with how many a plan still takes as many trucks, not the most that could.",
+            "maxItems": 5
           }
         },
         "additionalProperties": false
