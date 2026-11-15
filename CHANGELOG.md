@@ -36,6 +36,10 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - The connector's twelve tools, with `revoke_document` and `plan_load`. `plan_load` only reads.
 - Plain words: the skills say "field" for an inquiry's values, and name a sales area once as the
   LINKIN name and channel a customer buys under.
+- `comparing-per-kilo-prices`, for a coated profile: billed per kilo on the finished, coated
+  weight, the coat's own weight is invoiced at the price per kilo, about 5% more weight for a
+  typical coat. Claude explains it neutrally, asks which weight the other offer's kilos are, and
+  shows it as a labelled what-if, with die wear's on top. A bare profile says nothing of it.
 
 ### Fixed
 

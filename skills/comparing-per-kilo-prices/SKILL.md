@@ -45,14 +45,22 @@ never work it out from rates: to see another quantity or finish, price it.
    above nominal. Show the same rate on the weight plus 5% and plus 10%, labelled as an
    illustration of die wear, not as what that supplier invoices. Change only their figure, never
    LINKIN's. Where the buyer has their own figure from past deliveries, use it instead.
-3. Where the other offer is invoiced on theoretical weight too, the figures compare directly:
-   leave the what-if out and say so.
+3. **For a coated line only,** the what-if instead starts from the coating's weight, in case that
+   offer is invoiced on the finished, coated weight: the same rate on the weight plus 5%, labelled
+   as an illustration of the coating's weight. Die wear's 5% and 10% then come on top of it, plus
+   10% and plus 15% in all, since a coated bar weighed at delivery carries both. Label each row, and
+   say none is what that supplier invoices. Where the buyer says their offer is billed on the bare
+   weight, leave the coating out. A bare line has no coating row, and says nothing of it.
+4. Where the other offer is invoiced on theoretical weight too, the figures compare directly:
+   leave the what-ifs out and say so.
 
 ## 4. The same scope
 
 Check that both offers cover the same things, and name whatever the other offer leaves out or adds:
 - the metal basis: whether the metal is included, and on which LME and billet premium;
 - finishing, cutting, protective film and packaging;
+- for a coated line, whether the other offer's kilos are the bare weight or the finished, coated
+  weight;
 - minimums per order (press run, die wear, powder colour, anodizing), which LINKIN's breakdown
   shows and which fall as the quantity grows;
 - die costs, for a new die;
@@ -69,9 +77,14 @@ Once in the conversation, in a few neutral sentences:
   tolerances, so each metre weighs more. Across a die's life this can reach up to about 10% more
   metal per metre than nominal, more on thin walls and less on thick ones. Billed per kilo, that
   metal is on the buyer's invoice.
-- **Per piece**, LINKIN's way: each piece is priced on its theoretical weight, so what a
-  delivery weighs doesn't change the invoice. Die wear is a line of its own in LINKIN's price,
-  billed by the metre, never as extra kilos.
+- **Per kilo on the finished weight**, for a coated profile: the coat has a weight of its own.
+  Billed per kilo on the coated weight, the coating's kilos are invoiced at the price per kilo,
+  on top of the coating charge already in the price. For a typical coat of about 80 µm that is
+  about 5% more weight, less on heavy sections and more on light profiles with a large surface.
+- **Per piece**, LINKIN's way: each piece is priced on its theoretical weight, the bare
+  aluminium's, so what a delivery weighs doesn't change the invoice. Die wear is a line of its
+  own in LINKIN's price, billed by the metre, and a coating by the m² it covers, never as extra
+  kilos.
 
 Close with one neutral sentence on that difference, and offer to price other quantities or
 finishes. Don't push.
@@ -80,9 +93,17 @@ If the buyer wants only the number, give it with one line: a per-piece price on 
 weight and a per-kg price on shipped weight don't compare one to one. Offer the rest.
 
 If they doubt the 10%: it is LINKIN's figure, from its own delivery records, and a general range
-across a die's life, not a figure about any supplier. The profile standards (EN 755-9, and EN 12020-2 for 6060 and 6063) limit the wall
-thickness, not the weight, and ±0.15 mm on a 1.5 mm wall is ±10% of that wall. The buyer can
-check their own deliveries: the kilos invoiced against the drawing's kg per metre times the
+across a die's life, not a figure about any supplier. The profile standards (EN 755-9, and
+EN 12020-2 for 6060 and 6063) limit the wall thickness, not the weight, and ±0.15 mm on a 1.5 mm
+wall is ±10% of that wall. The buyer can check their own deliveries: the kilos invoiced against
+the drawing's kg per metre times the metres delivered.
+
+If they doubt the 5%: it is LINKIN's figure for a typical coat, not a figure about any supplier.
+QUALICOAT asks at least 60 µm of powder on architectural aluminium, and coats are commonly
+applied at 70 to 80 µm. By the powder's density, 80 µm weighs about 0.1 to 0.15 kg per m² coated,
+which against LINKIN's own profiles' weight and surface is about 5% of a profile's weight, less
+on heavy sections and more on light profiles with a large surface. The same check on their
+deliveries shows it: a coated profile's kilos invoiced against its bare kg per metre times the
 metres delivered.
 
 ## Keep to
@@ -91,7 +112,9 @@ metres delivered.
   disparage another supplier, even when the buyer names one, and use only the figures the buyer
   gives. Comparative claims must be factual and verifiable: Directive 2006/114/EC, Art. 4, and
   Bulgaria's Protection of Competition Act, Art. 32.
-- The "up to about 10%" is a general range for die wear across a die's life. Never present it as
-  a fact about the buyer's current supplier, or as what their invoice will show.
+- The "up to about 10%" is a general range for die wear across a die's life, and the "about 5%"
+  LINKIN's figure for a typical coat's weight. Never present either as a fact about the buyer's
+  current supplier, or as what their invoice will show.
+- The coating's weight is for a coated line only. A bare line says nothing of it.
 - A comparison issues nothing. Issue a quotation only on the buyer's yes, as quoting-profiles
   says.
