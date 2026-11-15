@@ -13,13 +13,13 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - `planning-truck-loads`: how many trucks an order or a quotation takes, what room the trucks
   leave, and what-ifs: which quantities clear a minimum charge, each priced and planned, compared
   side by side. The plan is an estimate for booking your carrier, never volunteered on a plain
-  quote. A plan covers everything given or nothing. Claude says what can't be loaded and why;
-  where LINKIN's packing data is missing, it says so and to contact your sales representative at
-  LINKIN. It plans the rest only when you ask, or when an inquiry or a revoked quotation can only
-  be left out, and says what it leaves out. For a line the planner can't plan, Claude works out
-  no trucks, crates or fit of its own. A quotation can be planned in part, by its items. The plan
-  is given in words, and Claude draws none. Where the host shows the plan in its own view, Claude
-  says nothing of the view.
+  quote. A plan covers everything given or nothing. Claude says what can't be loaded and why; where
+  LINKIN's packing data is missing, it says so and to contact your sales representative at LINKIN.
+  It plans the rest only when you ask, or when an inquiry or a revoked quotation can only be left
+  out, and says what it leaves out. For a line or a quantity the planner didn't plan, Claude works
+  out no trucks, crates or fit of its own; a quantity asked about is priced and planned. A
+  quotation can be planned in part, by its items. The plan is given in words, and Claude draws
+  none. Where the host shows the plan in its own view, Claude says nothing of the view.
 
 ### Changed
 
