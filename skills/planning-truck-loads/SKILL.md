@@ -63,8 +63,9 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    an item 10). Its pieces, packs and weight in a crate are that entry's, not the crate's. A crate
    may hold several articles of one cut length, of other quotations too: say it is shared, and
    with what. Never guess a crate from its size or the line's `packing`. The order of packs in a
-   crate's `bands` is a drawing's convention, not how the plant packs: don't give it as where
-   the packs lie.
+   crate's `bands` is a drawing's convention, not how the plant packs: asked where in a crate the
+   packs lie, say the plan gives the crate and where it stands on the truck, not the order inside
+   it.
 
 ## What-ifs: the minimums and the load
 
