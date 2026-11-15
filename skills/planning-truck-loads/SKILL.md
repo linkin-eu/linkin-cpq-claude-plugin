@@ -52,8 +52,8 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    with no die yet), first say what, and why it can't be planned yet, in plain words, saying
    plainly that the plan doesn't include it: the plan's "all" is all it was given. Then lead with
    `summary`'s sentences as they are, translated only where the conversation isn't in English:
-   `head`, `reason` where given, a sentence per truck, and `closing`. Change none of their
-   figures, and add no cause of your own to `reason`'s. With them:
+   `head`, `reason` and `smaller` where given, a sentence per truck, and `closing`. Change none of
+   their figures, and add no cause of your own to `reason`'s. With them:
    - the net weight, the goods alone, beside the gross;
    - a truck's two shares are of its payload and of its space, as its sentence gives them; never
      its `fill.volume` or `fill.floor`, which measure otherwise;
@@ -61,6 +61,11 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
      `axlesChecked` is false, that the axles aren't checked.
 
    Never present the plan as a loading plan, a carrier's booking or how the plant loads.
+
+   Asked whether fewer trucks could do: `smaller` says what one truck fewer would need of the
+   order, each "at least" a floor, never enough, and only a new plan shows more. Without it, the
+   plan gives no such figure. Never say that so much less would fit, and never advise cutting or
+   splitting the order: to see a smaller quantity the buyer names, price and plan it.
 5. **Where an article is** (a line, or a quotation's item), when asked: every crate on every
    truck whose `contents` name it. A line's entry is its item with no `document`; a quotation's
    item is its number and item together (a line and two quotations may each have an item 10). Its
