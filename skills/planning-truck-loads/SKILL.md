@@ -81,10 +81,11 @@ change:
    every line of the option, then `plan_load`. The packs round the pieces up, and
    `quantity.order` says to what. The price comes only from the tool: never work one out. An
    option refused is compared as refused, with its fault, as in Plan an order.
-4. **Compare** the options in one table: the pieces per line, the net value, the price per kg,
-   the minimums still paid, the trucks, and what the last truck leaves free. The free payload and
-   free lane lengths don't say a crate fits, since a crate needs a lane of its own length and its
-   own weight. To see whether more fits, plan it.
+4. **Compare** the options in one table: the pieces per line, the net value, the price per kg, the
+   minimums still paid, the trucks, and what the last truck leaves free. The free payload and free
+   lane lengths don't say a crate fits, since a crate needs a lane of its own length and its own
+   weight. To see whether more fits, or what a quantity not yet planned would take, plan it: never
+   reason from the options planned.
 5. **The customer chooses.** Issue only as quoting-profiles issues: price, show, ask, and issue
    on a separate yes.
 
