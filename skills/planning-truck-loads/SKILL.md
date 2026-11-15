@@ -66,6 +66,9 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    crate's `bands` is a drawing's convention, not how the plant packs: asked where in a crate the
    packs lie, say the plan gives the crate and where it stands on the truck, not the order inside
    it.
+6. **Why a crate isn't a smaller one,** only when asked: its `smaller` gives the height its packs
+   would stand in each smaller carrier, against that carrier's inside height in `carriers`. Never
+   work it out from the bands or the packs.
 
 ## What-ifs: the minimums and the load
 
