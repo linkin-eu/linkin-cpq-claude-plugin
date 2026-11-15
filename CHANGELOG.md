@@ -19,8 +19,11 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   out, and says what it leaves out. For a line or a quantity the planner didn't plan, Claude works
   out no trucks, crates or fit of its own; a quantity asked about is priced and planned. A
   quotation can be planned in part, by its items. Each truck's net and gross weight is given, the
-  crates' empty weight LINKIN's estimate. The plan is given in words, and Claude draws none. Where
-  the host shows the plan in its own view, Claude says nothing of the view.
+  crates' empty weight LINKIN's estimate. Asked where an article is, Claude names every crate and
+  truck holding it, and says where a crate is shared with other articles of the same length; asked
+  why a crate isn't a smaller one, it answers from the plan's own figures. The plan is given in
+  words, and Claude draws none. Where the host shows the plan in its own view, Claude says nothing
+  of the view.
 
 ### Changed
 

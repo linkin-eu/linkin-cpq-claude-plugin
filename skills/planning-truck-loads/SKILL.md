@@ -1,6 +1,6 @@
 ---
 name: planning-truck-loads
-description: Plans how a LINKIN order loads onto trucks through the LINKIN CPQ connector, and tries what-ifs on it. Use when the buyer asks how many trucks an order or a quotation takes, what room a truck leaves, whether quotations share a truck, how to fill a truck, or how many pieces to order so a line clears a minimum charge (the metal's weight, a die's press run, a powder colour) with the load in mind. Not for a plain price, which quoting-profiles gives, and never volunteered on one. Not for new profiles with no die yet, which have no packing to plan.
+description: Plans how a LINKIN order loads onto trucks through the LINKIN CPQ connector, and tries what-ifs on it. Use when the buyer asks how many trucks an order or a quotation takes, what room a truck leaves, whether quotations share a truck, where an article is in the load, how to fill a truck, or how many pieces to order so a line clears a minimum charge (the metal's weight, a die's press run, a powder colour) with the load in mind. Not for a plain price, which quoting-profiles gives, and never volunteered on one. Not for new profiles with no die yet, which have no packing to plan.
 ---
 
 # Planning truck loads
@@ -58,6 +58,20 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    - that it is an estimate on theoretical weights, each crate's empty weight LINKIN's estimate,
      with no promise of how the plant loads; and, while `axlesChecked` is false, that the axles
      aren't checked.
+5. **Where an article is** (a line, or a quotation's item), when asked: every crate on every
+   truck whose `contents` name it. A line's entry is its item with no `document`; a quotation's
+   item is its number and item together (a line and two quotations may each have an item 10). Its
+   pieces, packs where given, and weight in a crate are that entry's, not the crate's. A crate may
+   hold several articles of one cut length, of other quotations too: say it is shared, and with
+   which, each by its text and colour. Never guess a crate from its size or the line's `packing`.
+   The order of packs in a crate's `bands` is a drawing's convention, not how the plant packs:
+   asked where in a crate the packs lie, say the plan gives the crate and where it stands on the
+   truck, not how the plant packs inside it.
+6. **Why a crate isn't a smaller one,** only when asked: its `smaller` gives the height its packs
+   would stand in each smaller carrier, against that carrier's inside height in `carriers`; a
+   height absent means no row of its packs fits across that carrier. Without `smaller`, the crate
+   is its smallest carrier or is itself the pack, and the plan gives no other reason. Never work
+   it out from the bands or the packs.
 
 ## What-ifs: the minimums and the load
 
@@ -84,9 +98,10 @@ change:
    option refused is compared as refused, with its fault, as in Plan an order.
 4. **Compare** the options in one table: the pieces per line, the net value, the price per kg, the
    minimums still paid, the trucks, and what the last truck leaves free. The free payload and free
-   lane lengths don't say a crate fits, since a crate needs a lane of its own length and its own
-   weight. To see whether more fits, or what a quantity asked about would take, price and plan it:
-   never work it out from the options planned.
+   lane lengths don't say a crate fits: a crate needs a lane as wide as it and its own length in
+   one piece, or a crate of its width at least as long to stand on under `stackHeight`, and the
+   payload for its goods and its own empty weight. To see whether more fits, or what a quantity
+   asked about would take, price and plan it: never work it out from the options planned.
 5. **The customer chooses.** Issue only as quoting-profiles issues: price, show, ask, and issue
    on a separate yes.
 
