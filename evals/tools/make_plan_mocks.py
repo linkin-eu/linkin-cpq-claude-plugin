@@ -26,7 +26,7 @@ from plan_summary import dump, read_mock, summarize, with_fills, write_answer  #
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 CASES = ROOT / "evals"
 
-# One width, as the real carriers have: they differ in height. Smallest first, as the answer lists them.
+# One width, so the carriers differ only in height. Smallest first, as the answer lists them.
 CARRIERS = [
     {"carrier": "AW1/3", "text": "Third crate", "insideWidth": 660, "insideHeight": 250, "emptyWeight": 20},
     {"carrier": "AW1/2", "text": "Half crate", "insideWidth": 660, "insideHeight": 370, "emptyWeight": 20},
@@ -55,12 +55,12 @@ def kg(x):
 
 def write_json(path, answer):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(dump(answer) + "\n")
+    path.write_text(dump(answer) + "\n", encoding="utf-8")
 
 
 def write_md(path, answer, front="expect:\n  documents: array\n"):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(f"---\n{front}---\n\n" + dump(answer) + "\n")
+    path.write_text(f"---\n{front}---\n\n" + dump(answer) + "\n", encoding="utf-8")
 
 
 # ---- fill-truck-minimum: 7800001 bare, 0.6 kg/m, 6 m -------------------------------------------
@@ -209,7 +209,7 @@ def fill_truck_minimum():
         write_json(fixtures / f"price_quotation-{entered}.json", priced)
         write_json(fixtures / f"plan_load-{entered}.json", summarize(bare_plan(header, packs, net)))
     inquiry_line = CASES / "load-plan-inquiry-line/mocks/linkin-cpq/fixtures/plan_load-200.json"
-    inquiry_line.write_text((fixtures / "plan_load-200.json").read_text())
+    inquiry_line.write_text((fixtures / "plan_load-200.json").read_text(encoding="utf-8"), encoding="utf-8")
 
 
 # ---- the coated quotation: its plan is written in the mock; its sentences are worked out again ----

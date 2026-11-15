@@ -334,14 +334,15 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
 - **The tool list:** `evals/mocks/linkin-cpq/_tools.json` is the server's `tools/list` result as
   it serves it, indented two spaces. Replace it whole when the server's tools change.
-- **The planning cases' mocks** are generated: `python3 evals/tools/make_plan_mocks.py` rewrites
-  them from made-up figures, and `git diff` shows what moved.
+- **The planning cases' `plan_load` answers,** and `fill-truck-minimum`'s priced fixtures, are
+  generated: `python3 evals/tools/make_plan_mocks.py` rewrites them from made-up figures, and
+  `git diff` shows what moved.
   `python3 evals/tools/check_plan_mocks.py` checks their consistency, and their shape too with
   `--openapi <path>` to the server's OpenAPI document.
 - **Graders:** a `regex` grader takes a JavaScript pattern, case-insensitive with `flags: i` (no
   inline `(?i)`), and `match: not_contains` for one that must not appear. A case where a skill
-  must not start uses `tool_used` on `Skill` with `max: 0` and `arm: both`. A case's own `mocks/`
-  take precedence over the shared `evals/mocks/`.
+  must not start uses `tool_used` on `Skill` with `min: 0`, `max: 0` and `arm: both`. A case's own
+  `mocks/` override the shared `evals/mocks/` file by file.
 
 The evals are judged by Opus: the default judge passed a reply that told a buyer about LINKIN's
 internal mark on their inquiry. Its rubrics stay short, one claim each, since the judge answers

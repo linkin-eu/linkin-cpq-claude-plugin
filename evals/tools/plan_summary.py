@@ -53,6 +53,7 @@ def reason(totals):
     if totals["bound"] <= 1:
         return f"This plan takes {totals['trucks']} trucks; fewer may be possible." if totals["trucks"] > 1 else None
     terms = totals["boundBy"]
+    # The server's own reading: a term it adds later reads as the space.
     words = [TERMS.get(term, TERMS["space"]) for term in terms]
     subject = words[0] if len(words) == 1 else ", ".join(words[:-1]) + " and " + words[-1]
     verb = "needs" if terms in (["weight"], ["space"]) else "need"

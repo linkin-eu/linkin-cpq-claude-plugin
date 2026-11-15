@@ -109,7 +109,7 @@ def check_consistency(plan, faults, notes):
             if smaller != below:
                 faults.append(f"smaller {smaller} != carriers below {crate['carrier']} {below}")
             for x in crate.get("smaller", []):
-                if "height" in x and not x["height"] > carriers[x["carrier"]]["insideHeight"]:
+                if x.get("height") is not None and not x["height"] > carriers[x["carrier"]]["insideHeight"]:
                     faults.append(f"smaller {x} not over the inside height {carriers[x['carrier']]['insideHeight']}")
             if "bands" in crate:
                 own = carriers[crate["carrier"]]
