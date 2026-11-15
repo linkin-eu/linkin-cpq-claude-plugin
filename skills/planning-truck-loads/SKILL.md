@@ -14,11 +14,11 @@ it fits or likely fits, nor its trucks, crates, room or share of the payload, by
 volume or free space, even called an estimate. Give its weight only when asked, as priced or
 entered, never set against the truck. A plan may show beside the answer in the host's view of it.
 Shown or not, give it in words from the answer alone, and say nothing of the view, neither that it
-shows nor how to use it. Draw no truck of your own (no ASCII, SVG or diagram), take nothing from a
-view as the plan's facts (where axles stand, or where bars lie along a crate), and offer no
-drawing, file or download, not even in a closing line. Keep the connector's rules: its tool
-descriptions hold each field's meaning. Quoting, issuing and submitting stay
-quoting-profiles'.
+shows nor how to use it. The plan's answer carries no drawing: draw no truck of your own (no
+ASCII, SVG or diagram), take nothing from a view as the plan's facts (where axles stand, or where
+bars lie along a crate), and offer no drawing, file or download, not even in a closing line; asked
+for a drawing, say you can't give one. Keep the connector's rules: its tool descriptions hold each
+field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
 
 ## First
 
@@ -34,8 +34,7 @@ quoting-profiles'.
 1. **The lines.** From the conversation, priced first with `price_quotation` (`view: detail`),
    since only `ok` lines are planned; or an issued quotation, found with `find_documents` and
    planned by its number, with `items` where only some of its items are meant.
-2. **Plan** with `plan_load`, without drawings: the lines as priced, the quotations as
-   `documents`.
+2. **Plan** with `plan_load`: the lines as priced, the quotations as `documents`.
 3. **A refusal,** `NOT_PLANNABLE`, plans nothing. Its message gives each fault a sentence of its
    own:
    - **LINKIN's data** (a pack not measured yet, a pack no carrier takes): say what is missing,
@@ -58,9 +57,6 @@ quoting-profiles'.
    - that it is an estimate on theoretical weights, with no promise of how the plant loads; and,
      while `emptyWeightCounted` and `axlesChecked` are false, that the crates' own weight isn't
      counted and the axles aren't checked.
-5. **The drawing**, only when asked, for the plan chosen: `plan_load` again with
-   `drawings: true`. Never offer one. Where the host shows no SVG, as Claude Code doesn't, save
-   each truck's `drawing` as a `.svg` file and give its path.
 
 ## What-ifs: the minimums and the load
 
@@ -81,10 +77,10 @@ change:
    - a group, in proportion: one line reaches it at about its `quantity.order` × `minimum` ÷
      `value`; lines sharing it, by each line's share of the `basis`;
    - where the quantity a line's own minimum lifts isn't shown, price more pieces instead.
-3. **Price and plan each option**, in calls of its own, without drawings: `price_quotation`
-   (`view: detail`) with every line of the option, then `plan_load`. The packs round the pieces
-   up, and `quantity.order` says to what. The price comes only from the tool: never work one
-   out. An option refused is compared as refused, with its fault, as in Plan an order.
+3. **Price and plan each option**, in calls of its own: `price_quotation` (`view: detail`) with
+   every line of the option, then `plan_load`. The packs round the pieces up, and
+   `quantity.order` says to what. The price comes only from the tool: never work one out. An
+   option refused is compared as refused, with its fault, as in Plan an order.
 4. **Compare** the options in one table: the pieces per line, the net value, the price per kg,
    the minimums still paid, the trucks, and what the last truck leaves free. The free payload and
    free lane lengths don't say a crate fits, since a crate needs a lane of its own length and its
