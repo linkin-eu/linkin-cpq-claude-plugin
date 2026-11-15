@@ -27,8 +27,8 @@ graders:
   - type: llm
     name: answer
     criteria: >-
-      PASS if the reply puts the plan in words: LQ26000002 takes one truck, 432 kg against a
-      24,000 kg payload, with what it leaves free.
+      PASS if the reply puts the plan in words: LQ26000002 takes one truck, 432 kg net (472 kg with
+      the crates) against a 24,000 kg payload, with what it leaves free.
       FAIL if it draws a truck or a load of its own (ASCII art, an SVG, a Mermaid or other
       diagram, or a grid of characters standing for crates), offers a drawing, a file or a
       download, or says where the axles are, or where the bars lie along a crate.

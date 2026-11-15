@@ -52,11 +52,12 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    - what it didn't plan, and why it can't be planned yet, in plain words, saying plainly that
      the plan doesn't include it;
    - the trucks (`totals.trucks`; where `provenLeast` is false, fewer may be possible, down to
-     `bound`), and per truck its net weight against the payload, its fill (floor, volume, weight)
-     and what it leaves `free` (the payload less the net weight, and each lane's unused length);
-   - that it is an estimate on theoretical weights, with no promise of how the plant loads; and,
-     while `emptyWeightCounted` and `axlesChecked` are false, that the crates' own weight isn't
-     counted and the axles aren't checked.
+     `bound`), and per truck its net and gross weight against the payload, its fill (floor,
+     volume, weight) and what it leaves `free` (the payload less the gross weight, and each lane's
+     unused length);
+   - that it is an estimate on theoretical weights, each crate's empty weight LINKIN's estimate,
+     with no promise of how the plant loads; and, while `axlesChecked` is false, that the axles
+     aren't checked.
 
 ## What-ifs: the minimums and the load
 
