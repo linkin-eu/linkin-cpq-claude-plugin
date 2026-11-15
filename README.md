@@ -140,6 +140,7 @@ that port free.
 | Withdraw | *"Revoke our quotation ‹number›: we ordered from another supplier."* |
 | Plan the trucks | *"How many trucks will our quotation ‹number› take?"* |
 | Fill a truck | *"How do we fill the truck without falling under your minimums?"* |
+| Connect your systems | *"How can we connect our ERP to your API?"* |
 
 ## You stay in control
 
@@ -182,6 +183,7 @@ sequenceDiagram
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
 | **Skill** `planning-truck-loads` | Estimates the trucks an order or a quotation takes, for booking your carrier, and compares the quantities that clear a minimum charge, each priced and planned |
 | **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
+| **Skill** `integrating-your-systems` | When you ask how to connect your ERP, purchasing system or software to LINKIN: says what LINKIN's API does, and that its document, access and sign-in go through your LINKIN sales representative |
 
 ## Privacy and security
 

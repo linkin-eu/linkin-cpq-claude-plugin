@@ -7,6 +7,11 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 ### Added
 
+- `integrating-your-systems`: asked how to connect an ERP, a purchasing system, a webshop or your
+  own software to LINKIN, Claude says what LINKIN's API does, from what the connector does, and
+  how it is shaped. For the API's document, access, credentials and machine-to-machine sign-in it
+  sends you to your LINKIN sales representative, promising neither that they can be arranged nor
+  when. It gives no address, credential or sign-in recipe, and writes no document of its own.
 - Revoking: ask Claude to revoke or withdraw a draft quotation or an open inquiry. It asks why,
   from LINKIN's reasons, revokes it and says it is final. Claude never submits a revoked
   quotation.
