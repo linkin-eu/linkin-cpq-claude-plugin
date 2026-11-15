@@ -7,17 +7,17 @@ description: Plans how a LINKIN order loads onto trucks through the LINKIN CPQ c
 
 `plan_load` estimates how the customer's profiles load onto standard trailers, for booking the
 customer's own carrier, since prices are ex works. It plans lines being priced, as
-`price_quotation` takes them, and issued quotations by number, whole or the items named,
-together, and all it is given or nothing. Trucks and crates come from it alone: of a line, item
-or quotation it didn't plan, refused or was never given, draw no conclusion of your own, not that
-it fits or likely fits, nor its trucks, crates, room or share of the payload, by weight, length,
+`price_quotation` takes them, and issued quotations by number, whole or the items named, together,
+and all it is given or nothing. Trucks and crates come from it alone: of a line, item, quotation or
+quantity it didn't plan, refused or was never given, draw no conclusion of your own, not that it
+fits or likely fits, nor its trucks, crates, room or share of the payload, by weight, length,
 volume or free space, even called an estimate. Give its weight only when asked, as priced or
 entered, never set against the truck. A plan may show beside the answer in the host's view of it.
 Shown or not, give it in words from the answer alone, and say nothing of the view, neither that it
-shows nor how to use it. The plan's answer carries no drawing: draw no truck of your own (no
-ASCII, SVG or diagram), take nothing from a view as the plan's facts (where axles stand, or where
-bars lie along a crate), and offer no drawing, file or download, not even in a closing line; asked
-for a drawing, say you can't give one. Keep the connector's rules: its tool descriptions hold each
+shows nor how to use it. The plan's answer carries no drawing: draw no truck of your own (no ASCII,
+SVG or diagram), take nothing from a view as the plan's facts (where axles stand, or where bars lie
+along a crate), and offer no drawing, file or download, not even in a closing line; asked for a
+drawing, say you can't give one. Keep the connector's rules: its tool descriptions hold each
 field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
 
 ## First
