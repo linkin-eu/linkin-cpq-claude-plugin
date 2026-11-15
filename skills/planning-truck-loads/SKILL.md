@@ -1,12 +1,12 @@
 ---
 name: planning-truck-loads
-description: Plans how a LINKIN order loads onto trucks through the LINKIN CPQ connector, and tries what-ifs on it. Use when the buyer asks how many trucks an order or a quotation takes, what room a truck leaves, whether quotations share a truck, where an article is in the load, how to fill a truck, or how many pieces to order so a line clears a minimum charge (the metal's weight, a die's press run, a powder colour) with the load in mind. Not for a plain price, which quoting-profiles gives, and never volunteered on one. Not for new profiles with no die yet, which have no packing to plan.
+description: Estimates how much of a LINKIN order fits standard trucks, to size the order, through the LINKIN CPQ connector, and tries what-ifs on it. Use when the buyer asks how many trucks an order or a quotation takes, why so many, what room a truck leaves, whether quotations share a truck, where an article is in the load, how to fill a truck, or how many pieces to order so a line clears a minimum charge (the metal's weight, a die's press run, a powder colour) with the load in mind. Not for a plain price, which quoting-profiles gives, and never volunteered on one. Not for new profiles with no die yet, which have no packing to plan.
 ---
 
 # Planning truck loads
 
-`plan_load` estimates how the customer's profiles load onto standard trailers, for booking the
-customer's own carrier, since prices are ex works. It plans lines being priced, as
+`plan_load` estimates how much of the customer's order fits standard trucks, by weight and by
+size, so the customer can size the order: it is not a loading plan. It plans lines being priced, as
 `price_quotation` takes them, and issued quotations by number, whole or the items named, together,
 and all it is given or nothing. Trucks and crates come from it alone: of a line, item, quotation or
 quantity it didn't plan, refused or was never given, draw no conclusion of your own, not that it
@@ -48,16 +48,18 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    quotation), plan the rest and say so; where the customer must choose (another number, or
    waiting for LINKIN's data), ask. A plan without a line, item or quotation names what it leaves
    out, and is never given as the whole order.
-4. **Present:**
-   - what it didn't plan, and why it can't be planned yet, in plain words, saying plainly that
-     the plan doesn't include it;
-   - the trucks (`totals.trucks`; where `provenLeast` is false, fewer may be possible, down to
-     `bound`), and per truck its net and gross weight against the payload, its fill (floor,
-     volume, weight) and what it leaves `free` (the payload less the gross weight, and each lane's
-     unused length);
-   - that it is an estimate on theoretical weights, each crate's empty weight LINKIN's estimate,
-     with no promise of how the plant loads; and, while `axlesChecked` is false, that the axles
-     aren't checked.
+4. **Present.** Where the plan leaves something out, first say what, and why it can't be planned
+   yet, in plain words, saying plainly that the plan doesn't include it: the plan's "all" is all
+   it planned. Then lead with `summary`'s sentences as they are, translated only where the
+   conversation isn't in English: `head`, `reason` where given, a sentence per truck, and
+   `closing`. Change none of their figures, and add no cause of your own to `reason`'s. With them:
+   - the net weight, the goods alone, beside the gross;
+   - a truck's two shares are of its payload and of its space, as its sentence gives them; never
+     its `fill.volume` or `fill.floor`, which measure otherwise;
+   - that the weights are theoretical, each crate's empty weight LINKIN's estimate, and, while
+     `axlesChecked` is false, that the axles aren't checked.
+
+   Never present the plan as a loading plan, a carrier's booking or how the plant loads.
 5. **Where an article is** (a line, or a quotation's item), when asked: every crate on every
    truck whose `contents` name it. A line's entry is its item with no `document`; a quotation's
    item is its number and item together (a line and two quotations may each have an item 10). Its
@@ -65,8 +67,8 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    hold several articles of one cut length, of other quotations too: say it is shared, and with
    which, each by its text and colour. Never guess a crate from its size or the line's `packing`.
    The order of packs in a crate's `bands` is a drawing's convention, not how the plant packs:
-   asked where in a crate the packs lie, say the plan gives the crate and where it stands on the
-   truck, not how the plant packs inside it.
+   asked where in a crate the packs lie, say the plan gives the crate and its truck, not how the
+   plant packs or loads them.
 6. **Why a crate isn't a smaller one,** only when asked: its `smaller` gives the height its packs
    would stand in each smaller carrier, against that carrier's inside height in `carriers`; a
    height absent means no row of its packs fits across that carrier. Without `smaller`, the crate
@@ -97,11 +99,12 @@ change:
    `quantity.order` says to what. The price comes only from the tool: never work one out. An
    option refused is compared as refused, with its fault, as in Plan an order.
 4. **Compare** the options in one table: the pieces per line, the net value, the price per kg, the
-   minimums still paid, the trucks, and what the last truck leaves free. The free payload and free
-   lane lengths don't say a crate fits: a crate needs a lane as wide as it and its own length in
-   one piece, or a crate of its width at least as long to stand on under `stackHeight`, and the
-   payload for its goods and its own empty weight. To see whether more fits, or what a quantity
-   asked about would take, price and plan it: never work it out from the options planned.
+   minimums still paid, the trucks, and the last truck's shares of its payload and of its space.
+   Neither share, nor the free payload and lane lengths, says a crate fits: a crate needs a lane as
+   wide as it and its own length in one piece, or a crate of its width at least as long to stand
+   on under `stackHeight`, and the payload for its goods and its own empty weight. To see whether
+   more fits, or what a quantity asked about would take, price and plan it: never work it out from
+   the options planned.
 5. **The customer chooses.** Issue only as quoting-profiles issues: price, show, ask, and issue
    on a separate yes.
 
