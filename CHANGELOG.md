@@ -15,20 +15,20 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   side. The plan estimates how much of an order fits standard trucks, to size the order: it is not a
   loading plan, and is never volunteered on a plain quote. Claude leads with the plan's own
   sentences: the trucks, why so many where there are more than one, what one truck fewer would at
-  least need (a floor, never advice to cut the order), and each truck's share of its payload and of
-  its space. A plan covers everything given or nothing. Claude says what can't be loaded and why;
-  where LINKIN's packing data is missing, it says so and to contact your sales representative at
-  LINKIN. It plans the rest only when you ask, or when an inquiry or a revoked quotation can only be
-  left out, and says what it leaves out. For a line or a quantity the planner didn't plan, Claude
-  works out no trucks, crates or fit of its own; a quantity asked about is priced and planned. A
-  quotation can be planned in part, by its items. Each truck's net and gross weight is given, the
-  crates' empty weight LINKIN's estimate. Asked where an article is, Claude names every crate and
-  truck holding it, and says where a crate is shared with other articles of the same length; asked
-  why a crate isn't a smaller one, it answers from the plan's own figures. Asked how much more of an
-  article would fit, it plans with that article named and gives the plan's own sentence: a number of
-  packs a plan still takes on as many trucks, never the most that fits, nor a price. The plan is
-  given in words, and Claude draws none. Where the host shows the plan in its own view, Claude says
-  nothing of the view.
+  least need (a floor, never advice to cut the order), and each truck's gross weight against its
+  payload and its share of its space. A plan covers everything given or nothing. Claude says what
+  can't be loaded and why; where LINKIN's packing data is missing, it says so and to contact your
+  sales representative at LINKIN. It plans the rest only when you ask, or when an inquiry or a
+  revoked quotation can only be left out, and says what it leaves out. For a line or a quantity the
+  planner didn't plan, Claude works out no trucks, crates or fit of its own; a quantity asked about
+  is priced and planned. A quotation can be planned in part, by its items. Each truck's net and
+  gross weight is given, the crates' empty weight LINKIN's estimate. Asked where an article is,
+  Claude names every crate and truck holding it, and says where a crate is shared with other
+  articles of the same length; asked why a crate isn't a smaller one, it answers from the plan's own
+  figures. Asked how much more of an article would fit, it plans with that article named and gives
+  the plan's own sentence: a number of packs a plan still takes on as many trucks, never the most
+  that fits, nor a price. The plan is given in words, and Claude draws none. Where the host shows
+  the plan in its own view, Claude says nothing of the view.
 
 ### Changed
 

@@ -52,8 +52,10 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    with no die yet), first say what, and why it can't be planned yet, in plain words, saying
    plainly that the plan doesn't include it: the plan's "all" is all it was given. Then lead with
    `summary`'s sentences as they are, translated only where the conversation isn't in English:
-   `head`, `reason` and `smaller` where given, a sentence per truck, and `closing`. Change none of
-   their figures, and add no cause of your own to `reason`'s. With them:
+   `head`, then `reason`, `smaller` and `fills` where given, a sentence per truck, and `closing`.
+   Change none of their figures, and add no cause of your own to `reason`'s. Its "no plan takes
+   fewer" is for crates lying along the truck under `stackHeight`, as `provenLeast` says. With
+   them:
    - the net weight, the goods alone, beside the gross;
    - a truck's two shares are of its payload and of its space, as its sentence gives them; never
      its `fill.volume` or `fill.floor`, which measure otherwise;
@@ -62,10 +64,11 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
 
    Never present the plan as a loading plan, a carrier's booking or how the plant loads.
 
-   Asked whether fewer trucks could do: `smaller` says what one truck fewer would need of the
-   order, each "at least" a floor, never enough, and only a new plan shows more. Without it, the
-   plan gives no such figure. Never say that so much less would fit, and never advise cutting or
-   splitting the order: to see a smaller quantity the buyer names, price and plan it.
+   Asked whether fewer trucks could do: `summary.smaller` says what one truck fewer would need of
+   the order, each "at least" a floor, not shown to be enough: only a new plan shows that. Without
+   it, the plan gives no such figure. Never turn it into crates or pieces, never say that so much
+   less would fit, and never advise cutting or splitting the order: to see a smaller quantity the
+   buyer names, price and plan it.
 5. **Where an article is** (a line, or a quotation's item), when asked: every crate on every
    truck whose `contents` name it. A line's entry is its item with no `document`; a quotation's
    item is its number and item together (a line and two quotations may each have an item 10). Its
@@ -80,13 +83,15 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    height absent means no row of its packs fits across that carrier. Without `smaller`, the crate
    is its smallest carrier or is itself the pack, and the plan gives no other reason. Never work
    it out from the bands or the packs.
-7. **How much more of an article fits,** only when asked: plan again with `fill` naming it, a
-   line by its `item`, a quotation's item by its `document` and `item`, up to five. Lead with its
-   sentence in `summary.fills` as it is. It is a number of packs more with which a plan still
-   takes as many trucks, as a new plan crates and loads them: never the most that could fit,
-   never that every smaller amount fits, never room for another article, and never that the plant
-   ships so many. It carries no price: to price that quantity, price it. Never work it out from
-   the free payload or lane lengths.
+7. **How much more of an article fits,** only when asked: plan with `fill` naming it (again,
+   where the order is already planned), a line by its `item`, a quotation's item by its `document`
+   and `item`, up to five. Lead with its sentence in `summary.fills` as it is. It is a number of
+   packs more with which a plan still takes as many trucks, as a new plan crates and loads them:
+   never the most that could fit, never that every smaller amount fits, never that its room takes
+   another article, and never that the plant ships so many. Where the sentence says no plan was
+   found or made in time, or that the search stopped there, it says nothing of whether more fits.
+   It carries no price: to know one, price the order with that line raised (the what-ifs' step 3).
+   Never work it out from the free payload or lane lengths.
 
 ## What-ifs: the minimums and the load
 
@@ -112,7 +117,8 @@ change:
    `quantity.order` says to what. The price comes only from the tool: never work one out. An
    option refused is compared as refused, with its fault, as in Plan an order.
 4. **Compare** the options in one table: the pieces per line, the net value, the price per kg, the
-   minimums still paid, the trucks, and the last truck's shares of its payload and of its space.
+   minimums still paid, the trucks, and the last truck's gross weight against its payload and its
+   share of its space in whole percent, as its sentence gives them.
    Neither share, nor the free payload and lane lengths, says a crate fits: a crate needs a lane as
    wide as it and its own length in one piece, or a crate of its width at least as long to stand
    on under `stackHeight`, and the payload for its goods and its own empty weight. To see how much

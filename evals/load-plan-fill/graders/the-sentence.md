@@ -1,4 +1,4 @@
 ---
 type: regex
-pattern: '330 more packs'
+pattern: '330\** more packs'
 ---

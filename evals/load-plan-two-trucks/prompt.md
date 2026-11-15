@@ -5,4 +5,4 @@ max_turns: 15
 allowed_tools: [Skill, Read]
 ---
 
-How many trucks will our quotation LQ26000003 take? Could it go on one?
+How many trucks will our quotation LQ26000004 take? Could it go on one?
