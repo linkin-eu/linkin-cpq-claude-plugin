@@ -58,17 +58,20 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    - that it is an estimate on theoretical weights, each crate's empty weight LINKIN's estimate,
      with no promise of how the plant loads; and, while `axlesChecked` is false, that the axles
      aren't checked.
-5. **Where an article is,** when asked: every crate on every truck whose `contents` name it, by
-   its line's item, or by its quotation's number and item together (two quotations may each have
-   an item 10). Its pieces, packs and weight in a crate are that entry's, not the crate's. A crate
-   may hold several articles of one cut length, of other quotations too: say it is shared, and
-   with what. Never guess a crate from its size or the line's `packing`. The order of packs in a
-   crate's `bands` is a drawing's convention, not how the plant packs: asked where in a crate the
-   packs lie, say the plan gives the crate and where it stands on the truck, not the order inside
-   it.
+5. **Where an article is** (a line, or a quotation's item), when asked: every crate on every
+   truck whose `contents` name it. A line's entry is its item with no `document`; a quotation's
+   item is its number and item together (a line and two quotations may each have an item 10). Its
+   pieces, packs where given, and weight in a crate are that entry's, not the crate's. A crate may
+   hold several articles of one cut length, of other quotations too: say it is shared, and with
+   which, each by its text and colour. Never guess a crate from its size or the line's `packing`.
+   The order of packs in a crate's `bands` is a drawing's convention, not how the plant packs:
+   asked where in a crate the packs lie, say the plan gives the crate and where it stands on the
+   truck, not how the plant packs inside it.
 6. **Why a crate isn't a smaller one,** only when asked: its `smaller` gives the height its packs
-   would stand in each smaller carrier, against that carrier's inside height in `carriers`. Never
-   work it out from the bands or the packs.
+   would stand in each smaller carrier, against that carrier's inside height in `carriers`; a
+   height absent means no row of its packs fits across that carrier. Without `smaller`, the crate
+   is its smallest carrier or is itself the pack, and the plan gives no other reason. Never work
+   it out from the bands or the packs.
 
 ## What-ifs: the minimums and the load
 
