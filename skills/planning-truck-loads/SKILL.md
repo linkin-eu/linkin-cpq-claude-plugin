@@ -95,9 +95,10 @@ change:
    option refused is compared as refused, with its fault, as in Plan an order.
 4. **Compare** the options in one table: the pieces per line, the net value, the price per kg, the
    minimums still paid, the trucks, and what the last truck leaves free. The free payload and free
-   lane lengths don't say a crate fits, since a crate needs a lane of its own length and its own
-   weight. To see whether more fits, or what a quantity asked about would take, price and plan it:
-   never work it out from the options planned.
+   lane lengths don't say a crate fits: a crate needs a lane as wide as it and its own length in
+   one piece, or a crate of its width at least as long to stand on under `stackHeight`, and the
+   payload for its goods and its own empty weight. To see whether more fits, or what a quantity
+   asked about would take, price and plan it: never work it out from the options planned.
 5. **The customer chooses.** Issue only as quoting-profiles issues: price, show, ask, and issue
    on a separate yes.
 
