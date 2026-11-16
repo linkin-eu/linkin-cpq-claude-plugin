@@ -35,8 +35,8 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    since only `ok` lines are planned; or an issued quotation, found with `find_documents` and
    planned by its number, with `items` where only some of its items are meant.
 2. **Plan** with `plan_load`: the lines as priced, the quotations as `documents`.
-3. **A refusal,** `NOT_PLANNABLE`, plans nothing. Its message gives each fault a sentence of its
-   own:
+3. **A refusal,** `NOT_PLANNABLE`, plans nothing. Its message gives each fault, up to the first
+   ten, a sentence of its own, and says how many more:
    - **LINKIN's data** (a pack not measured yet, a pack no carrier takes): say what is missing,
      and pass on as they are its words "this is LINKIN's data, not a mistake of yours: contact
      your sales representative at LINKIN so it can be fixed".
