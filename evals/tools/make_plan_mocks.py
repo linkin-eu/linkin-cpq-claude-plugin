@@ -170,8 +170,8 @@ def price(base, entered):
 
 
 def bare_plan(header, packs, net):
-    """The plan of a bare line: each crate is its pack, one line in it, no packs or bands. Crates
-    of one length and width stack, the full ones under the part one."""
+    """The plan of a bare line: each crate is its pack, one line in it, no packs or positions.
+    Crates of one length and width stack, the full ones under the part one."""
     crates = []
     z = 0
     for carrier, count, pieces in packs:
