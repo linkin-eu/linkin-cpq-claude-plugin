@@ -184,7 +184,7 @@ sequenceDiagram
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
 | **Skill** `planning-truck-loads` | Estimates how much of an order or a quotation fits standard trucks, to size the order (not a loading plan), and compares the quantities that clear a minimum charge, each priced and planned |
 | **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
-| **Skill** `integrating-your-systems` | When you ask how to connect your ERP, purchasing system or software to LINKIN: says what LINKIN's API does, and that its document, access and sign-in go through your LINKIN sales representative |
+| **Skill** `integrating-your-systems` | When you ask how to connect your ERP, purchasing system or software to LINKIN: says what LINKIN's API does from its document (OpenAPI), which it carries and gives as it is, and that access and sign-in go through your LINKIN sales representative |
 
 ## Privacy and security
 
@@ -193,8 +193,8 @@ sequenceDiagram
 - **Only what you ask is sent.** LINKIN receives the profiles, values, quantities and references
   you ask Claude to price, issue or look up, and the reason you give when you revoke a document,
   and nothing else from your conversation.
-- **No code, no telemetry.** The skills are instructions for Claude. They run no code and send
-  nothing.
+- **No code, no telemetry.** The skills are instructions for Claude, with LINKIN's API document
+  for customers. They run no code and send nothing.
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
@@ -325,6 +325,7 @@ trademark of SAP SE. LINKIN is not affiliated with SAP SE.
 
 ```bash
 claude plugin validate . --strict
+python3 tools/api_document.py check  # the API document, its overview and its stamp agree, and the document passes its checks
 evals/check-histories.sh            # each recorded history's lines chained, so a resumed eval keeps them all
 claude plugin eval . --no-publish --judge-model opus   # model calls on your own Claude sign-in; answers come from evals/*/mocks
 ./build.sh                          # dist/linkin-cpq-<version>.zip from HEAD, or ./build.sh <tag>
@@ -334,6 +335,15 @@ The zip is built with `git archive` from the paths `build.sh` names, so it holds
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
 CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
+- **The API document:** `skills/integrating-your-systems/reference/` holds LINKIN's API document
+  for customers, never edited by hand. `python3 tools/api_document.py update <server checkout>
+  <commit>` copies it from a server commit whose checks passed, writes its overview and its stamp,
+  and prints what changed in its texts. It refuses a document with a URL, a host, an email
+  address, a telephone number, an amount of money, a server or a sign-in scheme, or a customer,
+  geometry, die or document number that isn't one of the server's fictional ones: that is mended
+  in the server's build, never in the copy. Read what it prints before the push, and run
+  `python3 tools/api_document.py check <server checkout>`, which also holds the copy to the
+  server's file at the stamp's commit.
 - **The tool list:** `evals/mocks/linkin-cpq/_tools.json` is the server's `tools/list` result as
   it serves it, indented two spaces. Replace it whole when the server's tools change.
 - **The planning cases' `plan_load` answers,** and `fill-truck-minimum`'s priced fixtures, are

@@ -18,5 +18,6 @@ jobs:
           node-version: 22
       - run: npm install --global @anthropic-ai/claude-code@2.1.318
       - run: claude plugin validate . --strict
+      - run: python3 tools/api_document.py check
       - run: evals/check-histories.sh
       - run: ./build.sh
