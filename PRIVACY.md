@@ -14,8 +14,8 @@ controller. Contact: marketing@linkin.eu.
 
 ## What LINKIN receives
 
-The plugin holds only instructions for Claude, LINKIN's API document for customers, the
-connector's address and an icon. It has no code and collects nothing.
+The plugin holds only instructions for Claude, the connector's address and an icon. It has no
+code and collects nothing.
 
 When you sign in to the connector with your LINKIN account, LINKIN receives your account's
 identifier, and takes the customers your account may act for from its own records. For an
