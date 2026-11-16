@@ -140,6 +140,7 @@ that port free.
 | Withdraw | *"Revoke our quotation ‹number›: we ordered from another supplier."* |
 | Plan the trucks | *"How many trucks will our quotation ‹number› take?"* |
 | Fill a truck | *"How do we fill the truck without falling under your minimums?"* |
+| How much more fits | *"How many more pieces of ‹that profile› could we add and still use the same truck?"* |
 | Connect your systems | *"How can we connect our ERP to your API?"* |
 
 ## You stay in control
@@ -178,10 +179,10 @@ sequenceDiagram
 
 | Part | What it does |
 |---|---|
-| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, and estimates the trucks a quotation takes |
+| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, and estimates how much of an order fits standard trucks |
 | **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits or revokes when you ask, orders again and explains an issued price |
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
-| **Skill** `planning-truck-loads` | Estimates the trucks an order or a quotation takes, for booking your carrier, and compares the quantities that clear a minimum charge, each priced and planned |
+| **Skill** `planning-truck-loads` | Estimates how much of an order or a quotation fits standard trucks, to size the order (not a loading plan), and compares the quantities that clear a minimum charge, each priced and planned |
 | **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
 | **Skill** `integrating-your-systems` | When you ask how to connect your ERP, purchasing system or software to LINKIN: says what LINKIN's API does, and that its document, access and sign-in go through your LINKIN sales representative |
 
@@ -332,6 +333,18 @@ claude plugin eval . --no-publish --judge-model opus   # model calls on your own
 The zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
 CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
+
+- **The tool list:** `evals/mocks/linkin-cpq/_tools.json` is the server's `tools/list` result as
+  it serves it, indented two spaces. Replace it whole when the server's tools change.
+- **The planning cases' `plan_load` answers,** and `fill-truck-minimum`'s priced fixtures, are
+  generated: `python3 evals/tools/make_plan_mocks.py` rewrites them from made-up figures, and
+  `git diff` shows what moved.
+  `python3 evals/tools/check_plan_mocks.py` checks their consistency, and their shape too with
+  `--openapi <path>` to the server's OpenAPI document.
+- **Graders:** a `regex` grader takes a JavaScript pattern, case-insensitive with `flags: i` (no
+  inline `(?i)`), and `match: not_contains` for one that must not appear. A case where a skill
+  must not start uses `tool_used` on `Skill` with `min: 0`, `max: 0` and `arm: both`. A case's own
+  `mocks/` override the shared `evals/mocks/` file by file.
 
 The evals are judged by Opus: the default judge passed a reply that told a buyer about LINKIN's
 internal mark on their inquiry. Its rubrics stay short, one claim each, since the judge answers
