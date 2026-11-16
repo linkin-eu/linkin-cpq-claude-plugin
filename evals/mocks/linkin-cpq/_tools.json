@@ -1232,7 +1232,7 @@
           },
           "number": {
             "type": "string",
-            "description": "The document's number, such as LQ26000001.",
+            "description": "The document's number, such as LQ26000000.",
             "maxLength": 10,
             "pattern": "^L[QIT][0-9]{8}$"
           },
