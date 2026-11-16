@@ -82,14 +82,14 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    pieces, packs where given, and weight in a crate are that entry's, not the crate's. A crate may
    hold several articles of one cut length, of other quotations too: say it is shared, and with
    which, each by its text and colour. Never guess a crate from its size or the line's `packing`.
-   The order of packs in a crate's `bands` is a drawing's convention, not how the plant packs:
-   asked where in a crate the packs lie, say the plan gives the crate and its truck, not how the
-   plant packs or loads them.
+   Where a crate's `positions` put its packs is the planner's estimate of how they fit, not how
+   the plant packs: asked where in a crate the packs lie, say the plan gives the crate and its
+   truck, not how the plant packs or loads them.
 6. **Why a crate isn't a smaller one,** only when asked: its `smaller` gives the height its packs
    would stand in each smaller carrier, against that carrier's inside height in `carriers`; a
    height absent means no row of its packs fits across that carrier. Without `smaller`, the crate
    is its smallest carrier or is itself the pack, and the plan gives no other reason. Never work
-   it out from the bands or the packs.
+   it out from the positions or the packs.
 7. **How much more of an article fits,** only when asked: plan with `fill` naming it (again,
    where the order is already planned), a line by its `item`, a quotation's item by its `document`
    and `item`, up to five. Lead with its sentence in `summary.fills` as it is. It is a number of

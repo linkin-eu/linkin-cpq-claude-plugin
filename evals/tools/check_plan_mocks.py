@@ -3,7 +3,8 @@
 - **consistency**, always:
   - each line's packing is smallest carrier first;
   - each crate's net weight is its contents' total, and every line or item is in some crate;
-  - its bands hold its packs, within the carrier's inside width and height;
+  - its packs' `positions`, laid out run by run, lie within the carrier's inside, none overlapping,
+    as many as its contents' packs, and `standing` is the top of the highest;
   - its `smaller` names exactly the carriers below its own, each height over that carrier's inside;
   - each stack is one width, a shorter crate only on a longer one, with no gaps, under `stackHeight`;
   - the gross weight is the crates' net weight plus their empty weight;
@@ -104,34 +105,17 @@ def check_consistency(plan, faults, notes):
                     faults.append(f"contents names {key}, not a line")
                 else:
                     pieces[key] += content["pieces"]
-            below = order[:order.index(crate["carrier"])] if "bands" in crate else []
+            below = order[:order.index(crate["carrier"])] if "positions" in crate else []
             smaller = [x["carrier"] for x in crate.get("smaller", [])]
             if smaller != below:
                 faults.append(f"smaller {smaller} != carriers below {crate['carrier']} {below}")
             for x in crate.get("smaller", []):
                 if x.get("height") is not None and not x["height"] > carriers[x["carrier"]]["insideHeight"]:
                     faults.append(f"smaller {x} not over the inside height {carriers[x['carrier']]['insideHeight']}")
-            if "bands" in crate:
-                own = carriers[crate["carrier"]]
-                height = 0
-                for band in crate["bands"]:
-                    across, up = (band["height"], band["width"]) if band["turned"] else (band["width"], band["height"])
-                    packs = sum(p["packs"] for p in band["packs"])
-                    if band["across"] * across > own["insideWidth"] + 1e-9:
-                        faults.append(f"band of {band['across']} across over the inside width")
-                    if band["rows"] != -(-packs // band["across"]):
-                        faults.append(f"band rows {band['rows']} != ceil({packs}/{band['across']})")
-                    height += band["rows"] * up
-                if height > own["insideHeight"] + 1e-9:
-                    faults.append(f"bands {height} over the inside height {own['insideHeight']}")
-                for x in crate.get("smaller", []):
-                    if x.get("height") is not None and abs(x["height"] - height) > 0.01:
-                        notes.append(f"smaller {x} != its own bands' {round(height, 2)}")
-                for content in crate["contents"]:
-                    key = (content.get("document"), content["item"])
-                    packs = sum(p["packs"] for b in crate["bands"] for p in b["packs"] if (p.get("document"), p["item"]) == key)
-                    if packs != content.get("packs"):
-                        faults.append(f"bands' packs {packs} != contents' packs {content.get('packs')}")
+            if "positions" in crate:
+                placement(crate, carriers[crate["carrier"]], faults, notes)
+            elif "standing" in crate or any(k in c for c in crate["contents"] for k in ("packs", "width", "height")):
+                faults.append("a crate that is its pack carries standing, packs or a pack face")
     for key, count in pieces.items():
         if count == 0:
             faults.append(f"{key}: in no crate")
@@ -139,6 +123,51 @@ def check_consistency(plan, faults, notes):
     gross = sum(c["netWeight"] + carriers[c["carrier"]]["emptyWeight"] for c in crates)
     if abs(gross - plan["totals"]["grossWeight"]) > 0.01:
         faults.append(f"gross {plan['totals']['grossWeight']} != the crates' {gross}")
+
+
+EPS = 1e-6
+
+
+def placement(crate, own, faults, notes):
+    """A crate's packs laid out as its `positions` say: each run's packs left to right from its
+    first pack, each touching the last, and where the next would pass the inside's right wall, back
+    to the left wall one row up, the row as high as the pack lies (its width where turned). Its
+    faults and notes are added to those given."""
+    packs, laid = [0] * len(crate["contents"]), []
+    for run in crate["positions"]:
+        if run["count"] < 1:
+            faults.append(f"a run of {run['count']} packs")
+        if not 0 <= run["content"] < len(crate["contents"]):
+            faults.append(f"a run's content {run['content']} is not in its contents")
+            continue
+        content = crate["contents"][run["content"]]
+        if "width" not in content or "height" not in content:
+            faults.append(f"content {run['content']} has packs in positions but no face")
+            continue
+        across, up = (content["height"], content["width"]) if run["turned"] else (content["width"], content["height"])
+        x, y = run["x"], run["y"]
+        for at in range(run["count"]):
+            if at and x + across > own["insideWidth"] + EPS:  # the first pack lies where the run says
+                x, y = 0, y + up
+            laid.append((x, y, x + across, y + up))
+            x += across
+        packs[run["content"]] += run["count"]
+    for at, (x0, y0, x1, y1) in enumerate(laid):
+        if x0 < -EPS or y0 < -EPS or x1 > own["insideWidth"] + EPS or y1 > own["insideHeight"] + EPS:
+            faults.append(f"pack {at} at ({round(x0, 2)}, {round(y0, 2)}) lies outside the inside")
+        for (a0, b0, a1, b1) in laid[:at]:
+            if x0 < a1 - EPS and a0 < x1 - EPS and y0 < b1 - EPS and b0 < y1 - EPS:
+                faults.append(f"pack {at} at ({round(x0, 2)}, {round(y0, 2)}) overlaps another")
+                break
+    top = max((y1 for _, _, _, y1 in laid), default=0)
+    if abs(top - crate.get("standing", -1)) > 0.01:
+        faults.append(f"standing {crate.get('standing')} != the top of the highest pack {round(top, 2)}")
+    for at, content in enumerate(crate["contents"]):
+        if packs[at] != content.get("packs"):
+            faults.append(f"content {at}: positions' packs {packs[at]} != contents' packs {content.get('packs')}")
+    for x in crate.get("smaller", []):
+        if x.get("height") is not None and abs(x["height"] - top) > 0.01:
+            notes.append(f"smaller {x} != its own standing {round(top, 2)}")
 
 
 def plan_mocks():
