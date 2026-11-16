@@ -179,34 +179,35 @@ sequenceDiagram
 
 | Part | What it does |
 |---|---|
-| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, and estimates how much of an order fits standard trucks |
+| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, estimates how much of an order fits standard trucks, and describes LINKIN's API |
 | **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits or revokes when you ask, orders again and explains an issued price |
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
 | **Skill** `planning-truck-loads` | Estimates how much of an order or a quotation fits standard trucks, to size the order (not a loading plan), and compares the quantities that clear a minimum charge, each priced and planned |
 | **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
-| **Skill** `integrating-your-systems` | When you ask how to connect your ERP, purchasing system or software to LINKIN: says what LINKIN's API does, and that its document, access and sign-in go through your LINKIN sales representative |
+| **Skill** `integrating-your-systems` | When you ask how to connect your ERP, purchasing system or software to LINKIN: answers from the description of LINKIN's API that the connector gives, and sends the whole document, access and sign-in to your LINKIN sales representative |
 
 ## Privacy and security
 
 - **Signed in as you.** The connector signs in with your LINKIN account through LINKIN's sign-in.
   Claude holds the sign-in; the plugin contains no credentials.
 - **Only what you ask is sent.** LINKIN receives the profiles, values, quantities and references
-  you ask Claude to price, issue or look up, and the reason you give when you revoke a document,
-  and nothing else from your conversation.
+  you ask Claude to price, issue or look up, the reason you give when you revoke a document, and
+  the names of the API's operations or schemas you ask Claude to describe, and nothing else from
+  your conversation.
 - **No code, no telemetry.** The skills are instructions for Claude. They run no code and send
   nothing.
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
 **Tool permissions.** Issuing an inquiry or a quotation, submitting a quotation and revoking a
-document ask for approval by default. The eight tools that only read, the six **Read-only
+document ask for approval by default. The nine tools that only read, the seven **Read-only
 tools**, **Read an issued document** and **Plan the trucks**, can be set to **Always allow**
 ([Get started](#claude-desktop-or-claudeai), step 4).
 
 <details>
 <summary>The same in Claude Code</summary>
 
-Add the eight read-only tools to `permissions.allow` in your settings:
+Add the nine read-only tools to `permissions.allow` in your settings:
 
 ```json
 {
@@ -219,7 +220,8 @@ Add the eight read-only tools to `permissions.allow` in your settings:
       "mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry",
       "mcp__plugin_linkin-cpq_linkin-cpq__find_documents",
       "mcp__plugin_linkin-cpq_linkin-cpq__read_document",
-      "mcp__plugin_linkin-cpq_linkin-cpq__plan_load"
+      "mcp__plugin_linkin-cpq_linkin-cpq__plan_load",
+      "mcp__plugin_linkin-cpq_linkin-cpq__describe_api"
     ]
   }
 }

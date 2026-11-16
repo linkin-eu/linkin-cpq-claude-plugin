@@ -22,8 +22,9 @@ identifier, and takes the customers your account may act for from its own record
 account not yet linked to a customer, it takes the company and contact details you registered on
 linkin.eu, and puts them on your inquiries. After that, LINKIN receives only what Claude sends to
 the connector's tools: the profiles, quantities, finishes, lengths, references and drawing
-figures you ask about, the customer you choose, and the reason you give when you revoke a
-document. LINKIN never receives your conversation with Claude.
+figures you ask about, the customer you choose, the reason you give when you revoke a document,
+and the names of the API's operations or schemas you ask Claude to describe. LINKIN never
+receives your conversation with Claude.
 
 ## Why, and on what legal basis
 
