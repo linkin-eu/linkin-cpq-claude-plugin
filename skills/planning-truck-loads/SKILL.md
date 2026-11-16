@@ -36,14 +36,17 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    planned by its number, with `items` where only some of its items are meant.
 2. **Plan** with `plan_load`: the lines as priced, the quotations as `documents`.
 3. **A refusal,** `NOT_PLANNABLE`, plans nothing. Its message gives each fault, up to the first
-   ten, a sentence of its own, and says how many more:
+   ten, a sentence of its own, and says how many more. What is wrong with those more is not said,
+   and may differ from the faults given, even where they look alike: give their count, say and
+   guess nothing of their faults, and say they are named once the faults given are mended. Each
+   fault given is:
    - **LINKIN's data** (a pack not measured yet, a pack no carrier takes): say what is missing,
      and pass on as they are its words "this is LINKIN's data, not a mistake of yours: contact
      your sales representative at LINKIN so it can be fixed".
    - **The customer's own** (an inquiry's line, a quotation not theirs, unknown or revoked, an
      item it doesn't hold, a line not `ok`): say what it is and its mend.
 
-   Say the mends in plain words, without the request's field names (`items[0]`,
+   Say the faults and mends in plain words, without the request's field names (`items[0]`,
    `documents[0].items`). Where the only mend is to leave it out (an inquiry's line, a revoked
    quotation), plan the rest and say so; where the customer must choose (another number, or
    waiting for LINKIN's data), ask. A plan without a line, item or quotation names what it leaves
@@ -63,6 +66,10 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
      `axlesChecked` is false, that the axles aren't checked.
 
    Never present the plan as a loading plan, a carrier's booking or how the plant loads.
+
+   A pack count may include a part-filled pack: never work pieces out from packs, nor a rounding
+   from them. Give the pieces the answers give: a line's or an item's as priced or issued, a
+   crate's in its `contents`, a fill's in its sentence.
 
    Asked whether fewer trucks could do: `summary.smaller` says what one truck fewer would need of
    the order, each "at least" a floor, not shown to be enough: only a new plan shows that. Without

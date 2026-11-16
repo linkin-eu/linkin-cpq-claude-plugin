@@ -115,8 +115,9 @@ Under it:
 - the total, its currency and the pricing date.
 
 Where the packs raised the pieces (`quantity.order` above `quantity.entered`), say so and quote
-the line's message. List a line that isn't `ok` under the table with what it still needs or what
-was refused, and no price.
+the line's message. A pack count may include a part-filled pack: never work pieces out from
+packs, nor a rounding from them; the pieces priced are `quantity.order`. List a line that isn't
+`ok` under the table with what it still needs or what was refused, and no price.
 
 An issued or read document may show beside the answer in the host's document view. Shown or not,
 open, save, link or offer no page unasked. When asked, open the summary page, the resource

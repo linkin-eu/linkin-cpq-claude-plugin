@@ -72,8 +72,11 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - Getting started names the tool permissions as Claude shows them. **Read an issued document** is
   listed under **Interactive tools** and is set to **Always allow** there. The tools that issue,
   submit or revoke keep **Needs approval**.
-- A plan refused names the first ten lines or items that can't be planned, each with its mend, and
-  says how many more, as the connector now gives them.
+- A plan refused names the first ten lines or items that can't be planned, each as you named it
+  and with its mend, and says how many more, as the connector now gives them. Claude says and
+  guesses nothing of what is wrong with those more, which may differ, until these are mended.
+- Claude works out no pieces from a count of packs, nor a rounding from one, since a pack may be
+  part-filled: the pieces are those the price or the plan gives.
 
 ## 4.1.0
 
