@@ -632,11 +632,11 @@
                       "oneOf": [
                         {
                           "const": "CL1",
-                          "title": "Qualicoat class 1"
+                          "title": "Qualicoat 1"
                         },
                         {
                           "const": "CL2",
-                          "title": "Qualicoat class 2"
+                          "title": "Qualicoat 2"
                         }
                       ]
                     },
