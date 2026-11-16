@@ -1,5 +1,5 @@
 ---
-description: "Asked how to connect an ERP to LINKIN, Claude says what LINKIN's API does from the connector, and that access goes through the LINKIN sales representative, with no address, credential or promise."
+description: "Asked how to connect an ERP to LINKIN, Claude says what LINKIN's API does from the description the connector gives, and that access goes through the LINKIN sales representative, with no address, credential or promise."
 tags: [integration]
 max_turns: 10
 allowed_tools: [Skill, Read]

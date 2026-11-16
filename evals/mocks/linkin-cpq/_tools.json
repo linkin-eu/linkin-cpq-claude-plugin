@@ -1570,6 +1570,34 @@
         },
         "ui/resourceUri": "ui://avc/load-plan"
       }
+    },
+    {
+      "name": "describe_api",
+      "title": "Describe the API",
+      "description": "Describes LINKIN's HTTP API, for the developers of the customer's own systems, such as its ERP or webshop, to connect them to LINKIN. With no `name`, the summary: the API's introduction, then each of its operations in a line, what a call carries, what it answers and what it refuses. With a `name` the summary lists, that operation in detail, with the schemas it names directly; with a schema's name, from the summary or a detail's `reaches`, that schema. The answers are the API's own technical words, its names as its requests and answers carry them, for a developer to read; its operations are calls the customer's systems make, not this server's tools, even where one shares a tool's name. The whole document, and access for the customer's own systems, come from the customer's LINKIN sales representative. The same for every customer.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "An operation's or a schema's name, as the summary or a detail's `reaches` lists it: its details, in place of the summary."
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "_meta": {
+        "ui": {
+          "visibility": [
+            "model"
+          ]
+        }
+      }
     }
   ]
 }

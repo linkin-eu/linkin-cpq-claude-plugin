@@ -8,8 +8,9 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 ### Added
 
 - `integrating-your-systems`: asked how to connect an ERP, a purchasing system, a webshop or your
-  own software to LINKIN, Claude says what LINKIN's API does, from what the connector does, and
-  how it is shaped. For the API's document, access, credentials and machine-to-machine sign-in it
+  own software to LINKIN, Claude answers from the description of LINKIN's API that the connector
+  gives: a summary of every operation, then the operation or schema you ask about, in the API's
+  own names. For the whole API document, access, credentials and machine-to-machine sign-in it
   sends you to your LINKIN sales representative, promising neither that they can be arranged nor
   when. It gives no address, credential or sign-in recipe, and writes no document of its own.
 - Revoking: ask Claude to revoke or withdraw a draft quotation or an open inquiry. It asks why,
@@ -43,22 +44,20 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 ### Changed
 
 - The privacy notice: the sales desk receives each inquiry issued and each inquiry revoked, besides
-  each quotation submitted; LINKIN receives the reason for a revocation; and an account not yet
-  linked to a customer has its registered details put on its inquiries.
+  each quotation submitted; LINKIN receives the reason for a revocation; an account not yet
+  linked to a customer has its registered details put on its inquiries; and LINKIN receives the
+  names of the API's operations or schemas you ask Claude to describe.
 - An account not yet linked to a customer number issues inquiries in the company and contact
   details registered on linkin.eu: Claude no longer asks for them, and doesn't call the inquiry
   unverified.
-- The connector's twelve tools, with `revoke_document` and `plan_load`. `plan_load` only reads.
+- The connector's thirteen tools, with `revoke_document`, `plan_load` and `describe_api`.
+  `plan_load` and `describe_api` only read.
 - Plain words: the skills say "field" for an inquiry's values, and name a sales area once as the
   LINKIN name and channel a customer buys under.
 - `comparing-per-kilo-prices`, for a coated profile: billed per kilo on the finished, coated
   weight, the coat's own weight is invoiced at the price per kilo, about 5% more weight for a
   typical coat. Claude explains it neutrally, asks which weight the other offer's kilos are, and
   shows it as a labelled what-if, with die wear's on top. A bare profile says nothing of it.
-
-### Removed
-
-- The bundled API document, in favour of LINKIN's server describing its own API.
 
 ### Fixed
 
