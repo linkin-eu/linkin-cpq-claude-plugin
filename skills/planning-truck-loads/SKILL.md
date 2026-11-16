@@ -80,11 +80,11 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    truck whose `contents` name it. A line's entry is its item with no `document`; a quotation's
    item is its number and item together (a line and two quotations may each have an item 10). Its
    pieces, packs where given, and weight in a crate are that entry's, not the crate's. A crate may
-   hold several articles of one cut length, of other quotations too: say it is shared, and with
-   which, each by its text and colour. Never guess a crate from its size or the line's `packing`.
-   Where a crate's `positions` put its packs is the planner's estimate of how they fit, not how
-   the plant packs: asked where in a crate the packs lie, say the plan gives the crate and its
-   truck, not how the plant packs or loads them.
+   hold several articles, of any cut length and of other quotations too, the crate as long as the
+   longest bars: say it is shared, and with which, each by its text and colour. Never guess a crate
+   from its size or the line's `packing`. Where a crate's `positions` put its packs is the planner's
+   estimate of how they fit, not how the plant packs: asked where in a crate the packs lie, say the
+   plan gives the crate and its truck, not how the plant packs or loads them.
 6. **Why a crate isn't a smaller one,** only when asked: its `smaller` gives the height its packs
    would stand in each smaller carrier, against that carrier's inside height in `carriers`; a
    height absent means no row of its packs fits across that carrier. Without `smaller`, the crate

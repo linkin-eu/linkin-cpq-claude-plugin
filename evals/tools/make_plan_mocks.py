@@ -6,7 +6,8 @@
 - `load-plan-quotation` and `load-plan-app-host`: the coated quotation's plan, its trucks and crates
   as written in the mock, its sentences and figures worked out again (`plan_summary.py`);
 - `load-plan-two-trucks`: a heavy bare profile on two trucks, bound by weight alone;
-- `load-plan-fill`: the coated quotation's plan with more packs of its item 10.
+- `load-plan-fill`: the coated quotation's plan with more packs of its item 10;
+- `load-plan-shared-crate`: a coated quotation in two lengths, the rests sharing a crate.
 
 Every figure is made up: metal 2,420 + 640 EUR/t with a 250 kg minimum a line, the press run
 545 EUR/t with the die's 272.50 EUR minimum, die wear 0.16 EUR/m on two cavities, 20 kg a crate.
@@ -229,6 +230,22 @@ def fill():
     write_md(CASES / "load-plan-fill/mocks/linkin-cpq/plan_load.md", answer)
 
 
+# ---- a truck of AW1 crates, 760 mm wide, each weighing 20 kg empty ---------------------------------
+
+def truck(crates):
+    net = round(sum(c["netWeight"] for c in crates), 3)
+    gross = round(net + 20 * len(crates), 3)
+    lanes = INSIDE["width"] // 760
+    used = [max([c["x"] + c["length"] for c in crates if c["y"] == lane * 760], default=0) for lane in range(lanes)]
+    floor = sum(c["length"] * c["width"] for c in crates if c["z"] == 0) / (13600 * 2450) * 100
+    volume = sum(c["length"] * c["width"] * c["height"] for c in crates) / (13600 * 2450 * 2600) * 100
+    return {"vehicle": "SEMI_13_6", "text": "Curtainsider semi-trailer 13.6 m", "inside": dict(INSIDE), "payload": 24000,
+            "netWeight": net, "grossWeight": gross,
+            "fill": {"floor": r1(floor), "volume": r1(volume), "weight": r1(gross / 24000 * 100)},
+            "free": {"payloadLessGrossWeight": round(24000 - gross, 3), "unusedLaneLengths": [13600 - u for u in used]},
+            "crates": crates}
+
+
 # ---- two trucks: quotation LQ26000004, 7800002 bare at 1.2 kg/m, 4,000 pieces in 20 full crates --
 
 def two_trucks():
@@ -239,19 +256,6 @@ def two_trucks():
     def crate(x, y, z):
         return {"carrier": "AW1", "length": 6000, "width": 760, "height": 560, "x": x, "y": y, "z": z, "netWeight": crate_net,
                 "contents": [{"document": "LQ26000004", "item": "10", "pieces": per, "netWeight": crate_net}]}
-
-    def truck(crates):
-        net = round(sum(c["netWeight"] for c in crates), 3)
-        gross = round(net + 20 * len(crates), 3)
-        lanes = INSIDE["width"] // 760
-        used = [max([c["x"] + c["length"] for c in crates if c["y"] == lane * 760], default=0) for lane in range(lanes)]
-        floor = sum(c["length"] * c["width"] for c in crates if c["z"] == 0) / (13600 * 2450) * 100
-        volume = sum(c["length"] * c["width"] * c["height"] for c in crates) / (13600 * 2450 * 2600) * 100
-        return {"vehicle": "SEMI_13_6", "text": "Curtainsider semi-trailer 13.6 m", "inside": dict(INSIDE), "payload": 24000,
-                "netWeight": net, "grossWeight": gross,
-                "fill": {"floor": r1(floor), "volume": r1(volume), "weight": r1(gross / 24000 * 100)},
-                "free": {"payloadLessGrossWeight": round(24000 - gross, 3), "unusedLaneLengths": [13600 - u for u in used]},
-                "crates": crates}
 
     # truck 1: two stacks behind one another in each of two lanes, four high; truck 2: one stack of four
     trucks = [truck([crate(x, y, z) for x in (0, 6000) for y in (0, 760) for z in (0, 560, 1120, 1680)]),
@@ -268,8 +272,50 @@ def two_trucks():
     write_md(CASES / "load-plan-two-trucks/mocks/linkin-cpq/plan_load.md", summarize(answer))
 
 
+# ---- a shared crate of two lengths: quotation LQ26000005, 7800001 coated, packs of 4 pieces -------
+
+def shared_crate():
+    """Item 10, 80 pieces at 6,000 mm, fills one crate of 15 packs and leaves 5; item 20, 32 pieces
+    at 4,500 mm, is 8 packs. The two rests, one profile and finish, share a crate, the longest bars
+    first, the crate as long as item 10's bars: 13 packs stand 450 mm upright, 5 a row (480 turned,
+    4 a row), so a full crate, item 10's 5 packs in its first row and item 20's 8 above them. The
+    profile weighs 0.6 kg/m."""
+    doc, colour = "LQ26000005", "RAL 9016, smooth gloss, Qualicoat 1"
+    face = {"width": 120, "height": 150}
+    smaller = [{"carrier": "AW1/3", "height": 450}, {"carrier": "AW1/2", "height": 450}]
+
+    def content(item, pieces, kg):
+        net = round(pieces * kg, 3)
+        return {"document": doc, "item": item, "pieces": pieces, "packs": pieces // 4, **face,
+                "netWeight": int(net) if float(net).is_integer() else net}  # shortest digits, as the server writes
+
+    def crate(z, contents, positions):
+        return {"carrier": "AW1", "length": 6000, "width": 760, "height": 560, "x": 0, "y": 0, "z": z,
+                "netWeight": round(sum(c["netWeight"] for c in contents), 3), "contents": contents,
+                "positions": positions, "standing": 450, "smaller": smaller}
+
+    full = crate(0, [content("10", 60, 3.6)], [{"content": 0, "x": 0, "y": 0, "count": 15, "turned": False}])
+    rests = crate(560, [content("10", 20, 3.6), content("20", 32, 2.7)],
+                  [{"content": 0, "x": 0, "y": 0, "count": 5, "turned": False},
+                   {"content": 1, "x": 0, "y": 150, "count": 8, "turned": False}])
+    trucks = [truck([full, rests])]
+
+    def item(number, length):
+        return {"item": number, "material": "1370000305", "text": f"7800001 · Example profile · T5, standard · {length} mm · Powder coated",
+                "geometry": "7800001", "surfaceFinish": "POWDER_COATED", "colour": colour, "cutLength": length,
+                "packing": [{"carrier": "AW1", "packingValue": 4}]}
+
+    answer = {"header": HEADER, "lines": [], "documents": [{"number": doc, "items": [item("10", 6000), item("20", 4500)]}],
+              "carriers": CARRIERS,
+              "totals": {"trucks": 1, "crates": 2, "netWeight": trucks[0]["netWeight"], "grossWeight": trucks[0]["grossWeight"],
+                         "bound": 1, "provenLeast": True},
+              "emptyWeightCounted": True, "axlesChecked": False, "stacksFewest": True, "trucks": trucks}
+    write_md(CASES / "load-plan-shared-crate/mocks/linkin-cpq/plan_load.md", summarize(answer))
+
+
 if __name__ == "__main__":
     fill_truck_minimum()
     coated_quotation()
     fill()
     two_trucks()
+    shared_crate()
