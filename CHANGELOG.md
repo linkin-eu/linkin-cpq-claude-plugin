@@ -33,7 +33,7 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   - A quotation can be planned in part, by its items.
   - Each truck's net and gross weight is given, the crates' empty weight LINKIN's estimate.
   - Asked where an article is, Claude names every crate and truck holding it, and says where a
-    crate is shared with other articles of the same length; asked why a crate isn't a smaller one,
+    crate is shared with other articles, of any length; asked why a crate isn't a smaller one,
     it answers from the plan's own figures.
   - Asked how much more of an article would fit, it plans with that article named and gives the
     plan's own sentence: a number of packs a plan still takes on as many trucks, never the most

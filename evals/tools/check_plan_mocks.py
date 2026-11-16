@@ -3,6 +3,7 @@
 - **consistency**, always:
   - each line's packing is smallest carrier first;
   - each crate's net weight is its contents' total, and every line or item is in some crate;
+  - a crate is as long as its longest bars' cut length, at least, and holds them longest first;
   - its packs' `positions`, laid out run by run, lie within the carrier's inside, none overlapping,
     as many as its contents' packs, and `standing` is the top of the highest;
   - its `smaller` names exactly the carriers below its own, each height over that carrier's inside;
@@ -99,6 +100,13 @@ def check_consistency(plan, faults, notes):
         for crate in truck["crates"]:
             if abs(sum(x["netWeight"] for x in crate["contents"]) - crate["netWeight"]) > 0.01:
                 faults.append("crate net weight != contents")
+            cuts = [lines[(x.get("document"), x["item"])].get("cutLength") for x in crate["contents"]
+                    if (x.get("document"), x["item"]) in lines]
+            if cuts and None not in cuts:
+                if crate["length"] < max(cuts):
+                    faults.append(f"crate length {crate['length']} under its longest bars' {max(cuts)}")
+                if cuts != sorted(cuts, reverse=True):
+                    faults.append(f"crate holds cut lengths {cuts}, not longest first")
             for content in crate["contents"]:
                 key = (content.get("document"), content["item"])
                 if key not in lines:
