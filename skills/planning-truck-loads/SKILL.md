@@ -62,7 +62,7 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    - the net weight, the goods alone, beside the gross;
    - a truck's two shares are of its payload and of its space, as its sentence gives them; never
      its `fill.volume` or `fill.floor`, which measure otherwise;
-   - that the weights are theoretical, each crate's empty weight LINKIN's estimate, and, while
+   - that the weights are theoretical, each crate's empty weight LINKIN's approximation, and, while
      `axlesChecked` is false, that the axles aren't checked.
 
    Never present the plan as a loading plan, a carrier's booking or how the plant loads.
