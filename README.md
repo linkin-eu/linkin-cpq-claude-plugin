@@ -338,9 +338,10 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
 - **The tool list:** `evals/mocks/linkin-cpq/_tools.json` is the server's `tools/list` result as
   it serves it, indented two spaces. Replace it whole when the server's tools change.
-- **The planning cases' `plan_load` answers,** and `fill-truck-minimum`'s priced fixtures, are
-  generated: `python3 evals/tools/make_plan_mocks.py` rewrites them from made-up figures, and
-  `git diff` shows what moved.
+- **The planning cases' `plan_load` answers,** and the priced fixtures beside them
+  (`fill-truck-minimum`'s, and `load-plan-inquiry-line`'s copy of its 200 bars), are generated:
+  `python3 evals/tools/make_plan_mocks.py` rewrites them from made-up figures, and `git diff`
+  shows what moved.
   `python3 evals/tools/check_plan_mocks.py` checks their consistency, and their shape too with
   `--openapi <path>` to the server's OpenAPI document.
 - **Graders:** a `regex` grader takes a JavaScript pattern, case-insensitive with `flags: i` (no
