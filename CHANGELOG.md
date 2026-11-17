@@ -64,7 +64,8 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - After issuing, Claude gives the number and where the document stands, and opens, saves, links or
   offers no page unless you ask. Asked, it opens the page as issued.
 - Before ordering again or explaining a document, Claude takes where it stands from the list of
-  documents: one revoked, it says so, with the day and the reason, and asks which document to use.
+  documents: one revoked, it says so, with the day and the reason, and reads it no further; to order
+  again, it asks which document to use.
 - An explained price gives the document's totals, minimums and pricing date with each line's
   charges.
 - Claude never passes a sales area for an inquiry, which LINKIN makes in 1102/10.
