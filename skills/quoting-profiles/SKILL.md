@@ -126,11 +126,13 @@ rewritten; give the `url`, behind the LINKIN website login, only when asked for 
 
 ## Order again
 
-1. Find the document: `find_documents` by `number` or `customerReference`, or newest first, then
-   `read_document`, whose rows hold each line's material, values, pieces (`quantity.entered`),
-   `customerMaterial` and `customerItem`: what a new order sends back. Where it stands `revoked`,
-   say so, and ask which document to use. Inquiries issued before the account was linked:
-   `find_documents` with `soldToParty` 0001999998.
+1. Find the document: `find_documents` by `number` or `customerReference`, or newest first;
+   inquiries issued before the account was linked, with `soldToParty` 0001999998. Where the
+   listing says it stands `revoked`, say so, with the day (`revokedOn`) and the reason
+   (`revocation`) where it gives one, and ask which document to use: a revoked document is never
+   read, since `read_document` answers it as one never issued. Else `read_document`, whose rows
+   hold each line's material, values, pieces (`quantity.entered`), `customerMaterial` and
+   `customerItem`: what a new order sends back.
 2. Ask what changes (pieces, lengths, finishes, lines dropped or added) and the customer's
    reference for the new order. Assume no change.
 3. Price the lines today: a quotation's with `price_quotation`, an inquiry's with
@@ -143,7 +145,9 @@ rewritten; give the `url`, behind the LINKIN website login, only when asked for 
 
 ## Explain an issued price
 
-1. `find_documents`; where the document stands `revoked`, say so first. Then `read_document`
+1. `find_documents`. Where the listing says the document stands `revoked`, say so, with the day
+   (`revokedOn`) and the reason (`revocation`) where it gives one, and stop: a revoked document is
+   never read, since `read_document` answers it as one never issued. Else `read_document`
    with `kind` and `id` for its head (totals, minimums, the pricing date), and again with `items`
    for each charge with its basis, such as "Metal, billed weight: 956.4 kg × 2,420.00 EUR /
    1,000 kg".

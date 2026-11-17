@@ -31,7 +31,7 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   - For a line or a quantity the planner didn't plan, Claude works out no trucks, crates or fit of
     its own; a quantity asked about is priced and planned.
   - A quotation can be planned in part, by its items.
-  - Each truck's net and gross weight is given, the crates' empty weight LINKIN's estimate.
+  - Each truck's net and gross weight is given, the crates' empty weight LINKIN's approximation.
   - Asked where an article is, Claude names every crate and truck holding it, and says where a
     crate is shared with other articles, of any length; asked why a crate isn't a smaller one,
     it answers from the plan's own figures.
@@ -63,8 +63,9 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 - After issuing, Claude gives the number and where the document stands, and opens, saves, links or
   offers no page unless you ask. Asked, it opens the page as issued.
-- Before ordering again or explaining a document, Claude says when it stands revoked, and asks
-  which document to use.
+- Before ordering again or explaining a document, Claude takes where it stands from the list of
+  documents: one revoked, it says so, with the day and the reason, and reads it no further; to order
+  again, it asks which document to use.
 - An explained price gives the document's totals, minimums and pricing date with each line's
   charges.
 - Claude never passes a sales area for an inquiry, which LINKIN makes in 1102/10.
