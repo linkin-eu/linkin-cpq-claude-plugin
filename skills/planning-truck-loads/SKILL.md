@@ -90,15 +90,18 @@ field's meaning. Quoting, issuing and submitting stay quoting-profiles'.
    absent means some of its packs fit no way across that carrier. Without `smaller`, the crate is
    its smallest carrier or is itself the pack, and the plan gives no other reason. Never work it
    out from the positions or the packs.
-7. **How much more of an article fits,** only when asked: plan with `fill` naming it (again,
-   where the order is already planned), a line by its `item`, a quotation's item by its `document`
-   and `item`, up to five. Lead with its sentence in `summary.fills` as it is. It is a number of
-   packs more with which a plan still takes as many trucks, as a new plan crates and loads them:
-   never the most that could fit, never that every smaller amount fits, never that its room takes
-   another article, and never that the plant ships so many. Where the sentence says no plan was
-   found or made in time, or that the search stopped there, it says nothing of whether more fits.
-   It carries no price: to know one, price the order with that line raised (the what-ifs' step 3).
-   Never work it out from the free payload or lane lengths.
+7. **How much more of an article fits,** only when asked: plan with `fill` naming it (again, where
+   the order is already planned), a line by its `item`, a quotation's item by its `document` and
+   `item`: those the customer asks about, up to 100, every article of the order where they ask about
+   all of them. Lead with its sentence in `summary.fills` as it is. It is a number of packs more
+   with which a plan still takes as many trucks, as a new plan crates and loads them: never the most
+   that could fit, never that every smaller amount fits, never that its room takes another article,
+   and never that the plant ships so many. Where the sentence says no plan was found or made in
+   time, or that the search stopped there, it says nothing of whether more fits. Where it says no
+   plan was made in time, or that the search stopped there, time ran out: to search that article
+   again, plan the same lines and quotations with `fill` naming it alone. It carries no price: to
+   know one, price the order with that line raised (the what-ifs' step 3). Never work it out from
+   the free payload or lane lengths.
 
 ## What-ifs: the minimums and the load
 
