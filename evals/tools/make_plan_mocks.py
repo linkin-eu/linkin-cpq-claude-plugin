@@ -2,7 +2,7 @@
 
 - `fill-truck-minimum`: the bare profile 7800001, 6 m, T5, priced and planned at each quantity the
   case may try (`fixtures/price_quotation-<n>.json`, `fixtures/plan_load-<n>.json`);
-- `load-plan-inquiry-line`: the 200-bar plan;
+- `load-plan-inquiry-line`: the 200 bars' price and plan, as `fill-truck-minimum`'s;
 - `load-plan-quotation` and `load-plan-app-host`: the coated quotation's plan, its trucks and crates
   as written in the mock, its sentences and figures worked out again (`plan_summary.py`);
 - `load-plan-two-trucks`: a heavy bare profile on two trucks, bound by weight alone;
@@ -17,7 +17,6 @@ Nothing should change unless the answer's shape or these figures did: check with
 """
 import copy
 import hashlib
-import json
 import pathlib
 import sys
 
@@ -59,9 +58,9 @@ def write_json(path, answer):
     path.write_text(dump(answer) + "\n", encoding="utf-8")
 
 
-def write_md(path, answer, front="expect:\n  documents: array\n"):
+def write_md(path, answer):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(f"---\n{front}---\n\n" + dump(answer) + "\n", encoding="utf-8")
+    path.write_text("---\nexpect:\n  documents: array\n---\n\n" + dump(answer) + "\n", encoding="utf-8")
 
 
 # ---- fill-truck-minimum: 7800001 bare, 0.6 kg/m, 6 m -------------------------------------------
@@ -209,8 +208,9 @@ def fill_truck_minimum():
         priced, _, packs, net = price(base, entered)
         write_json(fixtures / f"price_quotation-{entered}.json", priced)
         write_json(fixtures / f"plan_load-{entered}.json", summarize(bare_plan(header, packs, net)))
-    inquiry_line = CASES / "load-plan-inquiry-line/mocks/linkin-cpq/fixtures/plan_load-200.json"
-    inquiry_line.write_text((fixtures / "plan_load-200.json").read_text(encoding="utf-8"), encoding="utf-8")
+    inquiry_line = CASES / "load-plan-inquiry-line/mocks/linkin-cpq/fixtures"
+    for name in ("price_quotation-200.json", "plan_load-200.json"):  # its 200 bars, as fill-truck-minimum's
+        (inquiry_line / name).write_text((fixtures / name).read_text(encoding="utf-8"), encoding="utf-8")
 
 
 # ---- the coated quotation: its plan is written in the mock; its sentences are worked out again ----
@@ -285,9 +285,8 @@ def shared_crate():
     smaller = [{"carrier": "AW1/3", "height": 450}, {"carrier": "AW1/2", "height": 450}]
 
     def content(item, pieces, kg):
-        net = round(pieces * kg, 3)
         return {"document": doc, "item": item, "pieces": pieces, "packs": pieces // 4, **face,
-                "netWeight": int(net) if float(net).is_integer() else net}  # shortest digits, as the server writes
+                "netWeight": round(pieces * kg, 3)}
 
     def crate(z, contents, positions):
         return {"carrier": "AW1", "length": 6000, "width": 760, "height": 560, "x": 0, "y": 0, "z": z,

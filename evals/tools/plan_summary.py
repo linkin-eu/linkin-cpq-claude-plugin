@@ -9,11 +9,8 @@ answer's own trucks and crates, so the eval mocks read as the server's do:
 
 Tonnes and metres to one decimal, kilograms under a tonne, a share in whole percent rounded down,
 every "at least" rounded down, and a no-break space before each unit.
-
-Usage: plan_summary.py <mock>...  rewrites each plan mock's answer in place, its front matter kept.
 """
 import json
-import sys
 from decimal import Decimal, ROUND_HALF_UP
 
 NB = " "
@@ -200,11 +197,16 @@ def write_answer(path, answer):
     open(path, "w", encoding="utf-8").write(text[:start] + dump(answer) + text[end:])
 
 
+def shortest(value):
+    """A figure in its shortest digits, as the server writes it: 450 and 2, never 450.0 or 2.0."""
+    if isinstance(value, float) and value.is_integer():
+        return int(value)
+    if isinstance(value, dict):
+        return {k: shortest(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [shortest(v) for v in value]
+    return value
+
+
 def dump(answer):
-    return json.dumps(answer, ensure_ascii=False, separators=(",", ":"))
-
-
-if __name__ == "__main__":
-    for path in sys.argv[1:]:
-        _, answer, _, _ = read_mock(path)
-        write_answer(path, summarize(answer))
+    return json.dumps(shortest(answer), ensure_ascii=False, separators=(",", ":"))
