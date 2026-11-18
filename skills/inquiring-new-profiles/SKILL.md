@@ -1,6 +1,7 @@
 ---
 name: inquiring-new-profiles
 description: Prices and issues an inquiry through the LINKIN CPQ connector for new aluminium extruded profiles a customer has drawn, which have no extrusion die yet. Use when a buyer sends a drawing or the figures of a new profile, asks for a price on a profile whose die doesn't exist yet, sends an RFQ naming profiles they can't order yet, or wants such an inquiry issued, also from a LINKIN account not yet linked to a customer number. Not for profiles the customer can already order, which quoting-profiles quotes.
+allowed-tools: mcp__plugin_linkin-cpq_linkin-cpq__get_account mcp__plugin_linkin-cpq_linkin-cpq__find_profiles mcp__plugin_linkin-cpq_linkin-cpq__find_values mcp__plugin_linkin-cpq_linkin-cpq__price_quotation mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry mcp__plugin_linkin-cpq_linkin-cpq__find_documents mcp__plugin_linkin-cpq_linkin-cpq__read_document mcp__plugin_linkin-cpq_linkin-cpq__plan_load mcp__plugin_linkin-cpq_linkin-cpq__describe_api
 ---
 
 # Inquiring new profiles

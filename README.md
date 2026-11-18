@@ -4,7 +4,7 @@
 </picture>
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-5.0.2-0C1A2A?style=flat-square" alt="Version 5.0.2"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-5.0.3-0C1A2A?style=flat-square" alt="Version 5.0.3"></a>
   <a href="#get-started"><img src="https://img.shields.io/badge/Claude-plugin-0C1A2A?style=flat-square" alt="Claude plugin"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-LINKIN%20customers-0C1A2A?style=flat-square" alt="Licence: for LINKIN's customers and partners"></a>
 </p>
@@ -87,7 +87,9 @@ for new profiles. To quote the profiles you can order,
    there because they show the document or the plan in a view. Leave the tools that issue,
    submit or revoke on **Needs approval**, so Claude asks before it issues, submits or revokes.
    Where an organization's admin has turned off **Always allow** for Cowork, Claude asks before
-   every tool there, and **Always allow** still works in chats.
+   every tool there, and **Always allow** still works in chats. On a Team or Enterprise plan, an
+   Owner can limit these permissions for everyone in the organization: if you can't set a tool
+   to **Always allow**, ask an Owner.
 
 Then ask for a price. The plugin is saved to your Claude account: it works in Cowork too, with the
 same sign-in, and in Claude Code, where you sign in once more ([Claude Code](#claude-code)).
@@ -137,8 +139,9 @@ Then start Claude Code, or run `/reload-plugins` if it was already running. Run 
 `linkin-cpq` and sign in. The sign-in comes back to port `47819` on your computer, so keep that
 port free.
 
-To let the nine tools that only read run without asking, add them to `permissions.allow` in your
-settings:
+When a LINKIN skill starts, the nine tools that only read run without asking until your next
+message; the tools that issue, submit or revoke still ask. To let the nine run without asking at
+any time, add them to `permissions.allow` in your settings:
 
 ```json
 {

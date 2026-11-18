@@ -1,6 +1,7 @@
 ---
 name: comparing-per-kilo-prices
 description: Compares LINKIN's price for aluminium extruded profiles with another offer per kg or per tonne, like for like, through the LINKIN CPQ connector. Use only when the buyer brings the comparison - another supplier's or a competitor's price in EUR/kg or EUR/t, a remark that LINKIN is more expensive per kilo, or a request for LINKIN's price per kg or per tonne to compare with another offer. Not for a plain price or quote, which quoting-profiles handles with its price per kg column, and never volunteered.
+allowed-tools: mcp__plugin_linkin-cpq_linkin-cpq__get_account mcp__plugin_linkin-cpq_linkin-cpq__find_profiles mcp__plugin_linkin-cpq_linkin-cpq__find_values mcp__plugin_linkin-cpq_linkin-cpq__price_quotation mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry mcp__plugin_linkin-cpq_linkin-cpq__find_documents mcp__plugin_linkin-cpq_linkin-cpq__read_document mcp__plugin_linkin-cpq_linkin-cpq__plan_load mcp__plugin_linkin-cpq_linkin-cpq__describe_api
 ---
 
 # Comparing per-kilo prices

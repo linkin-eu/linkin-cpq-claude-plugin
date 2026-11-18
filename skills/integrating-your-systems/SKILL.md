@@ -1,6 +1,7 @@
 ---
 name: integrating-your-systems
 description: Answers a LINKIN or PROFILINK customer who asks how to connect their own systems to LINKIN - an ERP, a purchasing or procurement system, a webshop or their own scripts - through LINKIN's API, from the API's description the connector gives. Use when the customer asks about LINKIN's API, its operations, fields or refusals, its OpenAPI or Swagger document, automating quotations, prices or orders from their own software, or how to authenticate a server or get machine-to-machine access. Not for pricing, quoting or planning in this conversation, which the other LINKIN skills do, not for setting up this plugin or its connector, and not for programming questions that don't involve LINKIN.
+allowed-tools: mcp__plugin_linkin-cpq_linkin-cpq__get_account mcp__plugin_linkin-cpq_linkin-cpq__find_profiles mcp__plugin_linkin-cpq_linkin-cpq__find_values mcp__plugin_linkin-cpq_linkin-cpq__price_quotation mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry mcp__plugin_linkin-cpq_linkin-cpq__find_documents mcp__plugin_linkin-cpq_linkin-cpq__read_document mcp__plugin_linkin-cpq_linkin-cpq__plan_load mcp__plugin_linkin-cpq_linkin-cpq__describe_api
 ---
 
 # Integrating your systems with LINKIN

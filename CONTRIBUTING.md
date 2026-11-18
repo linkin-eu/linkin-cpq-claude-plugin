@@ -52,6 +52,16 @@ included, so Claude Code registers its own client on the one port it accepts ("s
 on its own", Claude Code's MCP docs). The connector's earlier address, `https://mcp.linkin.eu/mcp`,
 still answers for connectors added there, and the plugin no longer names it.
 
+Every skill's `allowed-tools` lists the same nine tools, the connector's read-only ones, by full
+name (`mcp__plugin_linkin-cpq_linkin-cpq__<tool>`), as a space-separated string, the Agent Skills
+format's form. Claude Code runs them without asking in the turn that invokes the skill, and the
+grant clears at the user's next message. Never a tool that issues, submits or revokes, and never a
+wildcard, which would cover those too. `.claude-plugin/plugin.json` holds only `name`,
+`displayName`, `description`, `version`, `author`, `homepage`, `repository`, `license` and
+`keywords`: the directory listing fields (`icon`, `supportUrl`, `privacyPolicyUrl` and their kin)
+are read only by Anthropic's directory, and Claude Desktop's marketplace strips them with a
+warning. `evals/check-histories.sh` checks both.
+
 **A test build for another connector:** `./build.sh <commit> <address>` builds the plugin at that
 commit for the connector at that address, given in full with its path, as the default
 `https://cpq.mcp.linkin.eu/mcp` is. Its file name, its version and its name in Claude say `dev` and

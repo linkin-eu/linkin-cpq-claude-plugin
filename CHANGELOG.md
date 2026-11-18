@@ -3,6 +3,19 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## 5.0.3
+
+### Changed
+
+- In Claude Code, the tools that only read run without asking in the turn that starts a LINKIN
+  skill. The tools that issue, submit or revoke still ask. To never be asked for a read, add the
+  nine read-only tools to your settings ([Claude Code](README.md#claude-code)).
+
+### Fixed
+
+- Claude Desktop's marketplace panel no longer warns about keys in the plugin's manifest it
+  doesn't recognize.
+
 ## 5.0.2
 
 ### Fixed
