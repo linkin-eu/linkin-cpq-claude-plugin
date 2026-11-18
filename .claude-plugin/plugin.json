@@ -2,7 +2,7 @@
   "name": "linkin-cpq",
   "displayName": "LINKIN CPQ",
   "description": "Quote LINKIN's aluminium extruded profiles in Claude: match a request to the profiles you can order, price it with its breakdown and price per kg, issue the quotation, price new profiles from a drawing as an inquiry, and estimate the trucks an order takes. Compares an offer you bring per kg, like for like, and explains how your own systems can work with LINKIN's API. Signs in to LINKIN's CPQ connector with your LINKIN account.",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "author": {
     "name": "LINKIN Ltd.",
     "email": "devops@linkin.eu",

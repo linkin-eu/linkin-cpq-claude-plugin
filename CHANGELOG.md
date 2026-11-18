@@ -3,7 +3,10 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
-## 4.2.0
+## 5.0.0
+
+A major version: it needs version 2.0 of LINKIN's CPQ connector, which LINKIN runs for you, and
+doesn't work with an earlier one.
 
 ### Added
 
