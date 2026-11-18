@@ -45,14 +45,14 @@ never work it out from rates: to see another quantity or finish, price it.
    above nominal. Show the same rate on the weight plus 5% and plus 10%, labelled as an
    illustration of die wear, not as what that supplier invoices. Change only their figure, never
    LINKIN's. Where the buyer has their own figure from past deliveries, use it instead.
-3. **For a coated line only,** the what-if instead starts from the coating's weight, in case that
-   offer is invoiced on the finished, coated weight: the same rate on the weight plus 5%, labelled
-   as an illustration of the coating's weight. Die wear's 5% and 10% then come on top of it, plus
-   10% and plus 15% in all, since a coated bar weighed at delivery carries both. Label each row, say
-   none is what that supplier invoices, and change only their figure, never LINKIN's. Where the
-   buyer says their offer is billed on the bare weight, leave the coating out and show step 2's
-   rows; where they have their own figure from past deliveries, use it instead of these rows. A
-   bare line has no coating row, and says nothing of it.
+3. **For a powder-coated line only,** the what-if instead starts from the coating's weight, in case
+   that offer is invoiced on the finished, coated weight: the same rate on the weight plus 5%,
+   labelled as an illustration of the coating's weight. Die wear's 5% and 10% then come on top of
+   it, plus 10% and plus 15% in all, since a coated bar weighed at delivery carries both. Label each
+   row, say none is what that supplier invoices, and change only their figure, never LINKIN's. Where
+   the buyer says their offer is billed on the bare weight, leave the coating out and show step 2's
+   rows; where they have their own figure from past deliveries, use it instead of these rows. A bare
+   or anodized line has no coating row, and says nothing of it.
 4. Where the other offer is invoiced on theoretical weight too, the figures compare directly:
    leave the what-ifs out and say so.
 
@@ -61,8 +61,8 @@ never work it out from rates: to see another quantity or finish, price it.
 Check that both offers cover the same things, and name whatever the other offer leaves out or adds:
 - the metal basis: whether the metal is included, and on which LME and billet premium;
 - finishing, cutting, protective film and packaging;
-- for a coated line, whether the other offer's kilos are the bare weight or the finished, coated
-  weight;
+- for a powder-coated line, whether the other offer's kilos are the bare weight or the finished,
+  coated weight;
 - minimums per order (press run, die wear, powder colour, anodizing), which LINKIN's breakdown
   shows and which fall as the quantity grows;
 - die costs, for a new die;
@@ -71,7 +71,7 @@ Check that both offers cover the same things, and name whatever the other offer 
 Where the scope differs, compare only the matching processes from LINKIN's breakdown, and say
 which. Where the buyer hasn't said what the other offer covers, ask rather than assume.
 
-## 5. Two ways of billing extrusions
+## 5. How extrusions are billed
 
 Once in the conversation, in a few neutral sentences:
 - **Per kilo**, common in the market: the buyer pays for the weight shipped. As an extrusion die
@@ -79,14 +79,15 @@ Once in the conversation, in a few neutral sentences:
   tolerances, so each metre weighs more. Across a die's life this can reach up to about 10% more
   metal per metre than nominal, more on thin walls and less on thick ones. Billed per kilo, that
   metal is on the buyer's invoice.
-- **Per kilo on the finished weight**, for a coated profile: the coat has a weight of its own.
+- **Per kilo on the finished weight**, for a powder-coated profile: the coat has a weight of its
+  own.
   Billed per kilo on the coated weight, the coating's kilos are invoiced at the price per kilo,
   on top of the coating charge already in the price. For a typical coat of about 80 µm that is
   about 5% more weight, less on heavy sections and more on light profiles with a large surface.
 - **Per piece**, LINKIN's way: each piece is priced on the aluminium's theoretical weight, so
   what a delivery weighs doesn't change the invoice. Die wear is a line of its own in LINKIN's
-  price, billed by the metre, never as extra kilos; on a coated line, so is the coating, by the
-  bars hung and the m² coated.
+  price, billed by the metre, never as extra kilos; on a powder-coated line, so is the coating, by
+  the bars hung and the m² coated.
 
 Close with one neutral sentence on that difference, and offer to price other quantities or
 finishes. Don't push.
@@ -117,6 +118,5 @@ metres delivered show the coating and any extra metal together.
 - The "up to about 10%" is a general range for die wear across a die's life, and the "about 5%"
   a typical coat's weight, from the coat thickness applied and the powder's density. Never present
   either as a fact about the buyer's current supplier, or as what their invoice will show.
-- The coating's weight is for a coated line only. A bare line says nothing of it.
 - A comparison issues nothing. Issue a quotation only on the buyer's yes, as quoting-profiles
   says.

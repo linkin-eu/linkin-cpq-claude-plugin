@@ -43,6 +43,7 @@ the pieces; and `values`, by field name.
 | Perimeter, mm | `ZA_PROF_PERI_MM_EST` |
 | The die's planned cavities, press speed, life and complexity, if the customer gives them | `ZA_DIE_CAVITIES_EST`, `ZA_EXTR_M_MIN_EST`, `ZA_DIE_LIFE_M_EST`, `ZA_DIE_COMPLEXITY_EST` |
 | Ageing face, mm², if the customer gives it | `ZA_AGE_FACE_MM2_EST` |
+| Belt pitch, mm, if the customer gives it | `ZA_PC_BELT_LENGTH_EST` |
 | Finish: bare, powder coated or anodized | `ZA_SURFACE_FINISH` |
 | Powder coated: colour system and number (`find_values` lists the numbers), surface, Qualicoat class, pre-anodized base | `ZA_POWDER_TYPE`, `ZA_POWDER_NUMBER`, `ZA_POWDER_FINISH`, `ZA_POWDER_CLASS`, `ZA_PRE_ANODIZED` |
 | Anodized: pretreatment, colour, thickness class | `ZA_ANOD_FINISH`, `ZA_ANOD_COLOR`, `ZA_ANOD_CLASS` |
@@ -54,8 +55,9 @@ the pieces; and `values`, by field name.
 1. **Take what the drawing gives**, and ask in one message for every figure it doesn't, apart
    from those step 2 lets default, together with the customer's RFQ reference. Never guess a
    figure off a drawing.
-2. **Defaults.** The die's cavities, press speed, life and complexity, the ageing face and the
-   belt pitch default to the plant's references. Enter one only where the customer gives it.
+2. **Defaults.** The die's cavities, press speed and life and the ageing face default by the
+   drawing's weight per metre, in the plant's bands; the die's complexity and the belt pitch to the
+   plant's references, 4 and 200 mm. Enter one only where the customer gives it.
 3. **Price** with `price_inquiry`: `customerReference`, the customer's RFQ reference, and every
    profile so far.
    - `incomplete`: ask for the fields in `missing`.
@@ -70,7 +72,7 @@ the pieces; and `values`, by field name.
      preliminary offer). With no linked customer, say at most that it is addressed by their
      registration on the LINKIN website. Never say the inquiry, the account or the buyer is
      unverified, and never mention `customerVerified`, a flag, mark, warning or note about the
-     account, or what LINKIN's staff see: they are LINKIN's own.
+     account: they are LINKIN's own record of how the inquiry was issued.
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
    - `TOO_MANY_INQUIRIES`: say nothing was issued, why, and what mends it, from its message. Don't
      retry.
@@ -91,7 +93,7 @@ Under it:
 - the new dies' refundable deposit, from the `NEW_DIE_DEPOSIT` message, outside the total;
 - that it is a preliminary offer, subject to LINKIN's technical review of each profile, its
   weights the drawing's estimates;
-- which figures are the plant's references.
+- which figures the plant's bands and references gave, as the line's detail reports them.
 
 List a line that isn't `ok` under the table with what it still needs or what was refused, and no
 price. An issued document may show beside the answer in the host's document view. Shown or not,
