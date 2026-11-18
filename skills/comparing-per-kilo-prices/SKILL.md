@@ -12,6 +12,13 @@ asks. Never start it unasked, and never press it on the buyer.
 
 Give the figures first, then the explanation, briefly. Keep the connector's rules.
 
+**A refusal of the account's details.** Where a tool answers that the customer's LINKIN account's
+details are incomplete or invalid, say which detail its message names and stop: retry nothing,
+and name no other detail. Where the message ends "Fix it in your profile on the LINKIN website.",
+ask the customer to complete their profile at https://linkin.eu/en/complete-profile/, then to ask
+again. Where it says to contact LINKIN, ask the customer to contact LINKIN to correct it, and
+give no profile link.
+
 ## 1. LINKIN's price
 
 Do quoting-profiles' First and its steps 1–3: match, fill in and price, with `view: detail` and
