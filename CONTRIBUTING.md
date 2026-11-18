@@ -26,9 +26,10 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
   shape too with `--openapi <path>` to the server's OpenAPI document.
 - **Recorded histories:** a case's `history.jsonl` is a session recorded on another case and cut
   down to its messages, as its `case.yaml` says. `evals/check-histories.sh` fails where its copy of
-  a skill or of a mock's fixed answer is no longer the file: record it again. `issue-as-prospect`
-  and `too-many-inquiries` keep copies of `unlinked-inquiry`'s `get_account` and `price_inquiry`
-  mocks, and `issue-inquiry-on-yes` of `profilink-only-inquiry`'s: change them together.
+  a skill or of a mock's fixed answer is no longer the file: update its copies, or record it again.
+  `issue-as-prospect` and `too-many-inquiries` keep copies of `unlinked-inquiry`'s `get_account` and
+  `price_inquiry` mocks, `profile-incomplete` of the same `get_account`, and
+  `issue-inquiry-on-yes` of `profilink-only-inquiry`'s: change them together.
 - **Graders:** a `regex` grader takes a JavaScript pattern, case-insensitive with `flags: i` (no
   inline `(?i)`), and `match: not_contains` for one that must not appear. A case where a skill
   must not start uses `tool_used` on `Skill` with `min: 0`, `max: 0` and `arm: both`. A case's own
@@ -41,18 +42,21 @@ same judge, to show what the skills add; there a grader on the Skill tool passes
 construction.
 
 The repository's `.mcp.json` names LINKIN's connector by its fixed address,
-`https://mcp.linkin.eu/mcp`, and no OAuth client. The marketplace serves the file as it stands to
-every Claude app, and Claude Desktop and claude.ai take only a fixed address. Claude registers its
-own client with the connector's sign-in.
+`https://cpq.mcp.linkin.eu/mcp`, and no OAuth client, as Anthropic's plugin docs have it. The
+marketplace serves the file as it stands to every Claude app, and Claude Desktop and claude.ai
+take only a fixed address. The connector's sign-in registers each Claude app's own client: for
+claude.ai's callback, Claude Desktop's `claude://claude.ai/mcp-auth-callback/sdk` and Claude Code's
+loopback callback. The connector's earlier address, `https://mcp.linkin.eu/mcp`, still answers for
+connectors added there, and the plugin no longer names it.
 
 **A test build for another connector:** `./build.sh <commit> <address>` builds the plugin at that
 commit for the connector at that address, given in full with its path, as the default
-`https://mcp.linkin.eu/mcp` is. Its file name, its version and its name in Claude say `dev` and
-the commit. Its `.mcp.json` carries that address and no OAuth client: Claude registers its own
-where that connector's sign-in lets it. It keeps the name `linkin-cpq`, so the two are never
-installed at once. To try it in Claude Code, turn off any installed `linkin-cpq`, unzip the build
-and start `claude --plugin-dir <folder>/linkin-cpq`. The address must start with `https://`, so a
-local server without TLS can't be tried this way. To test it in Claude Desktop or claude.ai:
+`https://cpq.mcp.linkin.eu/mcp` is. Its file name, its version and its name in Claude say `dev` and
+the commit. Its `.mcp.json` carries that address and no OAuth client, as the repository's does. It
+keeps the name `linkin-cpq`, so the two are never installed at once. To try it in Claude Code,
+turn off any installed `linkin-cpq`, unzip the build and start
+`claude --plugin-dir <folder>/linkin-cpq`. The address must start with `https://`, so a local
+server without TLS can't be tried this way. To test it in Claude Desktop or claude.ai:
 
 1. Under **Customize › Plugins**, delete **LINKIN CPQ**. If an Owner made it **Required** for your
    organization, ask them to lift that while you test. If a LINKIN connector is also listed under
@@ -60,8 +64,7 @@ local server without TLS can't be tried this way. To test it in Claude Desktop o
 2. Choose **Customize › Plugins › Add › Upload plugin** and pick the test zip. It shows as
    `LINKIN CPQ (dev <commit>)`.
 3. On its **Connectors** tab, connect **linkin-cpq** and sign in with your account for that
-   connector. If Claude asks for an OAuth client ID, enter the one registered with that
-   connector's sign-in.
+   connector.
 4. Set its tool permissions as in [Get started](README.md#claude-desktop-or-claudeai), step 5.
 
 To go back, delete `LINKIN CPQ (dev <commit>)`, install **LINKIN CPQ** again from LINKIN's

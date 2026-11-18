@@ -12,6 +12,13 @@ instead (quoting-profiles).
 Keep the connector's rules. Its instructions and tool descriptions hold them and each field's
 meaning; this skill holds the workflow.
 
+**A refusal of the account's details.** Where a tool answers that the customer's LINKIN account's
+details are incomplete or invalid, say which detail its message names and stop: retry nothing,
+and name no other detail. Where the message ends "Fix it in your profile on the LINKIN website.",
+ask the customer to complete their profile at https://linkin.eu/en/complete-profile/, then to ask
+again. Where it says to contact LINKIN, ask the customer to contact LINKIN to correct it, and
+give no profile link.
+
 ## First
 
 1. If the LINKIN CPQ connector's tools aren't available, say: "The LINKIN CPQ connector isn't

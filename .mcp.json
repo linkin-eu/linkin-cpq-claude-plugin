@@ -2,7 +2,7 @@
   "mcpServers": {
     "linkin-cpq": {
       "type": "http",
-      "url": "https://mcp.linkin.eu/mcp"
+      "url": "https://cpq.mcp.linkin.eu/mcp"
     }
   }
 }

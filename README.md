@@ -4,7 +4,7 @@
 </picture>
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-5.0.0-0C1A2A?style=flat-square" alt="Version 5.0.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-5.0.1-0C1A2A?style=flat-square" alt="Version 5.0.1"></a>
   <a href="#get-started"><img src="https://img.shields.io/badge/Claude-plugin-0C1A2A?style=flat-square" alt="Claude plugin"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-LINKIN%20customers-0C1A2A?style=flat-square" alt="Licence: for LINKIN's customers and partners"></a>
 </p>
@@ -81,8 +81,6 @@ for new profiles. To quote the profiles you can order,
 4. **Connect.** Under **Customize › Plugins**, open **LINKIN CPQ** and its **Connectors** tab, add
    or connect **linkin-cpq**, and sign in with your LINKIN account. On a Team or Enterprise plan,
    if you can't add it, ask an Owner to add the connector for your organization, then connect it.
-   If Claude asks for an OAuth client ID, enter `402sn2rbceqt5r4sjktlekf2vm` and leave the secret
-   empty.
 5. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
    **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
    document** and **Plan the trucks** to **Always allow** too: they only read, and are listed
@@ -201,7 +199,7 @@ settings:
 sequenceDiagram
     actor You
     participant Claude as Claude<br/>with the LINKIN CPQ skills
-    participant CPQ as LINKIN CPQ<br/>mcp.linkin.eu
+    participant CPQ as LINKIN CPQ<br/>cpq.mcp.linkin.eu
     You->>Claude: Ask for a price in your own words
     Claude->>CPQ: Price it, signed in as you
     CPQ-->>Claude: Price, breakdown and minimums
@@ -214,7 +212,7 @@ sequenceDiagram
 
 | Part | What it does |
 |---|---|
-| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, estimates how much of an order fits standard trucks, and describes LINKIN's API |
+| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://cpq.mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, estimates how much of an order fits standard trucks, and describes LINKIN's API |
 | **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits or revokes when you ask, orders again and explains an issued price |
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
 | **Skill** `planning-truck-loads` | Estimates how much of an order or a quotation fits standard trucks, to size the order (not a loading plan), and compares the quantities that clear a minimum charge, each priced and planned |
@@ -309,6 +307,7 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 | Claude asks which customer | Your account may order for several customers. Name one |
 | Claude refuses the marketplace | Your organization limits which marketplaces members may add: ask an Owner to allow `linkin-eu/linkin-cpq-claude-plugin` |
 | **Add** offers no plugin options | **User-created skills** is off for your organization: ask an Owner to turn it on |
+| Your LINKIN account's details are incomplete or invalid | For an account not yet linked to a customer number, complete your profile at <https://linkin.eu/en/complete-profile/>, then ask again. For a linked account, [contact LINKIN](https://linkin.eu/en/contact/) to correct them |
 
 ## Updating
 
@@ -332,6 +331,14 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 
   Then restart Claude Code, or run `/reload-plugins`. A plugin synced from Claude Desktop or
   claude.ai (`linkin-cpq@synced`) updates when it updates there.
+- **From 5.0.1, a new address.** The plugin connects at `https://cpq.mcp.linkin.eu/mcp`, where it
+  used `https://mcp.linkin.eu/mcp` before. If Claude then says the LINKIN CPQ connector isn't
+  connected, connect it again on the plugin's **Connectors** tab and sign in with your LINKIN
+  account. In Claude Code, run `/mcp` and sign in again: Claude Code keeps a sign-in for each
+  address. On a Team or Enterprise plan, if the plugin's connector shows as not added, ask an
+  Owner to add it for your organization at the new address. A LINKIN connector you added yourself
+  at the old address keeps working; remove it under **Customize › Connectors**, so that Claude
+  doesn't see LINKIN's tools twice.
 
 ## Upgrading from an earlier LINKIN plugin
 
