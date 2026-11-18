@@ -1,13 +1,15 @@
-"""Writes the eval mocks of the planning cases from made-up figures, as the server would answer them:
+"""Writes the eval mocks of the planning cases from made-up figures, as the server would answer
+them:
 
 - `fill-truck-minimum`: the bare profile 7800001, 6 m, T5, priced and planned at each quantity the
   case may try (`fixtures/price_quotation-<n>.json`, `fixtures/plan_load-<n>.json`);
 - `load-plan-inquiry-line`: the 200 bars' price and plan, as `fill-truck-minimum`'s;
-- `load-plan-quotation` and `load-plan-app-host`: the coated quotation's plan, its trucks and crates
-  as written in the mock, its sentences and figures worked out again (`plan_summary.py`);
+- `load-plan-quotation`: the coated quotation's plan, its trucks and crates as written in the mock,
+  its sentences and figures worked out again (`plan_summary.py`); `load-plan-app-host` gets a copy;
 - `load-plan-two-trucks`: a heavy bare profile on two trucks, bound by weight alone;
 - `load-plan-fill`: the coated quotation's plan with more packs of its item 10;
-- `load-plan-shared-crate`: a coated quotation in two lengths, the rests sharing a crate.
+- `load-plan-shared-crate`: a coated quotation in two lengths, the rests sharing a crate;
+- `per-kilo`: a copy of `per-tonne`'s priced line, which `fill-truck-minimum` starts from.
 
 Every figure is made up: metal 2,420 + 640 EUR/t with a 250 kg minimum a line, the press run
 545 EUR/t with the die's 272.50 EUR minimum, die wear 0.16 EUR/m on two cavities, 20 kg a crate.
@@ -166,7 +168,7 @@ def price(base, entered):
         item["uplift"] = 0
         item["groups"] = []
         item["shares"] = []
-    return o, q, packs, net
+    return o, packs, net
 
 
 def bare_plan(header, packs, net):
@@ -205,21 +207,32 @@ def fill_truck_minimum():
     header = {k: v for k, v in base["header"].items() if k in ("soldToParty", "salesArea")}
     fixtures = CASES / "fill-truck-minimum/mocks/linkin-cpq/fixtures"
     for entered in QUANTITIES:
-        priced, _, packs, net = price(base, entered)
+        priced, packs, net = price(base, entered)
         write_json(fixtures / f"price_quotation-{entered}.json", priced)
         write_json(fixtures / f"plan_load-{entered}.json", summarize(bare_plan(header, packs, net)))
-    inquiry_line = CASES / "load-plan-inquiry-line/mocks/linkin-cpq/fixtures"
-    for name in ("price_quotation-200.json", "plan_load-200.json"):  # its 200 bars, as fill-truck-minimum's
-        (inquiry_line / name).write_text((fixtures / name).read_text(encoding="utf-8"), encoding="utf-8")
 
 
 # ---- the coated quotation: its plan is written in the mock; its sentences are worked out again ----
 
 def coated_quotation():
+    _, answer, _, _ = read_mock(CASES / "load-plan-quotation/mocks/linkin-cpq/plan_load.md")
+    answer = summarize(answer)
     for case in ("load-plan-quotation", "load-plan-app-host"):
-        path = CASES / case / "mocks/linkin-cpq/plan_load.md"
-        _, answer, _, _ = read_mock(path)
-        write_answer(path, summarize(answer))
+        write_answer(CASES / case / "mocks/linkin-cpq/plan_load.md", answer)
+
+
+def inquiry_line():
+    """load-plan-inquiry-line's 200 bars, priced and planned as fill-truck-minimum's."""
+    source = CASES / "fill-truck-minimum/mocks/linkin-cpq/fixtures"
+    target = CASES / "load-plan-inquiry-line/mocks/linkin-cpq/fixtures"
+    for name in ("price_quotation-200.json", "plan_load-200.json"):
+        (target / name).write_text((source / name).read_text(encoding="utf-8"), encoding="utf-8")
+
+
+def per_kilo():
+    source = CASES / "per-tonne/mocks/linkin-cpq/price_quotation.md"
+    target = CASES / "per-kilo/mocks/linkin-cpq/price_quotation.md"
+    target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
 
 
 def fill():
@@ -314,7 +327,9 @@ def shared_crate():
 
 if __name__ == "__main__":
     fill_truck_minimum()
+    inquiry_line()
     coated_quotation()
     fill()
     two_trucks()
     shared_crate()
+    per_kilo()
