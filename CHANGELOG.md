@@ -26,6 +26,9 @@ doesn't work with an earlier one.
 
 ### Changed
 
+- You add the plugin from LINKIN's marketplace, and it updates from there. The zip is no longer
+  published: if you uploaded it, delete the plugin and add it again from the marketplace.
+- In Claude Code, signing in no longer needs port 47819.
 - The privacy notice, version 3, says more exactly what LINKIN receives: the numbers of the
   documents you name, your own names for profiles and lines, the reason and any note you give when
   you revoke a document, and the names of the API's operations or schemas you ask Claude to
