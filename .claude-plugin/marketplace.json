@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "linkin-cpq",
-      "description": "Quote LINKIN's aluminium extruded profiles in Claude, and price new profiles from a drawing as an inquiry.",
+      "description": "Quote LINKIN's aluminium extruded profiles in Claude, price new profiles from a drawing as an inquiry, estimate the trucks an order takes, compare an offer you bring per kg, and explain LINKIN's API.",
       "category": "productivity",
       "source": "./"
     }

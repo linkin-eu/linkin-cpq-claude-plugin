@@ -1,5 +1,5 @@
 ---
-description: "A drawing without the die's cavities or the ageing face is priced on the plant's references by weight per metre, without asking for them, and said so."
+description: "A drawing without the die's cavities or the ageing face is priced on the plant's bands by weight per metre, without asking for them, and said so."
 tags: [inquiry]
 max_turns: 20
 allowed_tools: [Skill, Read]
