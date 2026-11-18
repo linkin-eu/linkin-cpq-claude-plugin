@@ -7,8 +7,9 @@
 # it whole. Also fails if a skill's allowed-tools is not exactly the connector's nine read-only
 # tools, by full name, which Claude Code then runs without asking: never a tool that issues,
 # submits or revokes, and never a wildcard. And if .claude-plugin/plugin.json holds a top-level key
-# beyond those a marketplace install keeps: Claude Desktop's marketplace strips any other with a
-# warning, though `claude plugin validate --strict` passes it.
+# beyond the nine it has now: Claude Desktop's marketplace strips the directory listing fields
+# (icon, supportUrl, privacyPolicyUrl and their kin) with a warning, though
+# `claude plugin validate --strict` passes them.
 set -eu
 status=0
 prefix=mcp__plugin_linkin-cpq_linkin-cpq__
@@ -22,7 +23,7 @@ for f in "$(dirname "$0")"/../skills/*/SKILL.md; do
 done
 keys=$(jq -r 'keys_unsorted[] | select(. as $k | ["name", "displayName", "description", "version", "author", "homepage", "repository", "license", "keywords"] | index($k) | not)' "$(dirname "$0")/../.claude-plugin/plugin.json")
 if [ -n "$keys" ]; then
-  echo ".claude-plugin/plugin.json: keys a marketplace install strips: $(echo $keys)" >&2; status=1
+  echo ".claude-plugin/plugin.json: keys beyond the nine it may hold: $(echo $keys)" >&2; status=1
 fi
 marker="**A refusal of the account's details.**"
 first=""

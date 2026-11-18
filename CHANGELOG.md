@@ -9,7 +9,7 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 - In Claude Code, the tools that only read run without asking in the turn that starts a LINKIN
   skill. The tools that issue, submit or revoke still ask. To never be asked for a read, add the
-  nine to your settings ([Claude Code](README.md#claude-code)).
+  nine read-only tools to your settings ([Claude Code](README.md#claude-code)).
 
 ### Fixed
 

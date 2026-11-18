@@ -60,7 +60,7 @@ wildcard, which would cover those too. `.claude-plugin/plugin.json` holds only `
 `displayName`, `description`, `version`, `author`, `homepage`, `repository`, `license` and
 `keywords`: the directory listing fields (`icon`, `supportUrl`, `privacyPolicyUrl` and their kin)
 are read only by Anthropic's directory, and Claude Desktop's marketplace strips them with a
-warning. `evals/check-histories.sh` holds both.
+warning. `evals/check-histories.sh` checks both.
 
 **A test build for another connector:** `./build.sh <commit> <address>` builds the plugin at that
 commit for the connector at that address, given in full with its path, as the default
