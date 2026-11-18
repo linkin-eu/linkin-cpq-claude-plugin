@@ -1,6 +1,7 @@
 ---
 name: quoting-profiles
 description: Quotes LINKIN's aluminium extruded profiles through the LINKIN CPQ connector. Use when a LINKIN or PROFILINK customer asks which profiles they can order, asks for a price, a quote, an offer or an RFQ on profiles, asks what a profile can be ordered with or why an option is refused, asks about RAL colours, powder coating, anodizing, lengths, packs or minimums, wants to issue, reorder or submit a quotation, wants to revoke or withdraw a quotation or an inquiry, or asks about an earlier one. Not for new profiles with no die yet, which inquiring-new-profiles prices, or for comparing another offer per kg or per tonne, which comparing-per-kilo-prices does, or for connecting the customer's own systems to LINKIN's API, which integrating-your-systems answers.
+allowed-tools: mcp__plugin_linkin-cpq_linkin-cpq__get_account mcp__plugin_linkin-cpq_linkin-cpq__find_profiles mcp__plugin_linkin-cpq_linkin-cpq__find_values mcp__plugin_linkin-cpq_linkin-cpq__price_quotation mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry mcp__plugin_linkin-cpq_linkin-cpq__find_documents mcp__plugin_linkin-cpq_linkin-cpq__read_document mcp__plugin_linkin-cpq_linkin-cpq__plan_load mcp__plugin_linkin-cpq_linkin-cpq__describe_api
 ---
 
 # Quoting LINKIN profiles
