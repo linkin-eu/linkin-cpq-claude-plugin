@@ -2,7 +2,10 @@
   "mcpServers": {
     "linkin-cpq": {
       "type": "http",
-      "url": "https://cpq.mcp.linkin.eu/mcp"
+      "url": "https://cpq.mcp.linkin.eu/mcp",
+      "oauth": {
+        "callbackPort": 47819
+      }
     }
   }
 }

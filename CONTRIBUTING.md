@@ -42,17 +42,21 @@ same judge, to show what the skills add; there a grader on the Skill tool passes
 construction.
 
 The repository's `.mcp.json` names LINKIN's connector by its fixed address,
-`https://cpq.mcp.linkin.eu/mcp`, and no OAuth client, as Anthropic's plugin docs have it. The
-marketplace serves the file as it stands to every Claude app, and Claude Desktop and claude.ai
-take only a fixed address. The connector's sign-in registers each Claude app's own client: for
-claude.ai's callback, Claude Desktop's `claude://claude.ai/mcp-auth-callback/sdk` and Claude Code's
-loopback callback. The connector's earlier address, `https://mcp.linkin.eu/mcp`, still answers for
-connectors added there, and the plugin no longer names it.
+`https://cpq.mcp.linkin.eu/mcp`, and no OAuth client, as Anthropic's plugin docs have it, with a
+fixed callback port, `47819`. The marketplace serves the file as it stands to every Claude app,
+and Claude Desktop and claude.ai take only a fixed address. The connector's sign-in registers each
+Claude app's own client: for claude.ai's callback, Claude Desktop's
+`claude://claude.ai/mcp-auth-callback/sdk`, and Claude Code's loopback callback on port 47819, at
+`localhost` or `127.0.0.1`. The port is fixed because the sign-in matches a callback exactly, port
+included, so Claude Code registers its own client on the one port it accepts ("set `callbackPort`
+on its own", Claude Code's MCP docs). The connector's earlier address, `https://mcp.linkin.eu/mcp`,
+still answers for connectors added there, and the plugin no longer names it.
 
 **A test build for another connector:** `./build.sh <commit> <address>` builds the plugin at that
 commit for the connector at that address, given in full with its path, as the default
 `https://cpq.mcp.linkin.eu/mcp` is. Its file name, its version and its name in Claude say `dev` and
-the commit. Its `.mcp.json` carries that address and no OAuth client, as the repository's does. It
+the commit. Its `.mcp.json` carries that address and the repository's `oauth` block, the callback
+port with no client. It
 keeps the name `linkin-cpq`, so the two are never installed at once. To try it in Claude Code,
 turn off any installed `linkin-cpq`, unzip the build and start
 `claude --plugin-dir <folder>/linkin-cpq`. The address must start with `https://`, so a local

@@ -4,7 +4,7 @@
 </picture>
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-5.0.1-0C1A2A?style=flat-square" alt="Version 5.0.1"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-5.0.2-0C1A2A?style=flat-square" alt="Version 5.0.2"></a>
   <a href="#get-started"><img src="https://img.shields.io/badge/Claude-plugin-0C1A2A?style=flat-square" alt="Claude plugin"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-LINKIN%20customers-0C1A2A?style=flat-square" alt="Licence: for LINKIN's customers and partners"></a>
 </p>
@@ -134,7 +134,8 @@ Inside Claude Code, the same commands start with `/plugin`; there, the one-step 
 marketplace's source and asks you to confirm before adding it.
 
 Then start Claude Code, or run `/reload-plugins` if it was already running. Run `/mcp`, choose
-`linkin-cpq` and sign in.
+`linkin-cpq` and sign in. The sign-in comes back to port `47819` on your computer, so keep that
+port free.
 
 To let the nine tools that only read run without asking, add them to `permissions.allow` in your
 settings:
@@ -305,6 +306,7 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 | `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. You can still price and issue inquiries for new profiles from a drawing. For quotations, [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
 | `TOO_MANY_INQUIRIES` | An account not yet linked to a customer issues up to 20 inquiries a day, and nothing was issued. Issue it tomorrow, or [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
 | Claude asks which customer | Your account may order for several customers. Name one |
+| Signing in from Claude Code fails when the browser comes back | Another program holds port `47819` on your computer: close it, then run `/mcp` and sign in again |
 | Claude refuses the marketplace | Your organization limits which marketplaces members may add: ask an Owner to allow `linkin-eu/linkin-cpq-claude-plugin` |
 | **Add** offers no plugin options | **User-created skills** is off for your organization: ask an Owner to turn it on |
 | Your LINKIN account's details are incomplete or invalid | For an account not yet linked to a customer number, complete your profile at <https://linkin.eu/en/complete-profile/>, then ask again. For a linked account, [contact LINKIN](https://linkin.eu/en/contact/) to correct them |
