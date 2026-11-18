@@ -9,14 +9,16 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 - `integrating-your-systems`: ask how to connect your ERP, purchasing system, webshop or own
   software to LINKIN, and Claude answers from the description of LINKIN's API that the connector
-  gives, in the API's own names. For the whole document, access and sign-in, it refers you to your
-  LINKIN sales representative.
+  gives, in the API's own names. For the full API document (OpenAPI), and for access and sign-in
+  for your own systems, it refers you to your LINKIN sales representative.
 - Revoking: ask Claude to revoke or withdraw a draft quotation or an open inquiry. It asks why, from
   LINKIN's reasons, revokes it and says it is final. Claude never submits a revoked quotation.
 - `planning-truck-loads`: ask how many trucks an order, a quotation or some of its items take, where
-  an article is in the load, or how much more of it fits. Claude answers in words from LINKIN's own
-  estimate, which sizes the order and is not a loading plan, and works out no trucks of its own. To
-  clear a minimum charge with the load in mind, it prices and plans each quantity and compares them.
+  a profile is in the load, or how much more of it fits. Claude answers in words from LINKIN's own
+  estimate, which is for sizing the order, not a loading plan, and never works out a truck count of
+  its own. To clear a minimum charge with the load in mind, it prices and plans each quantity and
+  compares them. If some lines or items can't be planned, it names the first ten, with what mends
+  each, and says how many more there are.
 - Updating: the README says how to update the plugin in each Claude app.
 
 ### Changed
@@ -31,15 +33,16 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   lists.
 - An account not yet linked to a customer number issues inquiries in the company and contact
   details registered on linkin.eu: Claude no longer asks for them.
-- The icon is a navy L on white, and the plugin's description names each of its skills.
+- The icon is a navy L on white, and the plugin's description says what each of its skills does.
 - Claude names a sales area as LINKIN Bulgaria (1102/10) or PROFILINK (1002/10).
-- The connector's thirteen tools, with `revoke_document`, `plan_load` and `describe_api`.
-  `plan_load` and `describe_api` only read.
-- `comparing-per-kilo-prices`, for a powder-coated profile: billed per kilo on the finished, coated
-  weight, the coat's own weight is invoiced at the price per kilo, about 5% more weight for a
-  typical coat. Claude explains it neutrally, asks which weight the other offer's kilos are, and
-  shows it as a labelled what-if, with die wear's on top. A bare or anodized profile says nothing of
-  it.
+- The connector has three new tools, thirteen in all: **Revoke a document** (`revoke_document`),
+  **Plan the trucks** (`plan_load`) and **Describe the API** (`describe_api`). The last two only
+  read.
+- `comparing-per-kilo-prices`, for a powder-coated profile: where an offer is billed per kilo on
+  the coated weight, the coat's own weight is invoiced at the price per kilo, about 5% more weight
+  for a typical coat. Claude explains this neutrally, asks whether the other offer's kilos are bare
+  or coated, and shows the coat's weight as a labelled what-if, with die wear added on top. For a
+  bare or anodized profile, it doesn't mention the coat.
 
 ### Fixed
 
@@ -50,19 +53,18 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   again, it asks which document to use.
 - An explained price gives the document's totals, minimums and pricing date with each line's
   charges.
-- An inquiry carries no sales area, even from an account that buys under several: LINKIN makes
-  every inquiry in 1102/10.
+- Claude no longer picks a sales area for an inquiry, even when your account buys under several:
+  LINKIN makes every inquiry under LINKIN Bulgaria (1102/10).
 - A per-kilo comparison no longer says LINKIN's price is fixed when quoted: a quotation is a
   draft until LINKIN releases it.
 - A per-kilo comparison no longer says which weight the other offer is billed on unless you have
   said which.
 - An inquiry's price names the new dies' refundable deposit, outside the total.
 - In Claude Code, a connector that isn't connected is connected with `/mcp`, and Claude says so.
-- Getting started names the tool permissions as Claude shows them. **Read an issued document** is
-  listed under **Interactive tools** and is set to **Always allow** there. The tools that issue,
-  submit or revoke keep **Needs approval**.
-- A plan refused names the first ten lines or items that can't be planned, with their mends, and
-  how many more there are; Claude guesses nothing about the rest.
+- Get started names the tool permissions as Claude shows them: set **Read-only tools** to
+  **Always allow**, and under **Interactive tools** set **Read an issued document** and **Plan the
+  trucks** to **Always allow** too. Leave the tools that issue, submit or revoke on **Needs
+  approval**. In Claude Code, add `plan_load` and `describe_api` to the tools you allow.
 - An inquiry's price says which figures the plant's defaults gave, by the weight per metre or the
   plant's references, as the connector prices them, and takes the belt pitch where you give it.
 - An inquiry ordered again is priced with the new order's reference.
