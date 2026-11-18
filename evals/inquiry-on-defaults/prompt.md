@@ -1,5 +1,5 @@
 ---
-description: "A drawn profile is priced as an inquiry, with the die's data left at the plant's references and said so, and nothing issued."
+description: "A drawn profile is priced as an inquiry, with the die's data left at the plant's defaults and said so, and nothing issued."
 tags: [inquiry]
 max_turns: 20
 allowed_tools: [Skill, Read]

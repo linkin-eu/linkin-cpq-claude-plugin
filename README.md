@@ -1,7 +1,10 @@
-![LINKIN CPQ plugin for Claude: quote aluminium profiles in a conversation.](https://raw.githubusercontent.com/linkin-eu/linkin-cpq-claude-plugin/main/.github/assets/banner-light.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/linkin-eu/linkin-cpq-claude-plugin/main/.github/assets/banner-dark.png">
+  <img alt="LINKIN CPQ plugin for Claude: quote aluminium profiles in a conversation." src="https://raw.githubusercontent.com/linkin-eu/linkin-cpq-claude-plugin/main/.github/assets/banner-light.png">
+</picture>
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-4.1.0-0C1A2A?style=flat-square" alt="Version 4.1.0"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-5.0.0-0C1A2A?style=flat-square" alt="Version 5.0.0"></a>
   <a href="#get-started"><img src="https://img.shields.io/badge/Claude-plugin-0C1A2A?style=flat-square" alt="Claude plugin"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-LINKIN%20customers-0C1A2A?style=flat-square" alt="Licence: for LINKIN's customers and partners"></a>
 </p>
@@ -12,8 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest"><b>Download the plugin</b></a> ·
-  <a href="#get-started">Get started</a> ·
+  <a href="#get-started"><b>Add the plugin</b></a> ·
   <a href="#what-you-can-ask">What you can ask</a> ·
   <a href="#questions">Questions</a> ·
   <a href="https://linkin.eu/en/contact/">Contact LINKIN</a>
@@ -35,8 +37,9 @@
   review.
 - **Order again in one sentence.** "Order again what we had on our last quotation." Claude prices
   the same lines today and shows what changed.
-- **You stay in control.** Claude shows the price first and issues a quotation only after you say
-  yes. It submits one to LINKIN only when you ask.
+- **Size the order to the truck.** Ask how many trucks an order or a quotation takes, or how much
+  more of a profile still fits. Claude answers from LINKIN's own estimate of the load, and prices
+  each quantity you try.
 
 ## See it in action
 
@@ -69,38 +72,54 @@ for new profiles. To quote the profiles you can order,
 1. **Turn on Code execution.** Skills need it: **Settings › Capabilities › Code execution and
    file creation**. On a Team or Enterprise plan, an Owner turns it on under **Organization
    settings › Capabilities**.
-2. **Upload the plugin.** Download
-   [`linkin-cpq-4.1.0.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v4.1.0/linkin-cpq-4.1.0.zip)
-   from the [latest release](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest),
-   then in Claude choose **Customize › Plugins › Add › Upload plugin** and pick the zip. Upload the zip
-   as it is. Safari may unzip downloads: if it did, turn off **Open "safe" files after
-   downloading** in its settings, and download the zip again.
-3. **Connect.** Open the plugin's **Connectors** tab, add or connect **linkin-cpq**, and sign in
-   with your LINKIN account.
-   <!-- Remove this note once mcp.linkin.eu's client registration is verified. -->
+2. **Add LINKIN's marketplace.** Choose **Customize › Plugins › Add › Add marketplace** and enter
+   `linkin-eu/linkin-cpq-claude-plugin`. Add plugins from a marketplace only from sources you
+   trust: this one is LINKIN's, from this repository, and runs no code of its own. Turn on **Sync
+   automatically** for it, so that each new version reaches you.
+3. **Install the plugin.** Under **Discover**, select **LINKIN CPQ** and install it. Claude may ask
+   whether to continue: continue.
+4. **Connect.** Under **Customize › Plugins**, open **LINKIN CPQ** and its **Connectors** tab, add
+   or connect **linkin-cpq**, and sign in with your LINKIN account. On a Team or Enterprise plan,
+   if you can't add it, ask an Owner to add the connector for your organization, then connect it.
    If Claude asks for an OAuth client ID, enter `402sn2rbceqt5r4sjktlekf2vm` and leave the secret
    empty.
-4. **Allow the read-only tools.** Under the connector's **Tool permissions**, set the seven tools
-   that only read to **Always allow**: `get_account`, `find_profiles`, `find_values`,
-   `price_quotation`, `price_inquiry`, `find_documents` and `read_document`. Claude then asks
-   only before it issues or submits.
+5. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
+   **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
+   document** and **Plan the trucks** to **Always allow** too: they only read, and are listed
+   there because they show the document or the plan in a view. Leave the tools that issue,
+   submit or revoke on **Needs approval**, so Claude asks before it issues, submits or revokes.
+   Where an organization's admin has turned off **Always allow** for Cowork, Claude asks before
+   every tool there, and **Always allow** still works in chats.
 
-Then ask for a price. The plugin works in Cowork too, with the same sign-in.
+Then ask for a price. The plugin is saved to your Claude account: it works in Cowork too, with the
+same sign-in, and in Claude Code, where you sign in once more ([Claude Code](#claude-code)).
 
 ### For a whole Team or Enterprise organization
 
-An Owner:
-1. uploads the zip under **Organization settings › Plugins & skills**;
-2. sets it to **Installed by default** or **Required**;
-3. adds the connector under **Organization settings › Connectors**.
+Claude syncs an organization's marketplace only from a private or internal repository, and this
+one is public, so an Owner can't make it the organization's marketplace. Each member adds the
+marketplace and the plugin themselves, as above. An Owner:
+1. turns on Code execution under **Organization settings › Capabilities**;
+2. keeps **User-created skills** on, without which members can't add plugins;
+3. adds the connector under **Organization settings › Connectors**, for members to connect with
+   their own LINKIN account;
+4. if the organization limits which marketplaces members may add, allows
+   `linkin-eu/linkin-cpq-claude-plugin`.
 
-Each member then connects it with their own LINKIN account. Members can upload plugins
-themselves only while **User-created skills** is on.
+To install it for everyone, or make it required, an Owner can instead list it in the
+organization's own private marketplace repository, as a plugin from the public repository
+`linkin-eu/linkin-cpq-claude-plugin`, sync that repository, and set the plugin to **Installed by
+default** or **Required**. Members who added LINKIN's marketplace themselves then delete their
+copy, so that two plugins don't share the `linkin-cpq` connector. A new version reaches members
+when the organization's marketplace syncs again.
 
 ### Claude Code
 
-A plugin you uploaded in Claude Desktop or claude.ai is already there, as `linkin-cpq@synced`:
-skip to signing in. Otherwise, install it from this repository's marketplace, in one step:
+A plugin you installed in Claude Desktop or claude.ai is already there, as `linkin-cpq@synced`:
+skip to signing in. Otherwise, check first: if `claude plugin marketplace list` shows a `linkin`
+marketplace from another source than `linkin-eu/linkin-cpq-claude-plugin`, remove it
+([Upgrading](#upgrading-from-an-earlier-linkin-plugin)): it held an earlier LINKIN plugin, and has
+this marketplace's name. Then install the plugin from this repository's marketplace, in one step:
 
 ```bash
 claude plugin install linkin-cpq --marketplace linkin-eu/linkin-cpq-claude-plugin
@@ -113,13 +132,32 @@ claude plugin marketplace add linkin-eu/linkin-cpq-claude-plugin
 claude plugin install linkin-cpq@linkin
 ```
 
-Inside Claude Code, the same commands start with `/plugin`. The marketplace is named `linkin`,
-like the one that held an earlier LINKIN plugin: if `claude plugin marketplace list` already
-shows a `linkin` marketplace, remove it first
-([Upgrading](#upgrading-from-an-earlier-linkin-plugin)).
+Inside Claude Code, the same commands start with `/plugin`; there, the one-step install shows the
+marketplace's source and asks you to confirm before adding it.
 
-Then run `/mcp`, choose `linkin-cpq` and sign in. The sign-in comes back on port `47819`, so keep
-that port free.
+Then start Claude Code, or run `/reload-plugins` if it was already running. Run `/mcp`, choose
+`linkin-cpq` and sign in.
+
+To let the nine tools that only read run without asking, add them to `permissions.allow` in your
+settings:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_linkin-cpq_linkin-cpq__get_account",
+      "mcp__plugin_linkin-cpq_linkin-cpq__find_profiles",
+      "mcp__plugin_linkin-cpq_linkin-cpq__find_values",
+      "mcp__plugin_linkin-cpq_linkin-cpq__price_quotation",
+      "mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry",
+      "mcp__plugin_linkin-cpq_linkin-cpq__find_documents",
+      "mcp__plugin_linkin-cpq_linkin-cpq__read_document",
+      "mcp__plugin_linkin-cpq_linkin-cpq__plan_load",
+      "mcp__plugin_linkin-cpq_linkin-cpq__describe_api"
+    ]
+  }
+}
+```
 
 ## What you can ask
 
@@ -134,6 +172,11 @@ that port free.
 | Order again | *"Order again what we had on our last quotation."* |
 | Understand a price | *"How was the price on our last quotation made?"* |
 | Issue and submit | *"Yes, issue it with our reference PO-4711."* Then, when you're ready: *"Submit it to LINKIN."* |
+| Withdraw | *"Revoke our quotation ‹number›: we ordered from another supplier."* |
+| Plan the trucks | *"How many trucks will our quotation ‹number› take?"* |
+| Fill a truck | *"How do we fill the truck without falling under your minimums?"* |
+| How much more fits | *"How many more pieces of ‹that profile› could we add and still use the same truck?"* |
+| Connect your systems | *"How can we connect our ERP to your API?"* |
 
 ## You stay in control
 
@@ -143,6 +186,8 @@ that port free.
   never count as your yes.
 - **Submitting is yours too.** A quotation stands as a draft until LINKIN releases it. Claude
   submits it to LINKIN only when you ask, and tells you that a submitted quotation is final.
+- **So is revoking.** Claude revokes a draft quotation or an open inquiry only when you ask,
+  asks you why, and tells you that revoking is final.
 - **The right company.** If your account acts for several customers, Claude asks which one,
   and never picks one itself. For one customer in several sales areas, it uses the one that sells
   the profile and says why.
@@ -169,48 +214,36 @@ sequenceDiagram
 
 | Part | What it does |
 |---|---|
-| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues and submits them, and reads your issued documents |
-| **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits when you ask, orders again and explains an issued price |
+| **Connector** `linkin-cpq` | Connects Claude to LINKIN's CPQ service at `https://mcp.linkin.eu/mcp`, signed in as you: finds your profiles, prices quotations and inquiries, issues, submits and revokes them, reads your issued documents, estimates how much of an order fits standard trucks, and describes LINKIN's API |
+| **Skill** `quoting-profiles` | Quotes the profiles you can order: matches, prices, presents, issues on your yes, submits or revokes when you ask, orders again and explains an issued price |
 | **Skill** `inquiring-new-profiles` | Prices new profiles from a drawing, whose die doesn't exist yet, as an inquiry |
+| **Skill** `planning-truck-loads` | Estimates how much of an order or a quotation fits standard trucks, to size the order (not a loading plan), and compares the quantities that clear a minimum charge, each priced and planned |
 | **Skill** `comparing-per-kilo-prices` | When you bring another offer per kg or per tonne: compares it with LINKIN's like for like, and explains how billing per piece differs from billing per kilo |
+| **Skill** `integrating-your-systems` | When you ask how to connect your ERP, purchasing system or software to LINKIN: answers from the description of LINKIN's API that the connector gives, and refers you to your LINKIN sales representative for the whole document, access and sign-in |
 
 ## Privacy and security
 
 - **Signed in as you.** The connector signs in with your LINKIN account through LINKIN's sign-in.
   Claude holds the sign-in; the plugin contains no credentials.
-- **Only what you ask is sent.** LINKIN receives the profiles, values, quantities and references
-  you ask Claude to price, issue or look up, and nothing else from your conversation.
-- **No code, no telemetry.** The skills are instructions for Claude. They run no code and send
-  nothing.
+- **Only what you ask is sent.** When you sign in, LINKIN receives your account's identifier; for an
+  account not yet linked to a customer, it puts the company and contact details you registered on
+  linkin.eu on your inquiries. After that it receives only what Claude sends to the connector's
+  tools: the profiles, quantities, finishes, lengths and drawing figures you ask Claude to price,
+  plan, issue or look up, your references and your own names for profiles and lines, the numbers of
+  the documents you name, the customer you choose, the reason you choose and any note you write when
+  you revoke a document, and the names of the API's operations or schemas you ask Claude to
+  describe. It never receives your conversation with Claude.
+- **No code, no telemetry.** The skills are instructions for Claude, with no scripts of their own,
+  and send nothing. Claude needs Code execution turned on to use any skill; these add no code to
+  it.
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
-**Tool permissions.** `submit_quotation`, which is final, asks for approval by default. The seven
-tools that only read can be set to **Always allow** ([Get started](#claude-desktop-or-claudeai),
-step 4).
-
-<details>
-<summary>The same in Claude Code</summary>
-
-Add the seven read-only tools to `permissions.allow` in your settings:
-
-```json
-{
-  "permissions": {
-    "allow": [
-      "mcp__plugin_linkin-cpq_linkin-cpq__get_account",
-      "mcp__plugin_linkin-cpq_linkin-cpq__find_profiles",
-      "mcp__plugin_linkin-cpq_linkin-cpq__find_values",
-      "mcp__plugin_linkin-cpq_linkin-cpq__price_quotation",
-      "mcp__plugin_linkin-cpq_linkin-cpq__price_inquiry",
-      "mcp__plugin_linkin-cpq_linkin-cpq__find_documents",
-      "mcp__plugin_linkin-cpq_linkin-cpq__read_document"
-    ]
-  }
-}
-```
-
-</details>
+**Tool permissions.** Issuing an inquiry or a quotation, submitting a quotation and revoking a
+document ask for approval by default. The nine tools that only read, the seven **Read-only
+tools**, **Read an issued document** and **Plan the trucks**, can be set to **Always allow**
+([Get started](#claude-desktop-or-claudeai), step 5), and in Claude Code in its settings
+([Claude Code](#claude-code)).
 
 ## Questions
 
@@ -226,8 +259,8 @@ review of each profile. The issued document is what counts.
 <summary><b>How do I get a LINKIN account?</b></summary>
 
 [Register on linkin.eu](https://linkin.eu/en/sign-up/). With a new account you can price and issue
-inquiries for new profiles from a drawing, up to 20 a day: Claude asks for your company, contact
-name, email and country to issue one. To quote the profiles you can order,
+inquiries for new profiles from a drawing, up to 20 a day, in the company and contact details
+you registered on linkin.eu. To quote the profiles you can order,
 [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number. The
 inquiries you issued before stay yours.
 </details>
@@ -241,8 +274,7 @@ The plugin is free for LINKIN's customers and partners. You need a paid Claude p
 <details>
 <summary><b>Can Claude order or submit without me?</b></summary>
 
-No. Pricing issues nothing. Claude issues a quotation or inquiry only after you have seen the
-price and said yes, and submits a quotation only when you ask.
+No: see [You stay in control](#you-stay-in-control).
 </details>
 
 <details>
@@ -275,20 +307,47 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 | `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. You can still price and issue inquiries for new profiles from a drawing. For quotations, [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
 | `TOO_MANY_INQUIRIES` | An account not yet linked to a customer issues up to 20 inquiries a day, and nothing was issued. Issue it tomorrow, or [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
 | Claude asks which customer | Your account may order for several customers. Name one |
-| Sign-in in Claude Code fails with a redirect error | Another program holds port `47819` |
+| Claude refuses the marketplace | Your organization limits which marketplaces members may add: ask an Owner to allow `linkin-eu/linkin-cpq-claude-plugin` |
+| **Add** offers no plugin options | **User-created skills** is off for your organization: ask an Owner to turn it on |
+
+## Updating
+
+- **Claude Desktop or claude.ai:** a new version reaches you once LINKIN's marketplace syncs, with
+  nothing to accept. Under **Customize › Plugins**, turn on **Sync automatically** for the
+  marketplace, or select **Check for updates** on it when you choose. An organization that
+  installs the plugin from its own marketplace gets a new version when that marketplace syncs.
+- **Uploaded the zip before?** A plugin uploaded as a zip, as version 4.1.0 and earlier were,
+  doesn't update. Delete **LINKIN CPQ** under **Customize › Plugins**, then follow
+  [Get started](#claude-desktop-or-claudeai) from step 2. If an Owner uploaded it for your
+  organization, the Owner deletes it from the organization's plugins instead, and sets it up
+  again as in
+  [For a whole Team or Enterprise organization](#for-a-whole-team-or-enterprise-organization).
+- **Claude Code:** to update by itself, turn on `/plugin` › **Marketplaces** › `linkin` › **Enable
+  auto-update**. Or update when you choose:
+
+  ```bash
+  claude plugin marketplace update linkin
+  claude plugin update linkin-cpq@linkin
+  ```
+
+  Then restart Claude Code, or run `/reload-plugins`. A plugin synced from Claude Desktop or
+  claude.ai (`linkin-cpq@synced`) updates when it updates there.
 
 ## Upgrading from an earlier LINKIN plugin
 
 Remove the earlier one first, so that two plugins don't share the `linkin-cpq` connector:
 - **Claude Desktop or claude.ai:** delete any earlier LINKIN CPQ plugin under **Customize ›
-  Plugins** before uploading this one.
-- **Claude Code:**
+  Plugins** before adding this one.
+- **Claude Code:** `claude plugin uninstall linkin-cpq@claude-skills`. If
+  `claude plugin marketplace list` shows a `linkin` marketplace from another source than
+  `linkin-eu/linkin-cpq-claude-plugin`, remove it and its plugin:
 
   ```bash
-  claude plugin uninstall linkin-cpq@claude-skills
   claude plugin uninstall linkin-cpq@linkin
   claude plugin marketplace remove linkin
   ```
+
+  Then install as in [Claude Code](#claude-code).
 
 What changed: [CHANGELOG.md](CHANGELOG.md).
 
@@ -305,17 +364,4 @@ it, unchanged, and not pass it on. Copyright © 2026 LINKIN Ltd. See [LICENSE](L
 LINKIN and PROFILINK are names of LINKIN Ltd. Claude is a trademark of Anthropic, PBC. SAP is a
 trademark of SAP SE. LINKIN is not affiliated with SAP SE.
 
-<details>
-<summary>For maintainers</summary>
-
-```bash
-claude plugin validate . --strict
-claude plugin eval . --no-publish   # model calls on your own Claude sign-in; answers come from evals/*/mocks
-./build.sh                          # dist/linkin-cpq-<version>.zip from HEAD, or ./build.sh <tag>
-```
-
-The zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
-files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
-CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
-
-</details>
+Maintainers: see [CONTRIBUTING.md](https://github.com/linkin-eu/linkin-cpq-claude-plugin/blob/main/CONTRIBUTING.md).
