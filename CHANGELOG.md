@@ -3,6 +3,22 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## 5.0.1
+
+### Changed
+
+- The plugin connects at LINKIN's new address, `https://cpq.mcp.linkin.eu/mcp`. If Claude says
+  after the update that the LINKIN CPQ connector isn't connected, connect it again and sign in; in
+  Claude Code, run `/mcp` and sign in again. A LINKIN connector you added yourself at the old
+  address keeps working ([Updating](README.md#updating)).
+- The privacy notice, version 4, names the connector's new address and its earlier one.
+
+### Fixed
+
+- When LINKIN refuses a request because your account's profile is missing a detail, Claude sends
+  you to complete it at <https://linkin.eu/en/complete-profile/>, or, for an account linked to a
+  customer number, to LINKIN to correct it. It doesn't retry.
+
 ## 5.0.0
 
 A major version: it needs version 2.0 of LINKIN's CPQ connector, which LINKIN runs for you, and

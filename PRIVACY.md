@@ -1,11 +1,11 @@
 # Privacy notice: LINKIN CPQ plugin for Claude
 
-*Version 3, 18 November 2026.*
+*Version 4, 18 November 2026.*
 
 This notice covers the personal data LINKIN receives when you use the LINKIN CPQ plugin for
-Claude and its connector, `https://mcp.linkin.eu/mcp`. It adds to
-[LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/), which covers your LINKIN account
-and the rest of LINKIN's processing.
+Claude and its connector, `https://cpq.mcp.linkin.eu/mcp` (earlier `https://mcp.linkin.eu/mcp`).
+It adds to [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/), which covers your
+LINKIN account and the rest of LINKIN's processing.
 
 ## Who is responsible
 

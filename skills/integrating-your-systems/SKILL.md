@@ -9,6 +9,13 @@ The customer wants their own software to work with LINKIN, not to quote here. An
 API's description, which the connector's `describe_api` gives, and send everything about access to
 LINKIN. Keep it short and plain, and keep the connector's rules.
 
+**A refusal of the account's details.** Where a tool answers that the customer's LINKIN account's
+details are incomplete or invalid, say which detail its message names and stop: retry nothing,
+and name no other detail. Where the message ends "Fix it in your profile on the LINKIN website.",
+ask the customer to complete their profile at https://linkin.eu/en/complete-profile/, then to ask
+again. Where it says to contact LINKIN, ask the customer to contact LINKIN to correct it, and
+give no profile link.
+
 ## 1. LINKIN's API, described
 
 `describe_api` describes LINKIN's API for the developers of the customer's own systems, in two
