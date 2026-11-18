@@ -3,7 +3,7 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 4.2.0
 
 ### Added
 
