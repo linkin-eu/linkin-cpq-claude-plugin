@@ -54,6 +54,8 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   every inquiry in 1102/10.
 - A per-kilo comparison no longer says LINKIN's price is fixed when quoted: a quotation is a
   draft until LINKIN releases it.
+- A per-kilo comparison no longer says which weight the other offer is billed on unless you have
+  said which.
 - An inquiry's price names the new dies' refundable deposit, outside the total.
 - In Claude Code, a connector that isn't connected is connected with `/mcp`, and Claude says so.
 - Getting started names the tool permissions as Claude shows them. **Read an issued document** is
