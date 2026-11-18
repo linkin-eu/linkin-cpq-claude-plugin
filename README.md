@@ -330,6 +330,7 @@ claude plugin validate . --strict
 evals/check-histories.sh            # each recorded history's lines chained, so a resumed eval keeps them all
 claude plugin eval . --no-publish --judge-model opus   # model calls on your own Claude sign-in; answers come from evals/*/mocks
 ./build.sh                          # dist/linkin-cpq-<version>.zip from HEAD, or ./build.sh <tag>
+./build.sh <commit> <address>       # a test zip for another connector: dist/linkin-cpq-<version>-dev-<commit>.zip
 ```
 
 The zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
@@ -358,6 +359,28 @@ one, set `LINKIN_CPQ_MCP_URL`: `LINKIN_CPQ_MCP_URL=<address> claude --plugin-dir
 address is `https://mcp.linkin.eu/mcp`. The sign-in stays LINKIN's own, since Claude Code reads no
 variable in the `oauth` block. The zip holds the default address, written by `build.sh`, since
 Claude Desktop and claude.ai take a fixed one.
+
+**A test build for another connector:** `./build.sh <commit> <address>` builds the plugin at that
+commit for the connector at that address, given in full with its path, as the default
+`https://mcp.linkin.eu/mcp` is. Its file name, its version and its name in Claude say `dev` and
+the commit. Its `.mcp.json` names no OAuth client, since the default's client belongs to the
+default connector's sign-in: Claude registers its own where the other connector's sign-in lets it.
+It keeps the name `linkin-cpq`, so delete the released plugin first, and the two are never
+installed at once. To test it in Claude Desktop or claude.ai:
+
+1. Under **Customize › Plugins**, delete **LINKIN CPQ**. If an Owner made it **Required** for your
+   organization, ask them to lift that while you test. If a LINKIN connector is also listed under
+   **Customize › Connectors**, disconnect it while you test.
+2. Choose **Customize › Plugins › Add › Upload plugin** and pick the test zip. It shows as
+   `LINKIN CPQ (dev <commit>)`.
+3. On its **Connectors** tab, connect **linkin-cpq** and sign in with your account for that
+   connector. If Claude asks for an OAuth client ID, enter the one registered with that
+   connector's sign-in.
+4. Set its tool permissions as in [Get started](#claude-desktop-or-claudeai), step 4.
+
+To go back, delete `LINKIN CPQ (dev <commit>)`, follow [Get started](#claude-desktop-or-claudeai)
+from step 2, and connect again any LINKIN connector you disconnected. If an Owner lifted
+**Required**, ask them to set it again.
 
 Pull requests go to `dev`, squashed. A release merges `dev` into `main` with a merge commit, then
 tags `main`: the marketplace installs from `main`.
