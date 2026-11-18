@@ -55,10 +55,9 @@ still answers for connectors added there, and the plugin no longer names it.
 **A test build for another connector:** `./build.sh <commit> <address>` builds the plugin at that
 commit for the connector at that address, given in full with its path, as the default
 `https://cpq.mcp.linkin.eu/mcp` is. Its file name, its version and its name in Claude say `dev` and
-the commit. Its `.mcp.json` carries that address and the repository's `oauth` block, the callback
-port with no client. It
-keeps the name `linkin-cpq`, so the two are never installed at once. To try it in Claude Code,
-turn off any installed `linkin-cpq`, unzip the build and start
+the commit. Its `.mcp.json` carries that address and the commit's `oauth` block, the callback port
+with no client. It keeps the name `linkin-cpq`, so the two are never installed at once. To try it
+in Claude Code, turn off any installed `linkin-cpq`, unzip the build and start
 `claude --plugin-dir <folder>/linkin-cpq`. The address must start with `https://`, so a local
 server without TLS can't be tried this way. To test it in Claude Desktop or claude.ai:
 
