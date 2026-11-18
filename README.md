@@ -190,10 +190,14 @@ sequenceDiagram
 
 - **Signed in as you.** The connector signs in with your LINKIN account through LINKIN's sign-in.
   Claude holds the sign-in; the plugin contains no credentials.
-- **Only what you ask is sent.** LINKIN receives the profiles, values, quantities and references
-  you ask Claude to price, issue or look up, the reason you give when you revoke a document, and
-  the names of the API's operations or schemas you ask Claude to describe, and nothing else from
-  your conversation.
+- **Only what you ask is sent.** When you sign in, LINKIN receives your account's identifier; for an
+  account not yet linked to a customer, it puts the company and contact details you registered on
+  linkin.eu on your inquiries. After that it receives only what Claude sends to the connector's
+  tools: the profiles, quantities, finishes, lengths and drawing figures you ask Claude to price,
+  plan, issue or look up, your references and your own names for profiles and lines, the numbers of
+  the documents you name, the customer you choose, the reason you choose and any note you write when
+  you revoke a document, and the names of the API's operations or schemas you ask Claude to
+  describe. It never receives your conversation with Claude.
 - **No code, no telemetry.** The skills are instructions for Claude. They run no code and send
   nothing.
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to

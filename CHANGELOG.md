@@ -43,10 +43,14 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 ### Changed
 
-- The privacy notice: the sales desk receives each inquiry issued and each inquiry revoked, besides
-  each quotation submitted; LINKIN receives the reason for a revocation; an account not yet
-  linked to a customer has its registered details put on its inquiries; and LINKIN receives the
-  names of the API's operations or schemas you ask Claude to describe.
+- The privacy notice, version 3, says more exactly what LINKIN receives: the numbers of the
+  documents you name, your own names for profiles and lines, the reason and any note you give when
+  you revoke a document, and the names of the API's operations or schemas you ask Claude to
+  describe. An account not yet linked to a customer has its registered details put on its inquiries.
+  The sales desk receives each inquiry issued and each inquiry revoked, besides each quotation
+  submitted. Revoking, planning truck loads and describing LINKIN's API are among the purposes, and
+  a revocation is kept with its reason and note. The README's privacy summary lists what the notice
+  lists.
 - An account not yet linked to a customer number issues inquiries in the company and contact
   details registered on linkin.eu: Claude no longer asks for them, and doesn't call the inquiry
   unverified.
