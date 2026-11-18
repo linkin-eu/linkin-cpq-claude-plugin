@@ -7,8 +7,9 @@
 #
 # A connector's https address after the commit builds a test zip for that connector instead:
 # dist/linkin-cpq-<version>-dev-<commit>.zip, its version and display name marked dev and the
-# commit. Its .mcp.json has that address and no oauth block: Claude registers its own client
-# where that connector's sign-in lets it.
+# commit. Its .mcp.json has that address and the commit's oauth block without a clientId, so
+# Claude registers its own client where that connector's sign-in lets it, on the callback port the
+# block keeps.
 set -eu
 ref=${1:-HEAD}
 url=${2-}
@@ -34,7 +35,10 @@ import json, sys
 d = json.load(sys.stdin)
 for server in d["mcpServers"].values():
     server["url"] = sys.argv[1]
-    server.pop("oauth", None)
+    oauth = server.pop("oauth", {})
+    oauth.pop("clientId", None)
+    if oauth:
+        server["oauth"] = oauth
 print(json.dumps(d, indent=2))' "$url")
   manifest=$(git show "$ref:.claude-plugin/plugin.json" | python3 -c '
 import json, sys

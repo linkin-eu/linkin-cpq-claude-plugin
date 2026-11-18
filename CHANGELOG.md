@@ -3,6 +3,13 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## 5.0.2
+
+### Fixed
+
+- Signing in from Claude Code works again. The sign-in comes back to port 47819 on your computer,
+  so keep that port free. 5.0.0 said signing in no longer needed that port, which wasn't so.
+
 ## 5.0.1
 
 ### Changed
