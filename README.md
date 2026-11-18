@@ -81,15 +81,27 @@ for new profiles. To quote the profiles you can order,
 4. **Connect.** Under **Customize › Plugins**, open **LINKIN CPQ** and its **Connectors** tab, add
    or connect **linkin-cpq**, and sign in with your LINKIN account. On a Team or Enterprise plan,
    if you can't add it, ask an Owner to add the connector for your organization, then connect it.
-5. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
-   **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
-   document** and **Plan the trucks** to **Always allow** too: they only read, and are listed
-   there because they show the document or the plan in a view. Leave the tools that issue,
-   submit or revoke on **Needs approval**, so Claude asks before it issues, submits or revokes.
-   Where an organization's admin has turned off **Always allow** for Cowork, Claude asks before
-   every tool there, and **Always allow** still works in chats. On a Team or Enterprise plan, an
-   Owner can limit these permissions for everyone in the organization: if you can't set a tool
-   to **Always allow**, ask an Owner.
+5. **Set the tool permissions.** Under the connector's **Tool permissions**, set **Read-only
+   tools** to **Always allow**. Under **Interactive tools**, set **Read an issued document** and
+   **Plan the trucks** to **Always allow** too: they only read, and are listed there because they
+   show the document or the plan in a view. For the tools that issue, submit or revoke, their
+   setting and the mode you choose in the message box decide whether Claude asks you first
+   ([Anthropic's Help Center](https://support.claude.com/en/articles/13345190)):
+   - **Needs approval** asks you each time in **Manual** mode. In **Auto** mode, such a tool "Runs
+     without asking you, unless an automated check flags the action as risky", and in **Skip**
+     mode it runs. Auto is rolling out as the default on Pro, Max, Ultra and Team plans; Manual is
+     the default on Enterprise.
+   - **Always ask**, where Claude offers it, is built to ask before each use in every mode.
+     Dispatch and research don't fully support it yet, a scheduled task may finish without the
+     tool, and choosing **Always allow** for the tool or its group, even in a chat or on your
+     phone, overrides it.
+
+   To approve each issue, submission and revocation yourself, set those tools to **Always ask**,
+   or work in **Manual** mode. LINKIN's skills also tell Claude to ask for your yes in the
+   conversation before it issues a quotation or an inquiry, and to submit or revoke only when you
+   ask: an instruction Claude follows, not a lock. On a Team or Enterprise plan, an Owner can
+   limit these permissions for everyone in the organization: if you can't set a tool as above,
+   ask an Owner.
 
 Then ask for a price. The plugin is saved to your Claude account: it works in Cowork too, with the
 same sign-in, and in Claude Code, where you sign in once more ([Claude Code](#claude-code)).
@@ -140,8 +152,10 @@ Then start Claude Code, or run `/reload-plugins` if it was already running. Run 
 port free.
 
 When a LINKIN skill starts, the nine tools that only read run without asking until your next
-message; the tools that issue, submit or revoke still ask. To let the nine run without asking at
-any time, add them to `permissions.allow` in your settings:
+message. The tools that issue, submit or revoke aren't pre-approved: whether Claude Code asks
+before them follows your permission mode and rules. To let the nine run without asking at any
+time, add them to `permissions.allow` in your settings. So that no mode issues, submits or revokes
+without asking you, add those four tools to `permissions.ask` (`dontAsk` mode refuses them):
 
 ```json
 {
@@ -156,6 +170,12 @@ any time, add them to `permissions.allow` in your settings:
       "mcp__plugin_linkin-cpq_linkin-cpq__read_document",
       "mcp__plugin_linkin-cpq_linkin-cpq__plan_load",
       "mcp__plugin_linkin-cpq_linkin-cpq__describe_api"
+    ],
+    "ask": [
+      "mcp__plugin_linkin-cpq_linkin-cpq__issue_quotation",
+      "mcp__plugin_linkin-cpq_linkin-cpq__issue_inquiry",
+      "mcp__plugin_linkin-cpq_linkin-cpq__submit_quotation",
+      "mcp__plugin_linkin-cpq_linkin-cpq__revoke_document"
     ]
   }
 }
@@ -241,11 +261,14 @@ sequenceDiagram
 - **What LINKIN receives and keeps:** see the [privacy notice](PRIVACY.md), which adds to
   [LINKIN's privacy policy](https://linkin.eu/en/privacy-policy/).
 
-**Tool permissions.** Issuing an inquiry or a quotation, submitting a quotation and revoking a
-document ask for approval by default. The nine tools that only read, the seven **Read-only
-tools**, **Read an issued document** and **Plan the trucks**, can be set to **Always allow**
-([Get started](#claude-desktop-or-claudeai), step 5), and in Claude Code in its settings
-([Claude Code](#claude-code)).
+**Tool permissions.** Whether Claude asks before it issues an inquiry or a quotation, submits a
+quotation or revokes a document depends on each tool's setting and Claude's mode: **Needs
+approval** asks each time in **Manual** mode but in **Auto** mode only if a check flags the action;
+**Always ask** is built to ask in every mode ([Get started](#claude-desktop-or-claudeai), step 5).
+The skills also tell Claude to ask for your yes before it issues, and to submit or revoke only
+when you ask. The nine tools that only read, the seven **Read-only tools**, **Read an issued
+document** and **Plan the trucks**, can be set to **Always allow** (step 5), and in Claude Code in
+its settings ([Claude Code](#claude-code)).
 
 ## Questions
 
@@ -276,7 +299,11 @@ The plugin is free for LINKIN's customers and partners. You need a paid Claude p
 <details>
 <summary><b>Can Claude order or submit without me?</b></summary>
 
-No: see [You stay in control](#you-stay-in-control).
+LINKIN's skills tell Claude to issue only on your yes, and to submit or revoke only when you ask
+([You stay in control](#you-stay-in-control)). That is an instruction Claude follows, not a lock.
+For a check your Claude app enforces too, set the tools that issue, submit or revoke as in
+[Get started](#claude-desktop-or-claudeai), step 5, or in Claude Code add them to
+`permissions.ask` ([Claude Code](#claude-code)).
 </details>
 
 <details>
