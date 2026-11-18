@@ -19,6 +19,9 @@ import json
 import pathlib
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+from plan_summary import read_mock  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 
 
@@ -193,8 +196,7 @@ def main(argv):
     paths = [pathlib.Path(p) for p in argv] or list(plan_mocks())
     bad = 0
     for path in paths:
-        text = path.read_text(encoding="utf-8")
-        plan = json.JSONDecoder().raw_decode(text, text.index("{"))[0]
+        _, plan, _, _ = read_mock(path)
         faults, notes = [], []
         if schemas:
             check_shape(schemas, plan, schemas["LoadPlan"], "$", faults)

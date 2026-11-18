@@ -4,7 +4,7 @@ For LINKIN's maintainers of the plugin. None of this goes into the plugin's zip.
 
 ```bash
 claude plugin validate . --strict
-evals/check-histories.sh            # each recorded history's lines chained, so a resumed eval keeps them all
+evals/check-histories.sh            # each recorded history chained, and its copies of skills and answers current
 claude plugin eval . --no-publish --judge-model opus   # model calls on your own Claude sign-in; answers come from evals/*/mocks
 ./build.sh                          # dist/linkin-cpq-<version>.zip from HEAD, or ./build.sh <tag>
 ./build.sh <commit> <address>       # a test zip for another connector: dist/linkin-cpq-<version>-dev-<commit>.zip
@@ -16,12 +16,19 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
 - **The tool list:** `evals/mocks/linkin-cpq/_tools.json` is the server's `tools/list` result as
   it serves it, indented two spaces. Replace it whole when the server's tools change.
-- **The planning cases' `plan_load` answers,** and the priced fixtures beside them
-  (`fill-truck-minimum`'s, and `load-plan-inquiry-line`'s copy of its 200 bars), are generated:
-  `python3 evals/tools/make_plan_mocks.py` rewrites them from made-up figures, and `git diff`
-  shows what moved.
-  `python3 evals/tools/check_plan_mocks.py` checks their consistency, and their shape too with
-  `--openapi <path>` to the server's OpenAPI document.
+- **Generated mocks:** `python3 evals/tools/make_plan_mocks.py` writes the planning cases' priced
+  fixtures and `plan_load` answers from made-up figures, as its docstring lists them, and keeps
+  the copies `load-plan-inquiry-line`, `load-plan-app-host` and `per-kilo` hold of another case's
+  mocks; `git diff` shows what moved. It keeps `load-plan-quotation`'s trucks and crates as written
+  and works out their sentences and figures again. Every other mock, the refusals of
+  `load-plan-missing-data` and `load-plan-not-theirs` among them, is edited as it stands.
+  `python3 evals/tools/check_plan_mocks.py` checks the `plan_load` answers' consistency, and their
+  shape too with `--openapi <path>` to the server's OpenAPI document.
+- **Recorded histories:** a case's `history.jsonl` is a session recorded on another case and cut
+  down to its messages, as its `case.yaml` says. `evals/check-histories.sh` fails where its copy of
+  a skill or of a mock's fixed answer is no longer the file: record it again. `issue-as-prospect`
+  and `too-many-inquiries` keep copies of `unlinked-inquiry`'s `get_account` and `price_inquiry`
+  mocks, and `issue-inquiry-on-yes` of `profilink-only-inquiry`'s: change them together.
 - **Graders:** a `regex` grader takes a JavaScript pattern, case-insensitive with `flags: i` (no
   inline `(?i)`), and `match: not_contains` for one that must not appear. A case where a skill
   must not start uses `tool_used` on `Skill` with `min: 0`, `max: 0` and `arm: both`. A case's own
@@ -29,7 +36,9 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
 Judge the evals with Opus (`--judge-model opus`): the default judge is too lenient for what a
 buyer must not be told. Keep the rubrics short, one claim each, since the judge answers only PASS
-or FAIL.
+or FAIL. `evals/connector-only.sh` runs the suite on the connector alone, with no skills and the
+same judge, to show what the skills add; there a grader on the Skill tool passes or fails by
+construction.
 
 To try the plugin in Claude Code against another server that needs no sign-in, such as a local
 one, set `LINKIN_CPQ_MCP_URL`: `LINKIN_CPQ_MCP_URL=<address> claude --plugin-dir .`. Unset, the

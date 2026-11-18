@@ -13,7 +13,7 @@ every "at least" rounded down, and a no-break space before each unit.
 import json
 from decimal import Decimal, ROUND_HALF_UP
 
-NB = " "
+NB = "\u00a0"  # a no-break space, before each unit
 CLOSING = "An estimate of how much fits in a standard truck, to size the order: not a loading plan."
 TERMS = {"weight": "their weight", "space": "the space they take", "longCrates": "their long crates"}
 
