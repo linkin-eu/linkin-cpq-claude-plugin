@@ -7,39 +7,17 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 
 ### Added
 
-- `integrating-your-systems`: asked how to connect an ERP, a purchasing system, a webshop or your
-  own software to LINKIN, Claude answers from the description of LINKIN's API that the connector
-  gives: a summary of every operation, then the operation or schema you ask about, in the API's
-  own names. For the whole API document, access, credentials and machine-to-machine sign-in it
-  sends you to your LINKIN sales representative, promising neither that they can be arranged nor
-  when. It gives no address, credential or sign-in recipe, and writes no document of its own.
-- Revoking: ask Claude to revoke or withdraw a draft quotation or an open inquiry. It asks why,
-  from LINKIN's reasons, revokes it and says it is final. Claude never submits a revoked
-  quotation.
-- `planning-truck-loads`: how many trucks an order or a quotation takes, how much of each truck it
-  takes, and what-ifs: which quantities clear a minimum charge, each priced and planned, compared
-  side by side.
-  - The plan estimates how much of an order fits standard trucks, to size the order: it is not a
-    loading plan, and is never volunteered on a plain quote.
-  - Claude leads with the plan's own sentences: the trucks, why so many where there are more than
-    one, what one truck fewer would at least need (a floor, never advice to cut the order), and
-    each truck's gross weight against its payload and its share of its space.
-  - A plan covers everything given or nothing. Claude says what can't be loaded and why; where
-    LINKIN's packing data is missing, it says so and to contact your sales representative at
-    LINKIN. It plans the rest only when you ask, or when an inquiry or a revoked quotation can only
-    be left out, and says what it leaves out.
-  - For a line or a quantity the planner didn't plan, Claude works out no trucks, crates or fit of
-    its own; a quantity asked about is priced and planned.
-  - A quotation can be planned in part, by its items.
-  - Each truck's net and gross weight is given, the crates' empty weight LINKIN's approximation.
-  - Asked where an article is, Claude names every crate and truck holding it, and says where a
-    crate is shared with other articles, of any length; asked why a crate isn't a smaller one,
-    it answers from the plan's own figures.
-  - Asked how much more of an article would fit, it plans with that article named and gives the
-    plan's own sentence: a number of packs a plan still takes on as many trucks, never the most
-    that fits, nor a price.
-  - The plan is given in words, and Claude draws none. Where the host shows the plan in its own
-    view, Claude says nothing of the view.
+- `integrating-your-systems`: ask how to connect your ERP, purchasing system, webshop or own
+  software to LINKIN, and Claude answers from the description of LINKIN's API that the connector
+  gives, in the API's own names. For the whole document, access and sign-in, it refers you to your
+  LINKIN sales representative.
+- Revoking: ask Claude to revoke or withdraw a draft quotation or an open inquiry. It asks why, from
+  LINKIN's reasons, revokes it and says it is final. Claude never submits a revoked quotation.
+- `planning-truck-loads`: ask how many trucks an order, a quotation or some of its items take, where
+  an article is in the load, or how much more of it fits. Claude answers in words from LINKIN's own
+  estimate, which sizes the order and is not a loading plan, and works out no trucks of its own. To
+  clear a minimum charge with the load in mind, it prices and plans each quantity and compares them.
+- Updating: the README says how to update the plugin in each Claude app.
 
 ### Changed
 
@@ -52,12 +30,11 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   a revocation is kept with its reason and note. The README's privacy summary lists what the notice
   lists.
 - An account not yet linked to a customer number issues inquiries in the company and contact
-  details registered on linkin.eu: Claude no longer asks for them, and doesn't call the inquiry
-  unverified.
+  details registered on linkin.eu: Claude no longer asks for them.
+- The icon is a navy L on white, and the plugin's description names each of its skills.
+- Claude names a sales area as LINKIN Bulgaria (1102/10) or PROFILINK (1002/10).
 - The connector's thirteen tools, with `revoke_document`, `plan_load` and `describe_api`.
   `plan_load` and `describe_api` only read.
-- Plain words: the skills say "field" for an inquiry's values, and name a sales area once as the
-  LINKIN name and channel a customer buys under.
 - `comparing-per-kilo-prices`, for a powder-coated profile: billed per kilo on the finished, coated
   weight, the coat's own weight is invoiced at the price per kilo, about 5% more weight for a
   typical coat. Claude explains it neutrally, asks which weight the other offer's kilos are, and
@@ -73,7 +50,8 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   again, it asks which document to use.
 - An explained price gives the document's totals, minimums and pricing date with each line's
   charges.
-- Claude never passes a sales area for an inquiry, which LINKIN makes in 1102/10.
+- An inquiry carries no sales area, even from an account that buys under several: LINKIN makes
+  every inquiry in 1102/10.
 - A per-kilo comparison no longer says LINKIN's price is fixed when quoted: a quotation is a
   draft until LINKIN releases it.
 - An inquiry's price names the new dies' refundable deposit, outside the total.
@@ -81,9 +59,11 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - Getting started names the tool permissions as Claude shows them. **Read an issued document** is
   listed under **Interactive tools** and is set to **Always allow** there. The tools that issue,
   submit or revoke keep **Needs approval**.
-- A plan refused names the first ten lines or items that can't be planned, each as you named it
-  and with its mend, and says how many more, as the connector now gives them. Claude says and
-  guesses nothing of what is wrong with those more, which may differ, until these are mended.
+- A plan refused names the first ten lines or items that can't be planned, with their mends, and
+  how many more there are; Claude guesses nothing about the rest.
+- An inquiry's price says which figures the plant's defaults gave, by the weight per metre or the
+  plant's references, as the connector prices them, and takes the belt pitch where you give it.
+- An inquiry ordered again is priced with the new order's reference.
 - Claude works out no pieces from a count of packs, nor a rounding from one, since a pack may be
   part-filled: the pieces are those the price or the plan gives.
 
