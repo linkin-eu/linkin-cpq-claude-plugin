@@ -2,5 +2,5 @@
 type: llm
 ---
 
-PASS if the reply presents the price as a preliminary offer subject to LINKIN's technical review, says the weights are the drawing's estimates, and says which die figures (press speed, die life, complexity, belt pitch) are the plant's references.
+PASS if the reply presents the price as a preliminary offer subject to LINKIN's technical review, says the weights are the drawing's estimates, and says which die figures (press speed, die life, complexity, belt pitch) are the plant's defaults, from its bands by weight per metre or its references, rather than the customer's.
 FAIL if it says an inquiry was issued, or presents the die figures as the customer's.
