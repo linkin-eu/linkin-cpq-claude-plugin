@@ -15,8 +15,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest"><b>Download the plugin</b></a> ·
-  <a href="#get-started">Get started</a> ·
+  <a href="#get-started"><b>Add the plugin</b></a> ·
   <a href="#what-you-can-ask">What you can ask</a> ·
   <a href="#questions">Questions</a> ·
   <a href="https://linkin.eu/en/contact/">Contact LINKIN</a>
@@ -73,17 +72,18 @@ for new profiles. To quote the profiles you can order,
 1. **Turn on Code execution.** Skills need it: **Settings › Capabilities › Code execution and
    file creation**. On a Team or Enterprise plan, an Owner turns it on under **Organization
    settings › Capabilities**.
-2. **Upload the plugin.** Download
-   [`linkin-cpq-5.0.0.zip`](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/download/v5.0.0/linkin-cpq-5.0.0.zip)
-   from the [latest release](https://github.com/linkin-eu/linkin-cpq-claude-plugin/releases/latest),
-   then in Claude choose **Customize › Plugins › Add › Upload plugin** and pick the zip. Upload the zip
-   as it is. Safari may unzip downloads: if it did, turn off **Open "safe" files after
-   downloading** in its settings, and download the zip again.
-3. **Connect.** Open the plugin's **Connectors** tab, add or connect **linkin-cpq**, and sign in
-   with your LINKIN account.
+2. **Add LINKIN's marketplace.** Choose **Customize › Plugins › Add › Add marketplace** and enter
+   `linkin-eu/linkin-cpq-claude-plugin`. Add plugins from a marketplace only from sources you
+   trust: this one is LINKIN's, from this repository, and runs no code of its own. Turn on **Sync
+   automatically** for it, so that each new version reaches you.
+3. **Install the plugin.** Under **Discover**, select **LINKIN CPQ** and install it. Claude may ask
+   whether to continue: continue.
+4. **Connect.** Under **Customize › Plugins**, open **LINKIN CPQ** and its **Connectors** tab, add
+   or connect **linkin-cpq**, and sign in with your LINKIN account. On a Team or Enterprise plan,
+   if you can't add it, ask an Owner to add the connector for your organization, then connect it.
    If Claude asks for an OAuth client ID, enter `402sn2rbceqt5r4sjktlekf2vm` and leave the secret
    empty.
-4. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
+5. **Allow the tools that only read.** Under the connector's **Tool permissions**, set
    **Read-only tools** to **Always allow**. Under **Interactive tools**, set **Read an issued
    document** and **Plan the trucks** to **Always allow** too: they only read, and are listed
    there because they show the document or the plan in a view. Leave the tools that issue,
@@ -91,24 +91,35 @@ for new profiles. To quote the profiles you can order,
    Where an organization's admin has turned off **Always allow** for Cowork, Claude asks before
    every tool there, and **Always allow** still works in chats.
 
-Then ask for a price. The plugin works in Cowork too, with the same sign-in.
+Then ask for a price. The plugin is saved to your Claude account: it works in Cowork too, with the
+same sign-in, and in Claude Code, where you sign in once more ([Claude Code](#claude-code)).
 
 ### For a whole Team or Enterprise organization
 
-An Owner:
+Claude syncs an organization's marketplace only from a private or internal repository, and this
+one is public, so an Owner can't make it the organization's marketplace. Each member adds the
+marketplace and the plugin themselves, as above. An Owner:
 1. turns on Code execution under **Organization settings › Capabilities**;
-2. uploads the zip under **Organization settings › Plugins & skills**;
-3. sets it to **Installed by default** or **Required**;
-4. adds the connector under **Organization settings › Connectors**.
+2. keeps **User-created skills** on, without which members can't add plugins;
+3. adds the connector under **Organization settings › Connectors**, for members to connect with
+   their own LINKIN account;
+4. if the organization limits which marketplaces members may add, allows
+   `linkin-eu/linkin-cpq-claude-plugin`.
 
-Each member then connects it with their own LINKIN account and sets its tool permissions
-([Claude Desktop or claude.ai](#claude-desktop-or-claudeai), step 4). Members can upload plugins
-themselves only while **User-created skills** is on.
+To install it for everyone, or make it required, an Owner can instead list it in the
+organization's own private marketplace repository, as a plugin from the public repository
+`linkin-eu/linkin-cpq-claude-plugin`, sync that repository, and set the plugin to **Installed by
+default** or **Required**. Members who added LINKIN's marketplace themselves then delete their
+copy, so that two plugins don't share the `linkin-cpq` connector. A new version reaches members
+when the organization's marketplace syncs again.
 
 ### Claude Code
 
-A plugin you uploaded in Claude Desktop or claude.ai is already there, as `linkin-cpq@synced`:
-skip to signing in. Otherwise, install it from this repository's marketplace, in one step:
+A plugin you installed in Claude Desktop or claude.ai is already there, as `linkin-cpq@synced`:
+skip to signing in. Otherwise, check first: if `claude plugin marketplace list` shows a `linkin`
+marketplace from another source than `linkin-eu/linkin-cpq-claude-plugin`, remove it
+([Upgrading](#upgrading-from-an-earlier-linkin-plugin)): it held an earlier LINKIN plugin, and has
+this marketplace's name. Then install the plugin from this repository's marketplace, in one step:
 
 ```bash
 claude plugin install linkin-cpq --marketplace linkin-eu/linkin-cpq-claude-plugin
@@ -121,13 +132,11 @@ claude plugin marketplace add linkin-eu/linkin-cpq-claude-plugin
 claude plugin install linkin-cpq@linkin
 ```
 
-Inside Claude Code, the same commands start with `/plugin`. The marketplace is named `linkin`,
-like the one that held an earlier LINKIN plugin: if `claude plugin marketplace list` already
-shows a `linkin` marketplace from another source than `linkin-eu/linkin-cpq-claude-plugin`, remove
-it first ([Upgrading](#upgrading-from-an-earlier-linkin-plugin)).
+Inside Claude Code, the same commands start with `/plugin`; there, the one-step install shows the
+marketplace's source and asks you to confirm before adding it.
 
-Then run `/mcp`, choose `linkin-cpq` and sign in. The sign-in comes back on port `47819`, so keep
-that port free.
+Then start Claude Code, or run `/reload-plugins` if it was already running. Run `/mcp`, choose
+`linkin-cpq` and sign in.
 
 To let the nine tools that only read run without asking, add them to `permissions.allow` in your
 settings:
@@ -233,7 +242,7 @@ sequenceDiagram
 **Tool permissions.** Issuing an inquiry or a quotation, submitting a quotation and revoking a
 document ask for approval by default. The nine tools that only read, the seven **Read-only
 tools**, **Read an issued document** and **Plan the trucks**, can be set to **Always allow**
-([Get started](#claude-desktop-or-claudeai), step 4), and in Claude Code in its settings
+([Get started](#claude-desktop-or-claudeai), step 5), and in Claude Code in its settings
 ([Claude Code](#claude-code)).
 
 ## Questions
@@ -298,29 +307,37 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 | `CUSTOMER_NOT_LINKED` | Your LINKIN account isn't linked to a customer yet. You can still price and issue inquiries for new profiles from a drawing. For quotations, [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
 | `TOO_MANY_INQUIRIES` | An account not yet linked to a customer issues up to 20 inquiries a day, and nothing was issued. Issue it tomorrow, or [contact LINKIN](https://linkin.eu/en/contact/) to link your account to your customer number |
 | Claude asks which customer | Your account may order for several customers. Name one |
-| Sign-in in Claude Code fails with a redirect error | Another program holds port `47819` |
+| Claude refuses the marketplace | Your organization limits which marketplaces members may add: ask an Owner to allow `linkin-eu/linkin-cpq-claude-plugin` |
+| **Add** offers no plugin options | **User-created skills** is off for your organization: ask an Owner to turn it on |
 
 ## Updating
 
-- **Claude Desktop or claude.ai:** delete **LINKIN CPQ** under **Customize › Plugins**, then follow
-  [Get started](#claude-desktop-or-claudeai) from step 2 with the new release's zip. For a whole
-  organization, an Owner deletes it and repeats steps 2 to 4 of
-  [the organization setup](#for-a-whole-team-or-enterprise-organization).
-- **Claude Code:**
+- **Claude Desktop or claude.ai:** a new version reaches you once LINKIN's marketplace syncs, with
+  nothing to accept. Under **Customize › Plugins**, turn on **Sync automatically** for the
+  marketplace, or select **Check for updates** on it when you choose. An organization that
+  installs the plugin from its own marketplace gets a new version when that marketplace syncs.
+- **Uploaded the zip before?** A plugin uploaded as a zip, as version 4.1.0 and earlier were,
+  doesn't update. Delete **LINKIN CPQ** under **Customize › Plugins**, then follow
+  [Get started](#claude-desktop-or-claudeai) from step 2. If an Owner uploaded it for your
+  organization, the Owner deletes it from the organization's plugins instead, and sets it up
+  again as in
+  [For a whole Team or Enterprise organization](#for-a-whole-team-or-enterprise-organization).
+- **Claude Code:** to update by itself, turn on `/plugin` › **Marketplaces** › `linkin` › **Enable
+  auto-update**. Or update when you choose:
 
   ```bash
   claude plugin marketplace update linkin
   claude plugin update linkin-cpq@linkin
   ```
 
-  Then restart Claude Code. A plugin synced from Claude Desktop or claude.ai (`linkin-cpq@synced`)
-  updates when you update it there.
+  Then restart Claude Code, or run `/reload-plugins`. A plugin synced from Claude Desktop or
+  claude.ai (`linkin-cpq@synced`) updates when it updates there.
 
 ## Upgrading from an earlier LINKIN plugin
 
 Remove the earlier one first, so that two plugins don't share the `linkin-cpq` connector:
 - **Claude Desktop or claude.ai:** delete any earlier LINKIN CPQ plugin under **Customize ›
-  Plugins** before uploading this one.
+  Plugins** before adding this one.
 - **Claude Code:** `claude plugin uninstall linkin-cpq@claude-skills`. If
   `claude plugin marketplace list` shows a `linkin` marketplace from another source than
   `linkin-eu/linkin-cpq-claude-plugin`, remove it and its plugin:

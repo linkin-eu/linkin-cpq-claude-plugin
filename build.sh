@@ -1,13 +1,14 @@
 #!/bin/sh
 # Zips the plugin for upload in Claude Desktop or claude.ai: dist/linkin-cpq-<version>.zip.
-# Takes a commit or tag, HEAD by default. Only the committed files named below go in, and
-# .mcp.json with the connector's default address: Claude Desktop and claude.ai take a fixed URL,
-# and only Claude Code reads LINKIN_CPQ_MCP_URL.
+# Customers get the plugin from the marketplace, which serves main; a zip rebuilds a past version
+# from its tag. Takes a commit or tag, HEAD by default. Only the committed files named below go
+# in, and .mcp.json with a fixed address: dev's commits from #11 to the marketplace change, never
+# a tag, wrote it as ${LINKIN_CPQ_MCP_URL:-<address>}, which the sed below resolves to its default.
 #
 # A connector's https address after the commit builds a test zip for that connector instead:
 # dist/linkin-cpq-<version>-dev-<commit>.zip, its version and display name marked dev and the
-# commit. Its .mcp.json has no oauth block, since the default's client belongs to the default
-# connector's sign-in: Claude registers its own where the other connector's sign-in lets it.
+# commit. Its .mcp.json has that address and no oauth block: Claude registers its own client
+# where that connector's sign-in lets it.
 set -eu
 ref=${1:-HEAD}
 url=${2-}
