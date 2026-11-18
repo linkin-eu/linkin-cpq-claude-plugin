@@ -52,7 +52,7 @@ never work it out from rates: to see another quantity or finish, price it.
    row, say none is what that supplier invoices, and change only their figure, never LINKIN's. Where
    the buyer says their offer is billed on the bare weight, leave the coating out and show step 2's
    rows; where they have their own figure from past deliveries, use it instead of these rows. A bare
-   or anodized line has no coating row, and says nothing of it.
+   or anodized line has no coating row.
 4. Where the other offer is invoiced on theoretical weight too, the figures compare directly:
    leave the what-ifs out and say so.
 
@@ -80,10 +80,9 @@ Once in the conversation, in a few neutral sentences:
   metal per metre than nominal, more on thin walls and less on thick ones. Billed per kilo, that
   metal is on the buyer's invoice.
 - **Per kilo on the finished weight**, for a powder-coated profile: the coat has a weight of its
-  own.
-  Billed per kilo on the coated weight, the coating's kilos are invoiced at the price per kilo,
-  on top of the coating charge already in the price. For a typical coat of about 80 µm that is
-  about 5% more weight, less on heavy sections and more on light profiles with a large surface.
+  own. Billed per kilo on the coated weight, the coating's kilos are invoiced at the price per kilo,
+  on top of the coating charge already in the price. For a typical coat of about 80 µm that is about
+  5% more weight, less on heavy sections and more on light profiles with a large surface.
 - **Per piece**, LINKIN's way: each piece is priced on the aluminium's theoretical weight, so
   what a delivery weighs doesn't change the invoice. Die wear is a line of its own in LINKIN's
   price, billed by the metre, never as extra kilos; on a powder-coated line, so is the coating, by
@@ -118,5 +117,7 @@ metres delivered show the coating and any extra metal together.
 - The "up to about 10%" is a general range for die wear across a die's life, and the "about 5%"
   a typical coat's weight, from the coat thickness applied and the powder's density. Never present
   either as a fact about the buyer's current supplier, or as what their invoice will show.
+- The coating's weight is for a powder-coated line only: a bare or anodized line says nothing of
+  it, in the what-ifs or in section 5.
 - A comparison issues nothing. Issue a quotation only on the buyer's yes, as quoting-profiles
   says.

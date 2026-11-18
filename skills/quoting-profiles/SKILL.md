@@ -37,14 +37,13 @@ document.
 ## Quote a request
 
 `find_profiles` lists what the customer can order, the customer's own first: call it with
-`limit` 200 and follow `next`. Asked what they can order: the whole list, as a table of number,
+`limit` 200 and follow `next` until what is sought is found or the list ends, and never conclude
+there is no match from one page. Asked what they can order: the whole list, as a table of number,
 name, weight per metre and longest bar, with the total.
 
-1. **Match.** Match each profile the request names by its geometry, name or drawing number, and
-   start from its `orderAs`. Where two match, ask which. Follow `next` until the profile is found
-   or the list ends; never conclude there is no match from one page. With no match, don't assume
-   why: ask whether it is a new profile they have drawn, which is an inquiry
-   (inquiring-new-profiles).
+1. **Match** each profile the request names by its geometry, name or drawing number, and start
+   from its `orderAs`. Where two match, ask which. With no match, don't assume why: ask whether it
+   is a new profile they have drawn, which is an inquiry (inquiring-new-profiles).
 2. **Fill in.** `find_profiles` with `material` gives the fields; `find_values` lists a long
    list, such as the powder colour numbers. Each line needs its length, temper, finish and
    pieces. Powder coated also needs the colour system and number, the surface (such as smooth

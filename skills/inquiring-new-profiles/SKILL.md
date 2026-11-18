@@ -72,7 +72,8 @@ the pieces; and `values`, by field name.
      preliminary offer). With no linked customer, say at most that it is addressed by their
      registration on the LINKIN website. Never say the inquiry, the account or the buyer is
      unverified, and never mention `customerVerified`, a flag, mark, warning or note about the
-     account: they are LINKIN's own record of how the inquiry was issued.
+     account, or what LINKIN sees of it: these are LINKIN's own record of how the inquiry was
+     issued.
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
    - `TOO_MANY_INQUIRIES`: say nothing was issued, why, and what mends it, from its message. Don't
      retry.

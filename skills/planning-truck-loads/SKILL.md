@@ -22,10 +22,10 @@ rules at the end of this skill.
 
 ## Plan an order
 
-1. **The lines.** From the conversation, priced first with `price_quotation` (`view: detail`
-   with `detailItems`), since only `ok` lines are planned; or an issued quotation, found with
-   `find_documents` and planned by its number, with `items` where only some of its items are
-   meant.
+1. **The lines.** From the conversation, priced first with `price_quotation` (`view: detail` with
+   `detailItems`, as quoting-profiles prices), since only `ok` lines are planned; or an issued
+   quotation, found with `find_documents` and planned by its number, with `items` where only some of
+   its items are meant.
 2. **Plan** with `plan_load`: the lines as priced, the quotations as `documents`.
 3. **A refusal,** `NOT_PLANNABLE`, plans nothing. Its message gives each fault, up to the first
    ten, a sentence of its own, and says how many more. What is wrong with those more is not said,
@@ -69,9 +69,7 @@ Only when the customer asks:
 
 1. **Whether fewer trucks could do:** `summary.smaller` says what one truck fewer would need of the
    order, each "at least" a floor, not shown to be enough: only a new plan shows that. Without it,
-   the plan gives no such figure. Never turn it into crates or pieces, never say that so much less
-   would fit, and never advise cutting or splitting the order: to see a smaller quantity the buyer
-   names, price and plan it.
+   the plan gives no such figure.
 2. **Where an article is** (a line, or a quotation's item): every crate on every truck whose
    `contents` name it. A line's entry is its item with no `document`; a quotation's item is its
    number and item together (a line and two quotations may each have an item 10). Its pieces, packs
@@ -119,9 +117,10 @@ change:
      `value`; lines sharing it, by each line's share of the `basis`;
    - where the quantity a line's own minimum lifts isn't shown, price more pieces instead.
 3. **Price and plan each option**, in calls of its own: `price_quotation` with every line of the
-   option (`view: detail` with `detailItems`), then `plan_load`. The packs round the pieces up, and
-   `quantity.order` says to what. The price comes only from the tool: never work one out. An
-   option refused is compared as refused, with its fault, as in Plan an order.
+   option (`view: detail` with `detailItems`, as quoting-profiles prices), then `plan_load`. The
+   packs round the pieces up, and `quantity.order` says to what. The price comes only from the tool:
+   never work one out. An option refused is compared as refused, with its fault, as in Plan an
+   order.
 4. **Compare** the options in one table: the pieces per line, the net value, the price per kg, the
    minimums still paid, the trucks, and the last truck's gross weight against its payload and its
    share of its space in whole percent, as its sentence gives them.
@@ -146,5 +145,8 @@ change:
   nothing from a view as the plan's facts (where axles stand, or where bars lie along a crate), and
   offer no drawing, file or download, not even in a closing line; asked for a drawing, say you
   can't give one.
+- Never turn `summary.smaller`'s floors into crates or pieces, never say that so much less would
+  fit, and never advise cutting or splitting the order: to see a smaller quantity the buyer names,
+  price and plan it.
 - Keep the connector's rules: its tool descriptions hold each field's meaning.
 - Past a plan's limits (`plan_load`'s description), plan fewer lines or quotations at once.
