@@ -88,8 +88,10 @@ Once in the conversation, in a few neutral sentences:
   price, billed by the metre, never as extra kilos; on a powder-coated line, so is the coating, by
   the bars hung and the m² coated.
 
-Close with one neutral sentence on that difference, and offer to price other quantities or
-finishes. Don't push.
+Close with one neutral sentence on the two ways of billing in general, such as "a per-piece price
+on theoretical weight and a per-kg price on shipped weight don't compare one to one", and offer to
+price other quantities or finishes. Don't say which weight the other offer is billed on unless the
+buyer has said which. Don't push.
 
 If the buyer wants only the number, give it with one line: a per-piece price on theoretical
 weight and a per-kg price on shipped weight don't compare one to one. Offer the rest.
