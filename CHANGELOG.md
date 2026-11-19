@@ -21,6 +21,8 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   internal code unless you ask for one. For a new profile, it says in one sentence which die
   figures LINKIN's plant set because your drawing didn't give them, and that your own figures
   would replace them.
+- A plain quote gives each process as one total (metal, extrusion, finishing), as the README's
+  example shows. Ask how the price was made for each charge's rate and basis.
 
 ## 5.0.3
 
