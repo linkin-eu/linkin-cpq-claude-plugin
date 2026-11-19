@@ -6,10 +6,13 @@
 # of the account's details is missing from one or differs between them, since each skill carries
 # it whole. Also fails if a skill's allowed-tools is not exactly the connector's nine read-only
 # tools, by full name, which Claude Code then runs without asking: never a tool that issues,
-# submits or revokes, and never a wildcard. And if .claude-plugin/plugin.json holds a top-level key
-# beyond the nine it has now: Claude Desktop's marketplace strips the directory listing fields
-# (icon, supportUrl, privacyPolicyUrl and their kin) with a warning, though
-# `claude plugin validate --strict` passes them.
+# submits or revokes, and never a wildcard. The nine must also be exactly the tools the server's
+# tool list (mocks/linkin-cpq/_tools.json) marks readOnlyHint, so a tool that comes to write, or a
+# new read tool, fails here when the list is replaced. And if .claude-plugin/plugin.json holds a
+# top-level key beyond the nine it has now: Claude Desktop's marketplace strips the directory
+# listing fields (icon, supportUrl, privacyPolicyUrl and their kin) with a warning, though
+# `claude plugin validate --strict` passes them. The marketplace entry's name must also be
+# plugin.json's: it is the name customers install by, and the validator lets the two differ.
 set -eu
 status=0
 prefix=mcp__plugin_linkin-cpq_linkin-cpq__
@@ -21,6 +24,15 @@ for f in "$(dirname "$0")"/../skills/*/SKILL.md; do
     echo "$f: allowed-tools is not exactly the connector's nine read-only tools" >&2; status=1
   fi
 done
+marked=$(jq -r --arg p "$prefix" '.tools[] | select(.annotations.readOnlyHint == true) | $p + .name' "$(dirname "$0")/mocks/linkin-cpq/_tools.json" | sort)
+if [ "$marked" != "$reads_sorted" ]; then
+  echo "evals/mocks/linkin-cpq/_tools.json: the tools marked readOnlyHint are not the nine the skills pre-approve" >&2; status=1
+fi
+plugin=$(jq -r .name "$(dirname "$0")/../.claude-plugin/plugin.json")
+entries=$(jq -r '.plugins[].name' "$(dirname "$0")/../.claude-plugin/marketplace.json")
+if [ "$entries" != "$plugin" ]; then
+  echo ".claude-plugin/marketplace.json: its entry's name is not plugin.json's, $plugin" >&2; status=1
+fi
 keys=$(jq -r 'keys_unsorted[] | select(. as $k | ["name", "displayName", "description", "version", "author", "homepage", "repository", "license", "keywords"] | index($k) | not)' "$(dirname "$0")/../.claude-plugin/plugin.json")
 if [ -n "$keys" ]; then
   echo ".claude-plugin/plugin.json: keys beyond the nine it may hold: $(echo $keys)" >&2; status=1
