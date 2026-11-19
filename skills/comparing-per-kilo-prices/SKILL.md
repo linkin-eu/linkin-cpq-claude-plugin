@@ -22,9 +22,30 @@ give no profile link.
 
 ## 1. LINKIN's price
 
-Do quoting-profiles' First and its steps 1–3: match, fill in and price, with `view: detail` and
-`detailItems` on the first call. For a new profile with no die yet, do inquiring-new-profiles'
-instead, and say the weights are the drawing's estimates and the price preliminary.
+Price it here, without loading another skill:
+
+1. If the LINKIN CPQ connector's tools aren't available, say: "The LINKIN CPQ connector isn't
+   connected. Connect it on the LINKIN CPQ plugin's Connectors tab (in Claude Code, `/mcp`), then
+   ask again." Then stop.
+2. `get_account`. With one customer in one sales area, act for it. With different customers, ask
+   which, and never choose. With one customer in several sales areas, use the one where
+   `find_profiles` finds the profile, and ask where more than one does. With no linked customer,
+   say quotations need the account linked to the customer's number, which LINKIN does on request
+   (https://linkin.eu/en/contact/). Pass the `soldToParty`, and the sales area where there are
+   several, to every call that takes them.
+3. `find_profiles` with `limit` 200, following `next` until the profile is found. Match it by its
+   geometry, name or drawing number, and start from its `orderAs`; `find_profiles` with
+   `material` gives its fields.
+4. Ask in one message for whatever the request leaves out: length, temper, finish and pieces, and
+   for powder coated the colour system and number, the surface and the Qualicoat class.
+5. `price_quotation` with `view: detail` and `detailItems` on the first call. Where a line is
+   `incomplete` or `inconsistent`, ask for what it names, in plain words, and guess nothing.
+
+For a new profile with no die yet, price it as inquiring-new-profiles does, and say the weights
+are the drawing's estimates and the price preliminary.
+
+Show LINKIN's figures in the tables below, not as a full quote: the table of section 2, and the
+breakdown by process only where section 4 needs it.
 
 Only LINKIN's tools give LINKIN's figures. Never estimate LINKIN's price, never adjust it, and
 never work it out from rates: to see another quantity or finish, price it.
@@ -77,7 +98,8 @@ Check that both offers cover the same things, and name whatever the other offer 
 - the delivery terms: LINKIN's are in the result's `incoterms`, such as EXW Plovdiv.
 
 Where the scope differs, compare only the matching processes from LINKIN's breakdown, and say
-which. Where the buyer hasn't said what the other offer covers, ask rather than assume.
+which. Where the buyer hasn't said what the other offer covers, assume nothing: ask at most one
+question, on the point that matters most here, and name the others as what to check.
 
 ## 5. How extrusions are billed
 
@@ -129,5 +151,7 @@ metres delivered show the coating and any extra metal together.
   either as a fact about the buyer's current supplier, or as what their invoice will show.
 - The coating's weight is for a powder-coated line only: a bare or anodized line says nothing of
   it, in the what-ifs or in section 5.
+- In plain words: no sales area's number, carrier or pack code, field name or hash unless the
+  buyer asks for it.
 - A comparison issues nothing. Issue a quotation only on the buyer's yes, as quoting-profiles
   says.

@@ -13,6 +13,9 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   ([Get started](README.md#claude-desktop-or-claudeai), step 5). In Claude Code, add the four
   tools that issue, submit or revoke to `permissions.ask`, so that no mode runs them without
   asking you ([Claude Code](README.md#claude-code)).
+- A per-kg or per-tonne comparison is shorter. Claude prices it within the comparison, shows
+  LINKIN's figures in the comparison's tables rather than as a full quote, and asks at most one
+  question about what the other offer covers.
 
 ## 5.0.3
 
