@@ -11,8 +11,9 @@
 # new read tool, fails here when the list is replaced. And if .claude-plugin/plugin.json holds a
 # top-level key beyond the nine it has now: Claude Desktop's marketplace strips the directory
 # listing fields (icon, supportUrl, privacyPolicyUrl and their kin) with a warning, though
-# `claude plugin validate --strict` passes them. The marketplace entry's name must also be
-# plugin.json's: it is the name customers install by, and the validator lets the two differ.
+# `claude plugin validate --strict` passes them. The marketplace entry for this folder (source
+# "./") must also carry plugin.json's name: it is the name customers install by, and the validator
+# lets the two differ.
 set -eu
 status=0
 prefix=mcp__plugin_linkin-cpq_linkin-cpq__
@@ -29,7 +30,7 @@ if [ "$marked" != "$reads_sorted" ]; then
   echo "evals/mocks/linkin-cpq/_tools.json: the tools marked readOnlyHint are not the nine the skills pre-approve" >&2; status=1
 fi
 plugin=$(jq -r .name "$(dirname "$0")/../.claude-plugin/plugin.json")
-entries=$(jq -r '.plugins[].name' "$(dirname "$0")/../.claude-plugin/marketplace.json")
+entries=$(jq -r '.plugins[] | select(.source == "./") | .name' "$(dirname "$0")/../.claude-plugin/marketplace.json")
 if [ "$entries" != "$plugin" ]; then
   echo ".claude-plugin/marketplace.json: its entry's name is not plugin.json's, $plugin" >&2; status=1
 fi

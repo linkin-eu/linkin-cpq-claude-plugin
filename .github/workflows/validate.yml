@@ -20,5 +20,5 @@ jobs:
       - run: claude plugin validate . --strict
       - run: evals/check-histories.sh
       - run: python3 evals/tools/check_plan_mocks.py
-      - run: python3 evals/tools/make_plan_mocks.py && git diff --exit-code
+      - run: python3 evals/tools/make_plan_mocks.py && git add --intent-to-add . && git diff --exit-code
       - run: ./build.sh
