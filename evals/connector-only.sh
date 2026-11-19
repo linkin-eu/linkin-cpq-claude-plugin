@@ -1,9 +1,10 @@
 #!/bin/sh
 # Runs the eval suite against the connector alone: this plugin with the same name, .mcp.json and
 # mocks, but no skills. Compare its scores with `claude plugin eval . --ablation none` to see what
-# the skills add over the server's own instructions and tool descriptions. With no skills, a grader
-# on the Skill tool passes or fails by construction: compare the cases' other graders.
-# Extra arguments go to `claude plugin eval`, such as --case or --max-cost-usd.
+# the skills add over the tool descriptions alone: the eval's mock server carries no server
+# instructions. With no skills, a grader on the Skill tool passes or fails by construction:
+# compare the cases' other graders. Extra arguments go to `claude plugin eval`, such as --case,
+# --runs 1 or --max-cost-usd.
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
 tmp=$(mktemp -d)

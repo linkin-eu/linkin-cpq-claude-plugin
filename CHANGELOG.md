@@ -3,6 +3,16 @@
 The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 [Semantic Versioning](https://semver.org/).
 
+## Unreleased
+
+### Changed
+
+- The README says when Claude asks before it issues, submits or revokes. In Claude Desktop and
+  claude.ai, **Needs approval** asks each time only in **Manual** mode; **Always ask** is built
+  to ask in every mode ([Get started](README.md#claude-desktop-or-claudeai), step 5). In Claude
+  Code, to be asked each time, add the four tools that do so to `permissions.ask`
+  ([Claude Code](README.md#claude-code)).
+
 ## 5.0.3
 
 ### Changed

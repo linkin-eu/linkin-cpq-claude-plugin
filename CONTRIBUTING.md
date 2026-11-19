@@ -4,18 +4,31 @@ For LINKIN's maintainers of the plugin. Claude loads none of this.
 
 ```bash
 claude plugin validate . --strict
-evals/check-histories.sh            # each recorded history chained, and its copies of skills and answers current
-claude plugin eval . --no-publish --judge-model opus   # model calls on your own Claude sign-in; answers come from evals/*/mocks
+evals/check-histories.sh            # the histories, the skills' shared paragraph and allowed-tools, the manifests
+claude plugin eval . --runs 1 --ablation none --model opus --judge-model opus --max-cost-usd <n> -j 1 --no-publish
 ./build.sh <commit> <address>       # a test zip for another connector: dist/linkin-cpq-<version>-dev-<commit>.zip
 ./build.sh v<version>               # a past version's zip, rebuilt from its tag: dist/linkin-cpq-<version>.zip
 ```
+
+These need jq, Python 3.9 or later, git 2.39 or later, and Claude Code signed in to Claude.
+
+**The evals are paid.** `claude plugin eval` calls the model on your own Claude sign-in, and the
+tools' answers come from `evals/*/mocks`. The whole suite, run once, cost about $12 on
+18 Nov 2026. The command above is the one the suite is measured with: without `--runs 1` each
+case runs three times, and without `--ablation none` most cases run a second time without the
+plugin. Set `--max-cost-usd`: it is checked before each run starts, so with `-j` above 1 the
+runs already started can take the spend past it. `--case <glob>` runs only the cases it names.
+Run from a checkout with no git worktree inside it, such as Claude Code's `.claude/worktrees/`:
+the eval also runs a worktree's copy of each case, and its first lines warn that cases share a
+name.
 
 A zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
 CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 
 - **The tool list:** `evals/mocks/linkin-cpq/_tools.json` is the server's `tools/list` result as
-  it serves it, indented two spaces. Replace it whole when the server's tools change.
+  it serves it, indented two spaces; the server's maintainers provide it. Replace it whole when
+  the server's tools change.
 - **Generated mocks:** `python3 evals/tools/make_plan_mocks.py` writes the planning cases' priced
   fixtures and `plan_load` answers from made-up figures, as its docstring lists them, and keeps
   the copies `load-plan-inquiry-line`, `load-plan-app-host` and `per-kilo` hold of another case's
@@ -23,7 +36,15 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
   and works out their sentences and figures again. Every other mock, the refusals of
   `load-plan-missing-data` and `load-plan-not-theirs` among them, is edited as it stands.
   `python3 evals/tools/check_plan_mocks.py` checks the `plan_load` answers' consistency, and their
-  shape too with `--openapi <path>` to the server's OpenAPI document.
+  shape too with `--openapi <path>` to the server's OpenAPI document, which its maintainers
+  provide. CI runs the checker, and the generator, which must leave no diff.
+- **The checks:** `evals/check-histories.sh` fails if a history's chain breaks, or its copy of a
+  skill or of a mock's answer is not the file as it stands; if a skill lacks the paragraph on a
+  refusal of the account's details, or its paragraph differs from another's (each skill carries
+  it whole, so change all five together); if a skill's `allowed-tools` is not exactly the
+  connector's nine read-only tools, or those are not the tools `_tools.json` marks
+  `readOnlyHint`; if `plugin.json` holds a key beyond its nine; and if the marketplace entry for
+  this folder doesn't carry `plugin.json`'s name. CI runs it on every pull request.
 - **Recorded histories:** a case's `history.jsonl` is a session recorded on another case and cut
   down to its messages, as its `case.yaml` says. `evals/check-histories.sh` fails where its copy of
   a skill or of a mock's fixed answer is no longer the file: update its copies, or record it again.
@@ -38,8 +59,10 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
 Judge the evals with Opus (`--judge-model opus`): the default judge is too lenient for what a
 buyer must not be told. Keep the rubrics short, one claim each, since the judge answers only PASS
 or FAIL. `evals/connector-only.sh` runs the suite on the connector alone, with no skills and the
-same judge, to show what the skills add; there a grader on the Skill tool passes or fails by
-construction.
+same judge, to show what the skills add over the tool descriptions alone; there a grader on the
+Skill tool passes or fails by construction. Pass it `--runs 1 --max-cost-usd <n>` too. Neither
+run carries the server's instructions: the eval's mock server has only the tools' names,
+descriptions and schemas, while Claude Code also loads the server's instructions.
 
 The repository's `.mcp.json` names LINKIN's connector by its fixed address,
 `https://cpq.mcp.linkin.eu/mcp`, and no OAuth client, as Anthropic's plugin docs have it, with a
@@ -60,7 +83,8 @@ wildcard, which would cover those too. `.claude-plugin/plugin.json` holds only `
 `displayName`, `description`, `version`, `author`, `homepage`, `repository`, `license` and
 `keywords`: the directory listing fields (`icon`, `supportUrl`, `privacyPolicyUrl` and their kin)
 are read only by Anthropic's directory, and Claude Desktop's marketplace strips them with a
-warning. `evals/check-histories.sh` checks both.
+warning. `assets/icon.png` is kept for a listing in that directory, where `icon` would name it.
+`evals/check-histories.sh` checks both.
 
 **A test build for another connector:** `./build.sh <commit> <address>` builds the plugin at that
 commit for the connector at that address, given in full with its path, as the default
@@ -84,9 +108,11 @@ To go back, delete `LINKIN CPQ (dev <commit>)`, install **LINKIN CPQ** again fro
 marketplace ([Get started](README.md#claude-desktop-or-claudeai), steps 3 to 5), and connect again
 any LINKIN connector you disconnected. If an Owner lifted **Required**, ask them to set it again.
 
-Pull requests go to `dev`, squashed. A release:
+Pull requests go to `dev`, squashed. One that changes what a customer gets adds a line under the
+CHANGELOG's `## Unreleased`, in the words a customer reads. A release:
 
-1. sets `PRIVACY.md`'s version line to the release day;
+1. sets `PRIVACY.md`'s version line to the release day, and the Claude Code version CI installs
+   (`.github/workflows/validate.yml`) to the one the release's evals ran on;
 2. raises `version` in `.claude-plugin/plugin.json` and the version in the README's badge, and
    heads the CHANGELOG's Unreleased section with the version. Claude Code takes a new version
    only when this field changes;
