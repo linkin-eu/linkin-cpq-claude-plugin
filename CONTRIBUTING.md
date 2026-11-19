@@ -48,6 +48,10 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
   connector's nine read-only tools, or those are not the tools `_tools.json` marks `readOnlyHint`;
   if `plugin.json` holds a key beyond its nine; and if the marketplace entry for this folder
   doesn't carry `plugin.json`'s name. CI runs it on every pull request.
+- **A skill that restates another:** `comparing-per-kilo-prices`' section 1 restates
+  `quoting-profiles`' First and its steps 1 to 3 (matching, filling in and pricing), so that a
+  comparison prices without loading a second skill. No check compares the two: change them
+  together, and run the per-kg cases with the quoting ones.
 - **Recorded histories:** a case's `history.jsonl` is a session recorded on another case and cut
   down to its messages, as its `case.yaml` says. `evals/check-histories.sh` fails where its copy of
   a skill or of a mock's fixed answer is no longer the file: update its copies, or record it again.
