@@ -100,8 +100,8 @@ for its head and rows, then with `items` for the lines' detail):
 
 Under it:
 - each line's breakdown by process, one total each: metal, extrusion, finishing, cutting, film.
-  A charge's rate or basis only when the customer asks how the price was made, as Explain an
-  issued price gives them;
+  A charge's rate or basis only when the customer asks how the price was made: then each charge
+  with its basis, from the pricing's detail;
 - the minimums (a die's press run and wear, a powder colour, the anodizing), which lines share
   each (the order's groups, each line's uplift), and that a minimum weighs less as the quantity
   grows;
