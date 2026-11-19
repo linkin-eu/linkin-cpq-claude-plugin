@@ -22,7 +22,7 @@ give no profile link.
 
 ## 1. LINKIN's price
 
-Price it here, without loading another skill:
+Price a profile the buyer already orders here, without loading another skill:
 
 1. If the LINKIN CPQ connector's tools aren't available, say: "The LINKIN CPQ connector isn't
    connected. Connect it on the LINKIN CPQ plugin's Connectors tab (in Claude Code, `/mcp`), then
@@ -35,14 +35,19 @@ Price it here, without loading another skill:
    several, to every call that takes them.
 3. `find_profiles` with `limit` 200, following `next` until the profile is found. Match it by its
    geometry, name or drawing number, and start from its `orderAs`; `find_profiles` with
-   `material` gives its fields.
-4. Ask in one message for whatever the request leaves out: length, temper, finish and pieces, and
-   for powder coated the colour system and number, the surface and the Qualicoat class.
-5. `price_quotation` with `view: detail` and `detailItems` on the first call. Where a line is
-   `incomplete` or `inconsistent`, ask for what it names, in plain words, and guess nothing.
+   `material` gives its fields. Where two match, ask which. With no match, ask whether it is a new
+   profile they have drawn.
+4. Ask in one message for whatever the request leaves out, each field and its choices by their
+   text: length, temper, finish and pieces; for powder coated, the colour system and number, the
+   surface and the Qualicoat class; for anodized, the pretreatment, colour and thickness class.
+5. `price_quotation` with `view: detail` and `detailItems` on the first call. `incomplete`: ask
+   for the fields in `missing`. `inconsistent`: say which value a rule refuses, in plain words,
+   and offer the values `find_values` allows; guess nothing. Price each alternative (another
+   quantity or finish) in its own call: lines priced together share the die's and the colour's
+   minimums.
 
-For a new profile with no die yet, price it as inquiring-new-profiles does, and say the weights
-are the drawing's estimates and the price preliminary.
+For a new profile with no die yet, load inquiring-new-profiles and price it as it says, and say
+the weights are the drawing's estimates and the price preliminary.
 
 Show LINKIN's figures in the tables below, not as a full quote: the table of section 2, and the
 breakdown by process only where section 4 needs it.
@@ -119,9 +124,9 @@ Once in the conversation, in a few neutral sentences:
   the bars hung and the m² coated.
 
 Close with one neutral sentence on the two ways of billing in general, such as "a per-piece price
-on theoretical weight and a per-kg price on shipped weight don't compare one to one", and offer to
-price other quantities or finishes. Don't say which weight the other offer is billed on unless the
-buyer has said which. Don't push.
+on theoretical weight and a per-kg price on shipped weight don't compare one to one", and say that
+other quantities or finishes can be priced. Don't say which weight the other offer is billed on
+unless the buyer has said which. Don't push.
 
 If the buyer wants only the number, give it with one line: a per-piece price on theoretical
 weight and a per-kg price on shipped weight don't compare one to one. Offer the rest.
