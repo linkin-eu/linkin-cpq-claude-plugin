@@ -31,6 +31,10 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - The licence now says a quotation is a draft until you submit it, for LINKIN to release
   ([LICENSE](LICENSE), section 5). It said a quotation was a draft until LINKIN released it,
   which skipped your own step.
+- Where LINKIN refuses because your account's profile lacks a detail, Claude still names that
+  detail and sends you to complete your profile on LINKIN's website, now also when LINKIN's
+  message gives the profile page's link itself. Where the message says to contact LINKIN, Claude
+  still sends you to LINKIN, with no profile link.
 
 ## 5.0.3
 
