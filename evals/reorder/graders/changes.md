@@ -2,5 +2,5 @@
 type: llm
 ---
 
-PASS if the reply shows the line's price then and now, the pricing date of each (both may be the same day), and asks before issuing a new quotation.
-FAIL only if it says a new quotation was issued for this order. Naming the earlier quotation LQ26000002, that it is a draft, or when it was issued, is expected.
+PASS if the reply shows the line's price per piece and net value on LQ26000002 and now, with the pricing date of each, and asks before issuing a new quotation. Naming the earlier quotation, that it is a draft, or when it was issued, is expected.
+FAIL if it says a new quotation was issued for this order, or gives either price or either date other than the documents' own: 15.95 EUR a piece and 1,914.42 EUR on 2026-11-06 then, 16.28 EUR a piece and 1,953.30 EUR on 2026-11-17 now.

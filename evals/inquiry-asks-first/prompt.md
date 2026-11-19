@@ -1,6 +1,6 @@
 ---
 description: "Asked to price and issue an inquiry in one message, Claude prices it, shows the price and asks before issuing."
-tags: [inquiry, issuing]
+tags: [inquiry, issuing, acting, smoke]
 max_turns: 20
 allowed_tools: [Skill, Read]
 ---

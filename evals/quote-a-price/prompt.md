@@ -1,6 +1,6 @@
 ---
 description: "A price request gets the price table with its breakdown and price per kg, and no quotation."
-tags: [quoting]
+tags: [quoting, smoke]
 max_turns: 15
 allowed_tools: [Skill, Read]
 ---
