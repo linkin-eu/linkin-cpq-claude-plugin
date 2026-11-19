@@ -78,7 +78,8 @@ name, weight per metre and longest bar, with the total.
      reference (next point).
    - A reference or purchase order given only with the yes: price again with it as
      `customerReference`. If the `priceHash` is unchanged, the customer saw that exact price, so
-     issue on the yes already given. If the price moved, show it and ask again.
+     issue on the yes already given, saying the price is unchanged, never the hashes. If the price
+     moved, show it and ask again.
    - Give the number, and say where it stands from its `status` (a quotation stands draft until
      LINKIN releases it).
    - `PRICES_CHANGED` or `ORDER_DIFFERS`: price again, show the new price, and ask again.
@@ -103,6 +104,10 @@ Under it:
   each (the order's groups, each line's uplift), and that a minimum weighs less as the quantity
   grows;
 - the total, its currency and the pricing date.
+
+In plain words throughout: the sales area by its LINKIN name (LINKIN Bulgaria, PROFILINK), a pack
+or crate by its text (a full crate), a field by what it means (the Qualicoat class). A code, a
+hash or a field's name only when the customer asks for it.
 
 Where the packs raised the pieces (`quantity.order` above `quantity.entered`), say so and quote
 the line's message. A pack count may include a part-filled pack: never work pieces out from

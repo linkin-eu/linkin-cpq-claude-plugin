@@ -102,7 +102,9 @@ Under it:
 - the new dies' refundable deposit, from the `NEW_DIE_DEPOSIT` message, outside the total;
 - that it is a preliminary offer, subject to LINKIN's technical review of each profile, its
   weights the drawing's estimates;
-- which figures the plant's bands and references gave, as the line's detail reports them.
+- in one sentence, the die figures LINKIN's plant set because the drawing didn't give them, as
+  the line's detail reports them, named in plain words and never by field name, and that the
+  customer's own figures would replace them.
 
 List a line that isn't `ok` under the table with what it still needs or what was refused, and no
 price. An issued document may show beside the answer in the host's document view. Shown or not,

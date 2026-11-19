@@ -40,3 +40,8 @@ graders:
     criteria: >-
       PASS if the reply mentions no page, link or address for the document.
       FAIL if it gives an address, says a page was opened or saved, or offers a page or a link.
+  - type: regex
+    name: no-codes
+    # Plain words: the price is unchanged, never the hashes; no code the customer didn't ask for.
+    pattern: 'priceHash|inputHash|\b[hp]1:[0-9a-f]{8}|\bZA_[A-Z]|\b1[01]02/10\b|\bAW1\b'
+    match: not_contains

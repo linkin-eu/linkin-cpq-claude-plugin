@@ -56,7 +56,8 @@ rules at the end of this skill.
    - a truck's two shares are of its payload and of its space, as its sentence gives them; never
      its `fill.volume` or `fill.floor`, which measure otherwise;
    - that the weights are theoretical, each crate's empty weight LINKIN's approximation, and, while
-     `axlesChecked` is false, that the axles aren't checked.
+     `axlesChecked` is false, that the axles aren't checked;
+   - crates by their text (a full crate), never by a carrier's code unless asked.
 
    Never present the plan as a loading plan, a carrier's booking or how the plant loads.
 
