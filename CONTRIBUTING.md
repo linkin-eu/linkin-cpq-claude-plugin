@@ -51,7 +51,12 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
   a skill or of a mock's fixed answer is no longer the file: update its copies, or record it again.
   `issue-as-prospect` and `too-many-inquiries` keep copies of `unlinked-inquiry`'s `get_account` and
   `price_inquiry` mocks, `profile-incomplete` of the same `get_account`, and
-  `issue-inquiry-on-yes` of `profilink-only-inquiry`'s: change them together.
+  `issue-inquiry-on-yes` of `profilink-only-inquiry`'s: change them together. To record one again,
+  run the case its `case.yaml` names with `--keep-temp` (`unlinked-inquiry` for both
+  `issue-as-prospect` and `too-many-inquiries`, which share one history: write the cut to both),
+  cut the kept session's transcript with `python3 evals/tools/cut_history.py` (its docstring gives
+  the steps), and run `evals/check-histories.sh`. A recording is a paid run, about $0.30 for one
+  case.
 - **Graders:** a `regex` grader takes a JavaScript pattern, case-insensitive with `flags: i` (no
   inline `(?i)`), and `match: not_contains` for one that must not appear. A case where a skill
   must not start uses `tool_used` on `Skill` with `min: 0`, `max: 0` and `arm: both`. A case's own
