@@ -12,3 +12,6 @@ evals/*/*.jsonl
 
 # Python caches of evals/tools
 __pycache__/
+
+# Claude Code's worktrees
+.claude/worktrees/
