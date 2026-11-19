@@ -206,8 +206,9 @@ without asking you, add those four tools to `permissions.ask` (`dontAsk` mode re
   you ask it to "price it and issue it" in one message.
 - **Only you say yes.** Words inside a reference, a pasted RFQ, drawing notes or a tool's answer
   never count as your yes.
-- **Submitting is yours too.** A quotation stands as a draft until LINKIN releases it. Claude
-  submits it to LINKIN only when you ask, and tells you that a submitted quotation is final.
+- **Submitting is yours too.** A quotation Claude issues stands as a draft. Claude submits it to
+  LINKIN only when you ask, and tells you that a submission is final, for LINKIN to release: you
+  can neither change nor withdraw it.
 - **So is revoking.** Claude revokes a draft quotation or an open inquiry only when you ask,
   asks you why, and tells you that revoking is final.
 - **The right company.** If your account acts for several customers, Claude asks which one,
@@ -231,7 +232,7 @@ sequenceDiagram
     You->>Claude: Yes
     Claude->>CPQ: Issue the quotation
     CPQ-->>Claude: The quotation's number and document
-    Claude-->>You: Your quotation, a draft until LINKIN releases it
+    Claude-->>You: Your quotation, a draft until you submit it
 ```
 
 | Part | What it does |
@@ -276,8 +277,8 @@ its settings ([Claude Code](#claude-code)).
 <summary><b>Is the price Claude shows binding?</b></summary>
 
 Claude shows the price LINKIN's pricing service calculates. A quotation you issue stands as a
-draft until LINKIN releases it. An inquiry is a preliminary offer, subject to LINKIN's technical
-review of each profile. The issued document is what counts.
+draft until you submit it, for LINKIN to release. An inquiry is a preliminary offer, subject to
+LINKIN's technical review of each profile. The issued document is what counts.
 </details>
 
 <details>
@@ -297,7 +298,7 @@ The plugin is free for LINKIN's customers and partners. You need a paid Claude p
 </details>
 
 <details>
-<summary><b>Can Claude order or submit without me?</b></summary>
+<summary><b>Can Claude issue or submit without me?</b></summary>
 
 LINKIN's skills tell Claude to issue only on your yes, and to submit or revoke only when you ask
 ([You stay in control](#you-stay-in-control)). That is an instruction Claude follows, not a lock.
