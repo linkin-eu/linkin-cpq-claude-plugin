@@ -41,3 +41,12 @@ graders:
     criteria: >-
       PASS if the reply mentions no page, link or address for the document.
       FAIL if it gives an address, says a page was opened or saved, or offers a page or a link.
+  - type: llm
+    name: no-timing
+    criteria: >-
+      PASS if the reply says nothing of when or how LINKIN reviews or answers the inquiry. Saying
+      it is a preliminary offer subject to LINKIN's technical review, that its price may change
+      after that review, or that it is addressed by the buyer's registration on the LINKIN website
+      is fine.
+      FAIL if it gives a time, says LINKIN will contact, email or call the buyer, or says how
+      LINKIN's answer reaches them.

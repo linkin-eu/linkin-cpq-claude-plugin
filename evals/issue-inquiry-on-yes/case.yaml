@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: issue-inquiry-on-yes
-description: "A linked customer says yes to an inquiry's price: Claude issues it with the pricing's hashes and no address, without pricing again or asking again."
+description: "A linked customer says yes to an inquiry's price: Claude issues it with the pricing's hashes and no address, without pricing again or asking again, and promises nothing of when or how LINKIN answers."
 tags: [inquiry, issuing, acting]
 context:
   # The profilink-only-inquiry session: priced in 1102/10 for a customer linked in 1002/10
@@ -41,3 +41,11 @@ graders:
     criteria: >-
       PASS if the reply mentions no page, link or address for the document.
       FAIL if it gives an address, says a page was opened or saved, or offers a page or a link.
+  - type: llm
+    name: no-timing
+    criteria: >-
+      PASS if the reply says nothing of when or how LINKIN reviews or answers the inquiry. Saying
+      it is a preliminary offer subject to LINKIN's technical review, or that its price may change
+      after that review, is fine.
+      FAIL if it gives a time, says LINKIN will contact, email or call the customer, or says how
+      LINKIN's answer reaches them.

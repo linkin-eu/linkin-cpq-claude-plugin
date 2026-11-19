@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: issue-with-reference
-description: "The yes brings the reference: Claude prices again with it and, the price unchanged, issues on that yes without asking again."
+description: "The yes brings the reference: Claude prices again with it and, the price unchanged, issues on that yes without asking again, and says the draft is the customer's to submit, for LINKIN to release, promising nothing more."
 tags: [quoting, issuing, acting]
 context:
   # A session that priced 120 bars and asked whether to issue (recorded on quote-a-price,
@@ -46,3 +46,26 @@ graders:
     pattern: 'price ?hash|input ?hash|\b[hp]1:[0-9a-f]{8}|\bZA_[A-Z]|\b1[01]02 ?/ ?10\b|\bAW1\b'
     flags: i
     match: not_contains
+  - type: llm
+    name: next-step
+    criteria: >-
+      PASS if the reply says the quotation stands as a draft until the customer submits it, for
+      LINKIN to release.
+      FAIL if it says the quotation stays a draft until LINKIN releases it, says LINKIN releases or
+      confirms it before the customer submits it, or says nothing of where it stands.
+  - type: llm
+    name: nothing-beyond
+    criteria: >-
+      PASS if the reply says nothing of what issuing or submitting commits the customer to beyond
+      that a submission is final, for LINKIN to release, can't be changed or withdrawn, and that
+      LINKIN's sales desk is told. Calling the priced lines an order, the reference a purchase
+      order, or saying the draft can still be revoked is fine.
+      FAIL if it says issuing or submitting places an order, makes a purchase or binds the
+      customer.
+  - type: llm
+    name: no-timing
+    criteria: >-
+      PASS if the reply says nothing of whether, when or how LINKIN will release the quotation or
+      answer the customer.
+      FAIL if it gives a time, or says LINKIN will contact, email or call the customer, or how
+      LINKIN's answer reaches them. That LINKIN's sales desk is told of a submission is fine.

@@ -24,6 +24,10 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - A quote for a profile you already order gives each process as one total (metal, extrusion,
   finishing), as the README's example shows. Ask how the price was made for each charge's rate
   and basis.
+- When Claude issues a quotation, it says it stands as a draft that you submit, when you ask,
+  for LINKIN to release, and that a submission is final: you can neither change nor withdraw it.
+  An issued inquiry stands open, a preliminary offer subject to LINKIN's technical review of each
+  profile. When or how LINKIN answers is LINKIN's to say: if you ask, Claude points you to LINKIN.
 
 ## 5.0.3
 
