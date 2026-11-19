@@ -34,7 +34,7 @@
   price on the same weight and explains what differs.
 - **From drawing to offer.** For a new profile with no die yet, give Claude the figures from your
   drawing. It prices the profile as an inquiry, a preliminary offer subject to LINKIN's technical
-  review.
+  review. A new die carries a refundable deposit, shown with the price but not included in it.
 - **Order again in one sentence.** "Order again what we had on our last quotation." Claude prices
   the same lines today and shows what changed.
 - **Size the order to the truck.** Ask how many trucks an order or a quotation takes, or how much
@@ -70,8 +70,8 @@ for new profiles. To quote the profiles you can order,
 ### Claude Desktop or claude.ai
 
 1. **Turn on Code execution.** Skills need it: **Settings › Capabilities › Code execution and
-   file creation**. On a Team or Enterprise plan, an Owner turns it on under **Organization
-   settings › Capabilities**.
+   file creation**. On a Team or Enterprise plan, an Owner controls it for the organization: on
+   Team it is on unless an Owner turned it off.
 2. **Add LINKIN's marketplace.** Choose **Customize › Plugins › Add › Add marketplace** and enter
    `linkin-eu/linkin-cpq-claude-plugin`. Add plugins from a marketplace only from sources you
    trust: this one is LINKIN's, from this repository, and runs no code of its own. Turn on **Sync
@@ -111,7 +111,8 @@ same sign-in, and in Claude Code, where you sign in once more ([Claude Code](#cl
 Claude syncs an organization's marketplace only from a private or internal repository, and this
 one is public, so an Owner can't make it the organization's marketplace. Each member adds the
 marketplace and the plugin themselves, as above. An Owner:
-1. turns on Code execution under **Organization settings › Capabilities**;
+1. keeps Code execution and Skills on, under **Organization settings › Plugins & skills ›
+   Policy** (on Team both are on by default; on Enterprise, check that both are on);
 2. keeps **User-created skills** on, without which members can't add plugins;
 3. adds the connector under **Organization settings › Connectors**, for members to connect with
    their own LINKIN account;
@@ -123,15 +124,20 @@ organization's own private marketplace repository, as a plugin from the public r
 `linkin-eu/linkin-cpq-claude-plugin`, sync that repository, and set the plugin to **Installed by
 default** or **Required**. Members who added LINKIN's marketplace themselves then delete their
 copy, so that two plugins don't share the `linkin-cpq` connector. A new version reaches members
-when the organization's marketplace syncs again.
+when the organization's marketplace syncs again. Nothing syncs on a schedule, and **Sync
+automatically** syncs only on a push to your own repository: after each LINKIN release
+([CHANGELOG.md](CHANGELOG.md)), select **Re-sync** on the marketplace.
 
 ### Claude Code
 
-A plugin you installed in Claude Desktop or claude.ai is already there, as `linkin-cpq@synced`:
-skip to signing in. Otherwise, check first: if `claude plugin marketplace list` shows a `linkin`
-marketplace from another source than `linkin-eu/linkin-cpq-claude-plugin`, remove it
+A plugin you installed in Claude Desktop or claude.ai comes across, as `linkin-cpq@synced`, when
+you sign in to Claude Code 2.1.273 or later with the same claude.ai account: if
+`claude plugin list` lists it, skip to signing in. Otherwise, check first: if
+`claude plugin marketplace list` shows a `linkin` marketplace from another source than
+`linkin-eu/linkin-cpq-claude-plugin`, remove it
 ([Upgrading](#upgrading-from-an-earlier-linkin-plugin)): it held an earlier LINKIN plugin, and has
-this marketplace's name. Then install the plugin from this repository's marketplace, in one step:
+this marketplace's name. Then install the plugin from this repository's marketplace, in one step,
+on Claude Code 2.1.292 or later (`claude --version`):
 
 ```bash
 claude plugin install linkin-cpq --marketplace linkin-eu/linkin-cpq-claude-plugin
@@ -144,8 +150,8 @@ claude plugin marketplace add linkin-eu/linkin-cpq-claude-plugin
 claude plugin install linkin-cpq@linkin
 ```
 
-Inside Claude Code, the same commands start with `/plugin`; there, the one-step install shows the
-marketplace's source and asks you to confirm before adding it.
+Inside Claude Code, the same commands start with `/plugin`; there, the one-step install needs
+2.1.275 or later, and shows the marketplace's source and asks you to confirm before adding it.
 
 Then start Claude Code, or run `/reload-plugins` if it was already running. Run `/mcp`, choose
 `linkin-cpq` and sign in. The sign-in comes back to port `47819` on your computer, so keep that
@@ -189,7 +195,7 @@ without asking you, add those four tools to `permissions.ask` (`dontAsk` mode re
 | Price a profile | *"What would 30 bars of ‹one of your profile numbers› cost: 6 m, T5, powder coated RAL 7016 fine textured matt, Qualicoat class 1?"* |
 | Price an RFQ | *"Here's an RFQ from our customer. What would it cost?"*, with the RFQ pasted or attached |
 | Check a finish | *"Can I get ‹that profile› anodized but in RAL 9016? If not, what are my options?"* |
-| Price a new profile | *"Here's a drawing of a new profile: die D-118, 6063 T6, 1.25 kg/m, 6 m, 500 pieces. What would it cost?"* |
+| Price a new profile | *"Here's a drawing of our new profile Frame D-118: die D-118, 6063 T6, 1.25 kg/m, perimeter 210 mm, 6 m, bare, no protective film, 500 pieces. Our RFQ is RFQ-118. What would it cost?"* |
 | Compare per kg | *"Another offer is 5.30 €/kg. How does yours compare?"* |
 | Order again | *"Order again what we had on our last quotation."* |
 | Understand a price | *"How was the price on our last quotation made?"* |
@@ -210,10 +216,10 @@ without asking you, add those four tools to `permissions.ask` (`dontAsk` mode re
   LINKIN only when you ask, and tells you that a submission is final, for LINKIN to release: you
   can neither change nor withdraw it.
 - **So is revoking.** Claude revokes a draft quotation or an open inquiry only when you ask,
-  asks you why, and tells you that revoking is final.
+  asks you why if you haven't said, and tells you that revoking is final.
 - **The right company.** If your account acts for several customers, Claude asks which one,
-  and never picks one itself. For one customer in several sales areas, it uses the one that sells
-  the profile and says why.
+  and never picks one itself. For a quotation for one customer in several sales areas, it uses
+  the area that sells the profile and says why; where more than one sells it, it asks you which.
 - **The document is what counts.** What Claude writes may be wrong. Where it differs from the
   document LINKIN's service issued, the document prevails.
 
@@ -340,7 +346,7 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
 | Signing in from Claude Code fails | Another program holds port `47819` on your computer: close it, then run `/mcp` and sign in again |
 | Claude refuses the marketplace | Your organization limits which marketplaces members may add: ask an Owner to allow `linkin-eu/linkin-cpq-claude-plugin` |
 | **Add** offers no plugin options | **User-created skills** is off for your organization: ask an Owner to turn it on |
-| Your LINKIN account's details are incomplete or invalid | For an account not yet linked to a customer number, complete your profile at <https://linkin.eu/en/complete-profile/>, then ask again. For a linked account, [contact LINKIN](https://linkin.eu/en/contact/) to correct them |
+| Your LINKIN account's details are incomplete or invalid | Claude names the detail and where to correct it: complete your profile at <https://linkin.eu/en/complete-profile/>, then ask again, or [contact LINKIN](https://linkin.eu/en/contact/) to correct it |
 
 ## Updating
 
@@ -354,7 +360,9 @@ Claude Desktop, claude.ai, Cowork and Claude Code.
   organization, the Owner deletes it from the organization's plugins instead, and sets it up
   again as in
   [For a whole Team or Enterprise organization](#for-a-whole-team-or-enterprise-organization).
-- **Claude Code:** to update by itself, turn on `/plugin` › **Marketplaces** › `linkin` › **Enable
+- **Claude Code:** automatic updates are off by default for a marketplace you add, so a copy stays
+  on the version you installed until you update it. `claude plugin list` shows the version you
+  have. To update by itself, turn on `/plugin` › **Marketplaces** › `linkin` › **Enable
   auto-update**. Or update when you choose:
 
   ```bash

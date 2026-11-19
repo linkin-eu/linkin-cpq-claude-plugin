@@ -28,6 +28,15 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   for LINKIN to release, and that a submission is final: you can neither change nor withdraw it.
   An issued inquiry stands open, a preliminary offer subject to LINKIN's technical review of each
   profile. When or how LINKIN answers is LINKIN's to say: if you ask, Claude points you to LINKIN.
+- The README's setup follows Anthropic's help pages. On a Team plan, Code execution and Skills
+  are on unless an Owner turned them off. An organization's own marketplace doesn't sync on a
+  schedule, and a LINKIN release doesn't sync it: an Owner syncs it again after each release. In
+  Claude Code, the one-step install needs version 2.1.292 or later, a plugin from Claude Desktop
+  comes across when you sign in to Claude Code 2.1.273 or later with the same claude.ai account,
+  and automatic updates are off until you turn them on.
+- The README's example for a new profile also gives its name, perimeter, finish, protective film
+  and your RFQ reference, and the README says a new die carries a refundable deposit, shown with
+  the price but not included in it.
 - The licence now says a quotation is a draft until you submit it, for LINKIN to release
   ([LICENSE](LICENSE), section 5). It said a quotation was a draft until LINKIN released it,
   which skipped your own step.
