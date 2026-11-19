@@ -8,14 +8,16 @@ Record on the case whose session the history continues, keeping its temporary fo
     claude plugin eval . --case <case> --runs 1 --ablation none --model opus --judge-model opus \\
       --max-cost-usd <n> -j 1 --keep-temp --no-publish
 
-The eval prints the folder it kept; the transcript is the session's `.jsonl` file under its
-`config/projects/`.
+Run it from a checkout with no other copy of the plugin under it (CONTRIBUTING): the cut rewrites
+the skill's path, so the history can't show which copy was loaded. The eval prints the folder it
+kept; the transcript is the session's `.jsonl` file under its `config/projects/`.
 
 Usage, from the plugin's root:
     python3 evals/tools/cut_history.py <transcript.jsonl> evals/<case>/history.jsonl [<n>]
 
-<n> numbers the fixed session id, 00000000-0000-4000-8000-00000000000<n>: keep the number the
-history has (default 1). Then run evals/check-histories.sh.
+<n> numbers the fixed session id in its last twelve digits, as in
+00000000-0000-4000-8000-000000000001 for 1: keep the number the history has (default 1). Then run
+evals/check-histories.sh.
 """
 import json
 import sys
