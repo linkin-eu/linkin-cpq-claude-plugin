@@ -28,6 +28,9 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
   for LINKIN to release, and that a submission is final: you can neither change nor withdraw it.
   An issued inquiry stands open, a preliminary offer subject to LINKIN's technical review of each
   profile. When or how LINKIN answers is LINKIN's to say: if you ask, Claude points you to LINKIN.
+- The licence now says a quotation is a draft until you submit it, for LINKIN to release
+  ([LICENSE](LICENSE), section 5). It said a quotation was a draft until LINKIN released it,
+  which skipped your own step.
 
 ## 5.0.3
 
