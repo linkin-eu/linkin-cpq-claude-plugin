@@ -1,6 +1,6 @@
 ---
 description: "Asked to price and issue in one message, Claude prices, shows the price and asks; it issues nothing in that turn."
-tags: [quoting, issuing]
+tags: [quoting, issuing, acting]
 max_turns: 15
 allowed_tools: [Skill, Read]
 ---

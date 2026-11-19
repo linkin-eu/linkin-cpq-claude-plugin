@@ -1,7 +1,7 @@
-schema_version: "1.0"
+schema_version: "1.1"
 name: issue-inquiry-on-yes
 description: "A linked customer says yes to an inquiry's price: Claude issues it with the pricing's hashes and no address, without pricing again or asking again."
-tags: [inquiry, issuing]
+tags: [inquiry, issuing, acting]
 context:
   # The profilink-only-inquiry session: priced in 1102/10 for a customer linked in 1002/10
   # alone, then asked whether to issue (recorded, then cut down to its messages). Re-record it

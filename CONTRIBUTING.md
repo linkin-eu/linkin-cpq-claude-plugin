@@ -18,9 +18,11 @@ suite at about $12, at list price, on 18 Nov 2026. It is the command the suite i
 without `--runs 1` each case runs three times, and without `--ablation none` most cases run a
 second time without the plugin. Set `--max-cost-usd`: it is checked before each run starts, and
 runs already started finish, so the spend can pass it by the runs in flight, one with `-j 1`.
-`--case <glob>` runs only the cases it names. Run from a checkout with no other copy of the
-plugin under it, such as a git worktree: an eval has been seen to run a worktree's copy of each
-case too, and its first lines then warn that cases share a name.
+`--case <glob>` runs only the cases it names, and `--tag <tag>` the cases with that tag: `acting`,
+the twelve cases run twice before a release, on when Claude issues, submits or revokes; `smoke`,
+one case for each skill. Run from a checkout with no other copy of the plugin under it, such as a
+git worktree: an eval has been seen to run a worktree's copy of each case too, and its first lines
+then warn that cases share a name.
 
 A zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
@@ -59,8 +61,12 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
   case.
 - **Graders:** a `regex` grader takes a JavaScript pattern, case-insensitive with `flags: i` (no
   inline `(?i)`), and `match: not_contains` for one that must not appear. A case where a skill
-  must not start uses `tool_used` on `Skill` with `min: 0`, `max: 0` and `arm: both`. A case's own
-  `mocks/` override the shared `evals/mocks/` file by file.
+  must not start uses `tool_used` on `Skill` with `min: 0`, `max: 0` and `arm: both`. A fixed
+  mock answers the same whatever Claude sends, unless an `expect:` in its front matter stops the
+  run, so a grader on what was sent uses `tool_used` with `input_match`, a pattern on the call's
+  input as JSON, without flags and so case-sensitive: the quantity, length or coating class asked
+  for, or the buyer's `customerReference`. A case's own `mocks/` override the shared
+  `evals/mocks/` file by file.
 
 Judge the evals with Opus (`--judge-model opus`): the default judge is too lenient for what a
 buyer must not be told. Keep the rubrics short, one claim each, since the judge answers only PASS

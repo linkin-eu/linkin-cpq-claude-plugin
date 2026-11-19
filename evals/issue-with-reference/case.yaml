@@ -1,7 +1,7 @@
-schema_version: "1.0"
+schema_version: "1.1"
 name: issue-with-reference
 description: "The yes brings the reference: Claude prices again with it and, the price unchanged, issues on that yes without asking again."
-tags: [quoting, issuing]
+tags: [quoting, issuing, acting]
 context:
   # A session that priced 120 bars and asked whether to issue (recorded on quote-a-price,
   # then cut down to its messages). Re-record it when the quoting skill changes.

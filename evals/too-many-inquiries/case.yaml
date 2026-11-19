@@ -1,7 +1,7 @@
-schema_version: "1.0"
+schema_version: "1.1"
 name: too-many-inquiries
 description: "An account linked to no customer number has issued its 20 inquiries today: Claude says nothing was issued and why, offers tomorrow or linking the account, and doesn't retry."
-tags: [inquiry, issuing, customers]
+tags: [inquiry, issuing, customers, acting]
 context:
   # The same session as issue-as-prospect's: priced, then asked whether to issue. Re-record it
   # when the inquiry skill changes.

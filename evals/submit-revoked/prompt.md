@@ -1,6 +1,6 @@
 ---
 description: "Asked to submit a quotation that was revoked, Claude says so and submits nothing."
-tags: [quoting, issuing, revoking]
+tags: [quoting, issuing, revoking, acting]
 max_turns: 12
 allowed_tools: [Skill, Read]
 ---

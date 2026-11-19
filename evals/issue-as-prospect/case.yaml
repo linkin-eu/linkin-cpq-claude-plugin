@@ -1,7 +1,7 @@
-schema_version: "1.0"
+schema_version: "1.1"
 name: issue-as-prospect
 description: "An account linked to no customer number says yes: Claude issues the inquiry as LINKIN's one-time customer with the pricing's hashes and no address, without pricing again, and doesn't call it unverified."
-tags: [inquiry, issuing, customers]
+tags: [inquiry, issuing, customers, acting]
 context:
   # The unlinked-inquiry session: priced, then asked whether to issue (recorded, then cut down
   # to its messages). Re-record it when the inquiry skill changes.
