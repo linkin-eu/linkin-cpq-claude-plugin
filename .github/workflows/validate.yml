@@ -16,7 +16,9 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
-      - run: npm install --global @anthropic-ai/claude-code@2.1.318
+      - run: npm install --global @anthropic-ai/claude-code@2.1.327
       - run: claude plugin validate . --strict
       - run: evals/check-histories.sh
+      - run: python3 evals/tools/check_plan_mocks.py
+      - run: python3 evals/tools/make_plan_mocks.py && git add --intent-to-add . && git diff --exit-code
       - run: ./build.sh
