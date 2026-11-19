@@ -34,8 +34,8 @@ give no profile link.
      customer. Pass no `soldToParty`. The inquiry is addressed to the buyer by their registration
      on the LINKIN website, so never ask for their company or contact details.
 
-   Never ask about the sales area, and pass none: an inquiry is made in LINKIN's 1102/10,
-   whichever area the account lists.
+   Never ask about the sales area, and pass none: an inquiry is made in LINKIN Bulgaria's sales
+   area (1102/10), whichever area the account lists.
 
 ## The items
 
@@ -102,9 +102,13 @@ Under it:
 - the new dies' refundable deposit, from the `NEW_DIE_DEPOSIT` message, outside the total;
 - that it is a preliminary offer, subject to LINKIN's technical review of each profile, its
   weights the drawing's estimates;
-- in one sentence, the die figures LINKIN's plant set because the drawing didn't give them, as
-  the line's detail reports them, named in plain words and never by field name, and that the
-  customer's own figures would replace them.
+- in one sentence, which of the die's figures LINKIN's plant set from its bands by weight per
+  metre or its references, because the drawing didn't give them: name them plainly (such as the
+  die's cavities, press speed and life), without their values, levels or field names, and say
+  the customer's own figures would replace them.
+
+In plain words throughout: the sales area by its LINKIN name (LINKIN Bulgaria), a field by what it
+means. A code or a field's name only when the customer asks for it.
 
 List a line that isn't `ok` under the table with what it still needs or what was refused, and no
 price. An issued document may show beside the answer in the host's document view. Shown or not,

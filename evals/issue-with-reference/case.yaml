@@ -43,5 +43,6 @@ graders:
   - type: regex
     name: no-codes
     # Plain words: the price is unchanged, never the hashes; no code the customer didn't ask for.
-    pattern: 'priceHash|inputHash|\b[hp]1:[0-9a-f]{8}|\bZA_[A-Z]|\b1[01]02/10\b|\bAW1\b'
+    pattern: 'price ?hash|input ?hash|\b[hp]1:[0-9a-f]{8}|\bZA_[A-Z]|\b1[01]02 ?/ ?10\b|\bAW1\b'
+    flags: i
     match: not_contains

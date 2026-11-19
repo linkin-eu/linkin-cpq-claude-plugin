@@ -56,8 +56,7 @@ rules at the end of this skill.
    - a truck's two shares are of its payload and of its space, as its sentence gives them; never
      its `fill.volume` or `fill.floor`, which measure otherwise;
    - that the weights are theoretical, each crate's empty weight LINKIN's approximation, and, while
-     `axlesChecked` is false, that the axles aren't checked;
-   - crates by their text (a full crate), never by a carrier's code unless asked.
+     `axlesChecked` is false, that the axles aren't checked.
 
    Never present the plan as a loading plan, a carrier's booking or how the plant loads.
 
@@ -150,6 +149,8 @@ change:
 - Never turn `summary.smaller`'s floors into crates or pieces, never say that so much less would
   fit, and never advise cutting or splitting the order: to see a smaller quantity the buyer names,
   price and plan it.
+- Name a crate by its text (a full crate), never by a carrier's code unless asked, in a plan, a
+  what-if or an answer about where an article is.
 - Keep the connector's rules: its tool descriptions hold each field's meaning.
 - Past a plan's limits (`plan_load`'s description), plan fewer lines or quotations at once.
 

@@ -109,10 +109,11 @@ In plain words throughout: the sales area by its LINKIN name (LINKIN Bulgaria, P
 or crate by its text (a full crate), a field by what it means (the Qualicoat class). A code, a
 hash or a field's name only when the customer asks for it.
 
-Where the packs raised the pieces (`quantity.order` above `quantity.entered`), say so and quote
-the line's message. A pack count may include a part-filled pack: never work pieces out from
-packs, nor a rounding from them; the pieces priced are `quantity.order`. List a line that isn't
-`ok` under the table with what it still needs or what was refused, and no price.
+Where the packs raised the pieces (`quantity.order` above `quantity.entered`), say so in plain
+words from the line's message, the pack by its kind, not its code. A pack count may include a
+part-filled pack: never work pieces out from packs, nor a rounding from them; the pieces priced are
+`quantity.order`. List a line that isn't `ok` under the table with what it still needs or what was
+refused, and no price.
 
 An issued or read document may show beside the answer in the host's document view. Shown or not,
 open, save, link or offer no page unasked. When asked, open the summary page, the resource
