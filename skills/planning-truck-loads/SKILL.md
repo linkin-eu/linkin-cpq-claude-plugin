@@ -149,6 +149,8 @@ change:
 - Never turn `summary.smaller`'s floors into crates or pieces, never say that so much less would
   fit, and never advise cutting or splitting the order: to see a smaller quantity the buyer names,
   price and plan it.
+- Name a crate by its text (a full crate), never by a carrier's code unless asked, in a plan, a
+  what-if or an answer about where an article is.
 - Keep the connector's rules: its tool descriptions hold each field's meaning.
 - Past a plan's limits (`plan_load`'s description), plan fewer lines or quotations at once.
 

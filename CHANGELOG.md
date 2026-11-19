@@ -16,6 +16,11 @@ The notable changes to the LINKIN CPQ plugin for Claude. Versions follow
 - A per-kg or per-tonne comparison no longer gives a full quote first. Claude prices it within
   the comparison, shows LINKIN's figures in the comparison's tables, and asks at most one question
   about what the other offer covers.
+- When quoting, pricing a new profile or planning trucks, Claude names things in plain words:
+  LINKIN's sales area by its name, a crate by its kind, a figure by what it means, with no
+  internal code unless you ask for one. For a new profile, it says in one sentence which die
+  figures LINKIN's plant set because your drawing didn't give them, and that your own figures
+  would replace them.
 
 ## 5.0.3
 
