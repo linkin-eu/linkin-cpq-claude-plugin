@@ -13,14 +13,14 @@ claude plugin eval . --runs 1 --ablation none --model opus --judge-model opus --
 These need jq, Python 3.9 or later, git 2.39 or later, and Claude Code signed in to Claude.
 
 **The evals are paid.** `claude plugin eval` calls the model on your own Claude sign-in, and the
-tools' answers come from `evals/*/mocks`. The whole suite, run once, cost about $12 on
-18 Nov 2026. The command above is the one the suite is measured with: without `--runs 1` each
-case runs three times, and without `--ablation none` most cases run a second time without the
-plugin. Set `--max-cost-usd`: it is checked before each run starts, so with `-j` above 1 the
-runs already started can take the spend past it. `--case <glob>` runs only the cases it names.
-Run from a checkout with no git worktree inside it, such as Claude Code's `.claude/worktrees/`:
-the eval also runs a worktree's copy of each case, and its first lines warn that cases share a
-name.
+tools' answers come from `evals/*/mocks`. With the command above, the eval estimated the whole
+suite at about $12, at list price, on 18 Nov 2026. It is the command the suite is measured with:
+without `--runs 1` each case runs three times, and without `--ablation none` most cases run a
+second time without the plugin. Set `--max-cost-usd`: it is checked before each run starts, and
+runs already started finish, so the spend can pass it by the runs in flight, one with `-j 1`.
+`--case <glob>` runs only the cases it names. Run from a checkout with no other copy of the
+plugin under it, such as a git worktree: an eval has been seen to run a worktree's copy of each
+case too, and its first lines then warn that cases share a name.
 
 A zip is built with `git archive` from the paths `build.sh` names, so it holds only committed
 files: the manifest, the connector, the skills, the icon, and the README, LICENSE, PRIVACY and
@@ -37,14 +37,15 @@ CHANGELOG. The eval mocks follow the API's answers, with made-up rates.
   `load-plan-missing-data` and `load-plan-not-theirs` among them, is edited as it stands.
   `python3 evals/tools/check_plan_mocks.py` checks the `plan_load` answers' consistency, and their
   shape too with `--openapi <path>` to the server's OpenAPI document, which its maintainers
-  provide. CI runs the checker, and the generator, which must leave no diff.
+  provide. CI runs the checker, without that document, and the generator, which must leave no
+  diff.
 - **The checks:** `evals/check-histories.sh` fails if a history's chain breaks, or its copy of a
-  skill or of a mock's answer is not the file as it stands; if a skill lacks the paragraph on a
-  refusal of the account's details, or its paragraph differs from another's (each skill carries
+  skill or of a mock's fixed answer is not the file as it stands; if a skill lacks the paragraph on
+  a refusal of the account's details, or its paragraph differs from another's (each skill carries
   it whole, so change all five together); if a skill's `allowed-tools` is not exactly the
-  connector's nine read-only tools, or those are not the tools `_tools.json` marks
-  `readOnlyHint`; if `plugin.json` holds a key beyond its nine; and if the marketplace entry for
-  this folder doesn't carry `plugin.json`'s name. CI runs it on every pull request.
+  connector's nine read-only tools, or those are not the tools `_tools.json` marks `readOnlyHint`;
+  if `plugin.json` holds a key beyond its nine; and if the marketplace entry for this folder
+  doesn't carry `plugin.json`'s name. CI runs it on every pull request.
 - **Recorded histories:** a case's `history.jsonl` is a session recorded on another case and cut
   down to its messages, as its `case.yaml` says. `evals/check-histories.sh` fails where its copy of
   a skill or of a mock's fixed answer is no longer the file: update its copies, or record it again.
@@ -60,9 +61,10 @@ Judge the evals with Opus (`--judge-model opus`): the default judge is too lenie
 buyer must not be told. Keep the rubrics short, one claim each, since the judge answers only PASS
 or FAIL. `evals/connector-only.sh` runs the suite on the connector alone, with no skills and the
 same judge, to show what the skills add over the tool descriptions alone; there a grader on the
-Skill tool passes or fails by construction. Pass it `--runs 1 --max-cost-usd <n>` too. Neither
-run carries the server's instructions: the eval's mock server has only the tools' names,
-descriptions and schemas, while Claude Code also loads the server's instructions.
+Skill tool passes or fails by construction. Pass it `--runs 1 --model opus --max-cost-usd <n>`,
+and compare it with the command above. Neither run carries the server's instructions: the
+eval's mock server is built from `_tools.json`, a `tools/list` result, which holds none, while
+Claude Code in use also loads the server's instructions.
 
 The repository's `.mcp.json` names LINKIN's connector by its fixed address,
 `https://cpq.mcp.linkin.eu/mcp`, and no OAuth client, as Anthropic's plugin docs have it, with a
@@ -83,8 +85,8 @@ wildcard, which would cover those too. `.claude-plugin/plugin.json` holds only `
 `displayName`, `description`, `version`, `author`, `homepage`, `repository`, `license` and
 `keywords`: the directory listing fields (`icon`, `supportUrl`, `privacyPolicyUrl` and their kin)
 are read only by Anthropic's directory, and Claude Desktop's marketplace strips them with a
-warning. `assets/icon.png` is kept for a listing in that directory, where `icon` would name it.
-`evals/check-histories.sh` checks both.
+warning. `evals/check-histories.sh` checks both. `assets/icon.png` is kept for a listing in
+Anthropic's directory; `plugin.json` doesn't name it, for that reason.
 
 **A test build for another connector:** `./build.sh <commit> <address>` builds the plugin at that
 commit for the connector at that address, given in full with its path, as the default
